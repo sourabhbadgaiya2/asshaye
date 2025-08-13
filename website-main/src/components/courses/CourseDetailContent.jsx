@@ -51,6 +51,7 @@ export const CourseDetailContent = ({ courseId }) => {
         title={product?.metaTitle}
         description={product?.metaDescription}
         keywords={product?.metaKeywords}
+        canonical={product?.metaCanonical}
       />
       <div className="td_height_140 td_height_lg_10" />
 

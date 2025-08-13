@@ -21,6 +21,7 @@ const Blog = () => {
     metaTitle: "",
     metaDescription: "",
     metaKeywords: "",
+    metaCanonical: "",
   });
 
   const [categories, setCategories] = useState([]);
@@ -115,6 +116,7 @@ const Blog = () => {
     formData.append("metaTitle", input.metaTitle);
     formData.append("metaDescription", input.metaDescription);
     formData.append("metaKeywords", input.metaKeywords);
+    formData.append("metaCanonical", input.metaCanonical);
 
     imageFiles.forEach((file) => formData.append("images", file));
 
@@ -278,6 +280,16 @@ const Blog = () => {
             type='text'
             name='metaKeywords'
             value={input.metaKeywords}
+            onChange={handleInput}
+            className='w-full p-2 border border-gray-300 rounded'
+          />
+        </div>
+        <div>
+          <label className='block mb-1 font-medium'>Meta Canonical</label>
+          <input
+            type='text'
+            name='metaCanonical'
+            value={input.metaCanonical}
             onChange={handleInput}
             className='w-full p-2 border border-gray-300 rounded'
           />

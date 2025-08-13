@@ -82,6 +82,7 @@ export const EventDetailsContent = () => {
         title={event?.metaTitle}
         description={event?.metaDescription}
         keywords={event?.metaKeywords}
+        canonical={event?.metaCanonical}
       />
       <div className='td_height_120 td_height_lg_80' />
       <div className='container'>

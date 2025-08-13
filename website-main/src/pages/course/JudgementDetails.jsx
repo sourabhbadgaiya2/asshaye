@@ -85,6 +85,7 @@ export const JudgementDetails = ({ courseId }) => {
         title={product?.metaTitle}
         description={product?.metaDescription}
         keywords={product?.metaKeywords}
+        canonical={product?.metaCanonical}
       />
       <JudgementDetailContent
         id={id}

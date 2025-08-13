@@ -37,6 +37,7 @@ const WhatsNewForm = () => {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [metaKeywords, setMetaKeywords] = useState("");
+  const [metaCanonical, setMetaCanonical] = useState("");
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -169,6 +170,7 @@ const WhatsNewForm = () => {
     formData.append("metaTitle", metaTitle);
     formData.append("metaDescription", metaDescription);
     formData.append("metaKeywords", metaKeywords);
+    formData.append("metaCanonical", metaCanonical);
 
     imageFiles.forEach((file) => {
       formData.append("images", file);
@@ -226,6 +228,7 @@ const WhatsNewForm = () => {
     setMetaTitle("");
     setMetaDescription("");
     setMetaKeywords("");
+    setMetaCanonical("");
     setImageFiles([]);
     setImagePreviews([]);
     setPdfFile(null);
@@ -266,6 +269,16 @@ const WhatsNewForm = () => {
           type='text'
           value={metaTitle}
           onChange={(e) => setMetaTitle(e.target.value)}
+          className='w-full p-2 border border-gray-300 rounded'
+        />
+      </div>
+
+      <div className='mb-4'>
+        <label className='block mb-1 font-medium'>Meta Canonical</label>
+        <input
+          type='text'
+          value={metaCanonical}
+          onChange={(e) => setMetaCanonical(e.target.value)}
           className='w-full p-2 border border-gray-300 rounded'
         />
       </div>

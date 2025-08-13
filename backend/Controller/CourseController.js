@@ -152,6 +152,7 @@ const CourseSave = async (req, res) => {
       metaTitle,
       metaDescription,
       metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // if (!subCategory || !category) {
@@ -216,6 +217,7 @@ const CourseSave = async (req, res) => {
       metaTitle,
       metaDescription,
       metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json(course);

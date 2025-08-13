@@ -69,6 +69,9 @@ const courseSchema = new mongoose.Schema(
     metaKeywords: {
       type: String,
     },
+    metaCanonical: {
+      type: String,
+    },
     Certification: {
       // Corrected the typo here
       type: String,

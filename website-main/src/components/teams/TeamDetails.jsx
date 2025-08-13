@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
+import SEO from "../../common/Seo";
 
 export const TeamDetails = () => {
   const [member, setMember] = useState({});
@@ -54,6 +55,12 @@ export const TeamDetails = () => {
 
   return (
     <section>
+      <SEO
+        title={member?.metaTitle}
+        description={member?.metaDescription}
+        keywords={member?.metaKeywords}
+        canonical={member?.metaCanonical}
+      />
       <div className='td_height_120 td_height_lg_80' />
       <div className='container'>
         <div className='row td_gap_y_40'>

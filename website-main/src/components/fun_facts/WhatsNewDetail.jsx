@@ -128,6 +128,7 @@ const DetailSection = () => {
         title={whatsNew?.metaTitle}
         description={whatsNew?.metaDescription}
         keywords={whatsNew?.metaKeywords}
+        canonical={whatsNew?.metaCanonical}
       />
       <ToastContainer position='top-right' autoClose={3000} />
       <div className='td_height_120 td_height_lg_60' />

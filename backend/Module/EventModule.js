@@ -48,6 +48,9 @@ const ContactSchema = new mongoose.Schema(
     metaKeywords: {
       type: String,
     },
+    metaCanonical: {
+      type: String,
+    },
   },
   {
     timestamps: true,

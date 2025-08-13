@@ -19,6 +19,7 @@ const Event = () => {
     metaTitle: "",
     metaDescription: "",
     metaKeywords: "",
+    metaCanonical: "",
   });
   const [files, setFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
@@ -107,6 +108,7 @@ const Event = () => {
         metaTitle: "",
         metaDescription: "",
         metaKeywords: "",
+        metaCanonical: "",
       });
       setFiles([]);
       setPreviewUrls([]);
@@ -153,6 +155,20 @@ const Event = () => {
               onChange={handleChange}
               className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
               required
+            />
+          </div>
+
+          <div>
+            <label className='block text-gray-700 mb-2' htmlFor='metaCanonical'>
+              Meta Canonical
+            </label>
+            <input
+              type='text'
+              id='metaCanonical'
+              name='metaCanonical'
+              value={formData.metaCanonical}
+              onChange={handleChange}
+              className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
             />
           </div>
 

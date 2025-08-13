@@ -42,6 +42,9 @@ const judgementSchema = new mongoose.Schema(
     metaKeywords: {
       type: String,
     },
+    metaCanonical: {
+      type: String,
+    },
     altText: {
       type: String,
     },

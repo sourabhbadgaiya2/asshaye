@@ -13,6 +13,10 @@ const Sucesserstudent = async (req, res) => {
       size,
       altText,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     const parsedSize = typeof size === "string" ? JSON.parse(size) : size;
@@ -43,6 +47,10 @@ const Sucesserstudent = async (req, res) => {
       images: uploadedImages,
       size: parsedSize,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json(banner);
@@ -122,6 +130,11 @@ const editDataSave = async (req, res) => {
       staticUrl: formData.staticUrl || existingMember.staticUrl,
       images: existingMember.images, // default, replaced below if new images uploaded
       size: formData.size ? JSON.parse(formData.size) : existingMember.size,
+      metaTitle: formData.metaTitle || existingMember.metaTitle,
+      metaDescription:
+        formData.metaDescription || existingMember.metaDescription,
+      metaKeywords: formData.metaKeywords || existingMember.metaKeywords,
+      metaCanonical: formData.metaCanonical || existingMember.metaCanonical,
     };
 
     // If new images are uploaded, REPLACE the old ones

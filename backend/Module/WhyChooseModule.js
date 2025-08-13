@@ -44,6 +44,18 @@ const WhyChooseSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    metaKeywords: {
+      type: String,
+    },
+    metaCanonical: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

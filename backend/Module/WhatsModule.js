@@ -28,6 +28,9 @@ const SucessSchema = new mongoose.Schema(
     metaKeywords: {
       type: String,
     },
+    metaCanonical: {
+      type: String,
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",

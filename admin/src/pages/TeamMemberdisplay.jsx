@@ -797,6 +797,10 @@ const TeamMemberDisplay = () => {
         altText: currentMember.altText || "",
         staticUrl: currentMember.staticUrl || "",
         images: currentMember.images || [],
+        metaTitle: currentMember.metaTitle || "",
+        metaDescription: currentMember.metaDescription || "",
+        metaKeywords: currentMember.metaKeywords || "",
+        metaCanonical: currentMember.metaCanonical || "",
       });
       setImagePreviews(currentMember.images || []);
       setImageFiles([]);
@@ -938,6 +942,10 @@ const TeamMemberDisplay = () => {
       "desciption",
       DOMPurify.sanitize(editFormData.desciption || "")
     );
+    formData.append("metaTitle", editFormData.metaTitle || "");
+    formData.append("metaDescription", editFormData.metaDescription || "");
+    formData.append("metaKeywords", editFormData.metaKeywords || "");
+    formData.append("metaCanonical", editFormData.metaCanonical || "");
 
     imageFiles.forEach((file) => {
       formData.append("images", file);
@@ -1453,6 +1461,62 @@ const TeamMemberDisplay = () => {
                       ],
                     }}
                   />
+                </div>
+              </div>
+
+              <div className='md:col-span-2'>
+                <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+                  SEO Settings
+                </h3>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
+                      Meta Title
+                    </label>
+                    <input
+                      type='text'
+                      name='metaTitle'
+                      value={editFormData.metaTitle}
+                      onChange={handleEditChange}
+                      className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
+                      Meta Keywords
+                    </label>
+                    <input
+                      type='text'
+                      name='metaKeywords'
+                      value={editFormData.metaKeywords}
+                      onChange={handleEditChange}
+                      className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
+                    />
+                  </div>
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
+                      Meta Description
+                    </label>
+                    <textarea
+                      name='metaDescription'
+                      value={editFormData.metaDescription}
+                      onChange={handleEditChange}
+                      className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
+                      rows='3'
+                    />
+                  </div>
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
+                      Canonical URL
+                    </label>
+                    <input
+                      type='text'
+                      name='metaCanonical'
+                      value={editFormData.metaCanonical}
+                      onChange={handleEditChange}
+                      className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
+                    />
+                  </div>
                 </div>
               </div>
 

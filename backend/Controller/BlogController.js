@@ -18,6 +18,7 @@ const BlogSave = async (req, res) => {
       metaTitle,
       metaDescription,
       metaKeywords,
+      metaCanonical,
     } = req.body;
 
     let savedSeo = null;
@@ -26,6 +27,7 @@ const BlogSave = async (req, res) => {
         title: metaTitle,
         description: metaDescription,
         keywords: metaKeywords,
+        canonical: metaCanonical,
       });
       savedSeo = await newSeo.save();
     }
@@ -80,7 +82,9 @@ const BlogSave = async (req, res) => {
 
 const BlogDisplayAll = async (req, res) => {
   try {
-    const enquiries = await Banner.find().populate("BlogCategory");
+    const enquiries = await Banner.find()
+      .populate("BlogCategory")
+      .populate("seo");
     res.status(200).json({
       success: true,
       data: enquiries,
@@ -155,6 +159,10 @@ const editDataSave = async (req, res) => {
       id,
       blogUrl,
       images,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // ✅ Validate required fields
@@ -230,6 +238,28 @@ const editDataSave = async (req, res) => {
         delete updatedFields[key];
       }
     });
+
+    // Handle SEO updates
+    if (metaTitle || metaDescription || metaKeywords || metaCanonical) {
+      const blog = await Banner.findById(id);
+      if (blog && blog.seo) {
+        await BlogSEO.findByIdAndUpdate(blog.seo, {
+          title: metaTitle,
+          description: metaDescription,
+          keywords: metaKeywords,
+          canonical: metaCanonical,
+        });
+      } else if (blog) {
+        const newSeo = new BlogSEO({
+          title: metaTitle,
+          description: metaDescription,
+          keywords: metaKeywords,
+          canonical: metaCanonical,
+        });
+        const savedSeo = await newSeo.save();
+        updatedFields.seo = savedSeo._id;
+      }
+    }
 
     // ✅ Update blog by ID
     const updated = await Banner.findByIdAndUpdate(id, updatedFields, {

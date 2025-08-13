@@ -20,6 +20,10 @@ const TeamMember = () => {
     desciption: "",
     altText: "",
     staticUrl: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
+    metaCanonical: "",
   });
 
   const [imageFiles, setImageFiles] = useState([]);
@@ -39,6 +43,10 @@ const TeamMember = () => {
         desciption: "",
         altText: "",
         staticUrl: "",
+        metaTitle: "",
+        metaDescription: "",
+        metaKeywords: "",
+        metaCanonical: "",
       });
       setImageFiles([]);
       setImagePreviews([]);
@@ -106,6 +114,10 @@ const TeamMember = () => {
     formData.append("desciption", input.desciption);
     formData.append("altText", input.altText);
     formData.append("staticUrl", input.staticUrl);
+    formData.append("metaTitle", input.metaTitle);
+    formData.append("metaDescription", input.metaDescription);
+    formData.append("metaKeywords", input.metaKeywords);
+    formData.append("metaCanonical", input.metaCanonical);
 
     imageFiles.forEach((file) => formData.append("images", file));
 
@@ -123,21 +135,54 @@ const TeamMember = () => {
       </h2>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-        {Object.keys(input).map((key) =>
-          key !== "desciption" ? (
+        {[
+          "Membername",
+          "Teamposition",
+          "email",
+          "phone",
+          "address",
+          "altText",
+          "staticUrl",
+        ].map((key) => (
+          <div key={key}>
+            <label className='block mb-1 font-medium capitalize'>{key}</label>
+            <input
+              type='text'
+              name={key}
+              value={input[key]}
+              onChange={handleInput}
+              className='w-full p-2 border border-gray-300 rounded'
+              required={key === "Membername" || key === "Teamposition"}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className='mt-6'>
+        <h3 className='text-lg font-semibold mb-4 text-gray-700 border-b pb-2'>
+          SEO
+        </h3>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          {[
+            "metaTitle",
+            "metaDescription",
+            "metaKeywords",
+            "metaCanonical",
+          ].map((key) => (
             <div key={key}>
-              <label className='block mb-1 font-medium capitalize'>{key}</label>
+              <label className='block mb-1 font-medium capitalize'>
+                {key.replace("meta", "Meta ")}
+              </label>
               <input
                 type='text'
                 name={key}
                 value={input[key]}
                 onChange={handleInput}
                 className='w-full p-2 border border-gray-300 rounded'
-                required
               />
             </div>
-          ) : null
-        )}
+          ))}
+        </div>
       </div>
 
       <div className='mt-6'>

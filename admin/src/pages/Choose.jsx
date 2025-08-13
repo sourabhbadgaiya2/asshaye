@@ -19,6 +19,10 @@ const Choose = () => {
     keywordsix: "",
     altText: "",
     description: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
+    metaCanonical: "",
   });
 
   const [imageFiles, setImageFiles] = useState([]);
@@ -107,6 +111,10 @@ const Choose = () => {
         keywordsix: "",
         altText: "",
         description: "",
+        metaTitle: "",
+        metaDescription: "",
+        metaKeywords: "",
+        metaCanonical: "",
       });
       setImageFiles([]);
       setImagePreviews([]);
@@ -128,35 +136,72 @@ const Choose = () => {
       </h2>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
-        {Object.entries(input).map(([key, value]) => (
+        {[
+          "Title",
+          "keywordone",
+          "keywordtwo",
+          "keywordthree",
+          "keywordfour",
+          "keywordfive",
+          "keywordsix",
+          "altText",
+        ].map((key) => (
           <div className='mb-4' key={key}>
             <label className='block mb-1 font-medium capitalize'>
               {key}
-              {(key === "Title" || key === "description") && (
-                <span className='text-red-500 ml-1'>*</span>
-              )}
+              {key === "Title" && <span className='text-red-500 ml-1'>*</span>}
             </label>
-            {key === "description" ? (
-              <textarea
-                name={key}
-                value={value}
-                onChange={handleInput}
-                className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                required
-                rows={4}
-              />
-            ) : (
+            <input
+              type='text'
+              name={key}
+              value={input[key]}
+              onChange={handleInput}
+              className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+              required={key === "Title"}
+            />
+          </div>
+        ))}
+        <div className='md:col-span-2 mb-4'>
+          <label className='block mb-1 font-medium capitalize'>
+            Description
+            <span className='text-red-500 ml-1'>*</span>
+          </label>
+          <textarea
+            name='description'
+            value={input.description}
+            onChange={handleInput}
+            className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+            required
+            rows={4}
+          />
+        </div>
+      </div>
+
+      <div className='mb-6'>
+        <h3 className='text-lg font-semibold mb-4 text-gray-700 border-b pb-2'>
+          SEO
+        </h3>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          {[
+            "metaTitle",
+            "metaDescription",
+            "metaKeywords",
+            "metaCanonical",
+          ].map((key) => (
+            <div key={key}>
+              <label className='block mb-1 font-medium capitalize'>
+                {key.replace("meta", "Meta ")}
+              </label>
               <input
                 type='text'
                 name={key}
-                value={value}
+                value={input[key]}
                 onChange={handleInput}
-                className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                required={key === "Title"}
+                className='w-full p-2 border border-gray-300 rounded'
               />
-            )}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className='my-6'>
