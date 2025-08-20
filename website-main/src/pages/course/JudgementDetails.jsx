@@ -9,8 +9,7 @@ import OtherCoursesSlider from "./OtherCourses";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
-import { useDispatch, useSelector } from "react-redux";
+
 export const JudgementDetails = ({ courseId }) => {
   const { id } = useParams();
   const [product, setProduct] = useState({});

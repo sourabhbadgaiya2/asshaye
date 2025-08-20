@@ -18,15 +18,7 @@ import { Logs } from "lucide-react";
 
 const API_BASE_URL = "http://localhost:8000";
 
-const models = [
-  "Blog",
-  "Course",
-  // "Event",
-  // "Judgment",
-  // "TeamMember",
-  // "WhatsNew",
-  // "Othercourse",
-];
+const models = ["Blog", "Course"];
 
 const SEOManager = () => {
   const dispatch = useDispatch();

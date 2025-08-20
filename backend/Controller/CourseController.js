@@ -459,5 +459,5 @@ module.exports = {
   getAllCoursedisplay,
   getsubcategory,
   getrecorededcourse,
-  reorderCourses,
+  // reorderCourses,
 };

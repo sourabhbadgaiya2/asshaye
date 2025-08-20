@@ -6,8 +6,6 @@ import DOMPurify from "dompurify";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 export const TeamDetails = () => {
   const [member, setMember] = useState({});
   const [error, setError] = useState(false);
