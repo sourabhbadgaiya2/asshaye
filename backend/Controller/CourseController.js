@@ -153,6 +153,7 @@ const CourseSave = async (req, res) => {
       metaDescription,
       metaKeywords,
       metaCanonical,
+      order,
     } = req.body;
 
     // if (!subCategory || !category) {
@@ -190,6 +191,7 @@ const CourseSave = async (req, res) => {
     // NOTE: Adjust the following lines based on your actual category model if needed
     const course = await Course.create({
       Seat,
+      order,
       Semester,
       Coursename,
       StateCourse,
@@ -258,11 +260,12 @@ const getAllCourse = async (req, res) => {
 const getAllCoursedisplay = async (req, res) => {
   try {
     const productsall = await Course.find()
-      .sort({ createdAt: -1 })
+      // .sort({ order: 1 })
+      .sort({ createdAt: -1, order: 1 })
       .populate("category")
       .populate("subCategory")
-      .populate("subsubCategory") // Add this line to populate subcategory
-      .sort({ sortOrder: 1, createdAt: 1 });
+      .populate("subsubCategory"); // Add this line to populate subcategory
+    // .sort({ sortOrder: 1, createdAt: 1 });
 
     res.status(200).json(productsall);
   } catch (error) {

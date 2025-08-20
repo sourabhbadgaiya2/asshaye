@@ -104,6 +104,11 @@ const courseSchema = new mongoose.Schema(
     payNow: {
       type: String,
     },
+
+    order: {
+      type: Number,
+      default: 1,
+    },
     sortOrder: {
       type: Number,
       default: 0,

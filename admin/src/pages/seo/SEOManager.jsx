@@ -17,8 +17,18 @@ import axios from "axios";
 import { Logs } from "lucide-react";
 
 const API_BASE_URL = "http://localhost:8000";
+// const API_BASE_URL = "https://backend.aashayeinjudiciary.com";
 
-const models = ["Blog", "Course"];
+const models = [
+  "Blog",
+  "Course",
+  "Event",
+  "Judgment",
+  "TeamMember",
+  "WhatsNew",
+  "Othercourse",
+  "SuccessStory",
+];
 
 const SEOManager = () => {
   const dispatch = useDispatch();
@@ -55,6 +65,7 @@ const SEOManager = () => {
     item.Membername ||
     item.title ||
     item.name ||
+    item.Judicial ||
     item.Coursename ||
     "Untitled";
 
@@ -85,6 +96,9 @@ const SEOManager = () => {
           break;
         case "Othercourse":
           url = `${API_BASE_URL}/othercourse`;
+          break;
+        case "SuccessStory":
+          url = `${API_BASE_URL}/success/display`;
           break;
         default:
           setItems([]);

@@ -14,6 +14,7 @@ const SyllabusDisplay = () => {
   const [editFormData, setEditFormData] = useState({
     Coursename: "",
     category: "",
+    staticUrl: "",
     PDFbrochure: "",
     altText: "",
   });
@@ -25,9 +26,9 @@ const SyllabusDisplay = () => {
     fetchSyllabus();
     fetchcategory();
   }, []);
-// const fetchSyllabus = async () => {
+  // const fetchSyllabus = async () => {
 
-// const fetchSyllabus = async () => {
+  // const fetchSyllabus = async () => {
   const fetchSyllabus = async () => {
     try {
       const response = await fetch(
@@ -71,11 +72,13 @@ const SyllabusDisplay = () => {
 
       const data = await response.json();
       setEditingId(id);
+
       setEditFormData({
         Coursename: data.record.Coursename || "",
         category: data.record?.category?._id || "",
         PDFbrochure: data.record.PDFbrochure || "",
         altText: data.record.altText || "",
+        staticUrl: data.record.staticUrl || "",
       });
 
       if (data.categories) {
@@ -143,8 +146,9 @@ const SyllabusDisplay = () => {
     try {
       const formData = new FormData();
       formData.append("Coursename", editFormData.Coursename);
-      formData.append("category", editFormData.category);
+      formData.append("category", editFormData.category._id);
       formData.append("altText", editFormData.altText);
+      formData.append("staticUrl", editFormData.staticUrl);
 
       if (newPdfFile) {
         formData.append("PDFbrochure", newPdfFile);
@@ -153,7 +157,8 @@ const SyllabusDisplay = () => {
       }
 
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
+        // `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
+        `http://localhost:8000/syllabus/editsave/${editingId}`,
         {
           method: "PUT",
           body: formData,
@@ -345,6 +350,18 @@ const SyllabusDisplay = () => {
                   type='text'
                   name='altText'
                   value={editFormData.altText}
+                  onChange={handleEditChange}
+                  className='w-full p-2 border rounded-md'
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Static Url
+                </label>
+                <input
+                  type='text'
+                  name='staticUrl'
+                  value={editFormData.staticUrl}
                   onChange={handleEditChange}
                   className='w-full p-2 border rounded-md'
                 />

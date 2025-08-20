@@ -254,46 +254,7 @@ const Blog = () => {
             ))}
           </select>
         </div>
-        <div>
-          <label className='block mb-1 font-medium'>Meta Title</label>
-          <input
-            type='text'
-            name='metaTitle'
-            value={input.metaTitle}
-            onChange={handleInput}
-            className='w-full p-2 border border-gray-300 rounded'
-          />
-        </div>
-        <div>
-          <label className='block mb-1 font-medium'>Meta Description</label>
-          <input
-            type='text'
-            name='metaDescription'
-            value={input.metaDescription}
-            onChange={handleInput}
-            className='w-full p-2 border border-gray-300 rounded'
-          />
-        </div>
-        <div>
-          <label className='block mb-1 font-medium'>Meta Keywords</label>
-          <input
-            type='text'
-            name='metaKeywords'
-            value={input.metaKeywords}
-            onChange={handleInput}
-            className='w-full p-2 border border-gray-300 rounded'
-          />
-        </div>
-        <div>
-          <label className='block mb-1 font-medium'>Meta Canonical</label>
-          <input
-            type='text'
-            name='metaCanonical'
-            value={input.metaCanonical}
-            onChange={handleInput}
-            className='w-full p-2 border border-gray-300 rounded'
-          />
-        </div>
+      
       </div>
 
       {/* <div className="mb-4">

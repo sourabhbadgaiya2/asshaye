@@ -139,10 +139,6 @@ const Judgement = () => {
     { name: "lastDate", label: "Last Date", type: "date" },
     { name: "altText", label: "altText", type: "text" },
     { name: "staticUrl", label: "Static Url", type: "text" },
-    { name: "metaTitle", label: "Meta Title", type: "text" },
-    { name: "metaDescription", label: "Meta Description", type: "text" },
-    { name: "metaKeywords", label: "Meta Keywords", type: "text" },
-    { name: "metaCanonical", label: "Meta Canonical", type: "text" },
   ];
 
   const renderCategorySelect = () => (
@@ -232,7 +228,7 @@ const Judgement = () => {
       >
         <ToastContainer position='top-center' autoClose={3000} />
         <h2 className='text-2xl font-bold mb-6 text-center text-gray-800'>
-          Judgement Registration sb
+          Judgement Registration
         </h2>
 
         <div className='mb-8'>

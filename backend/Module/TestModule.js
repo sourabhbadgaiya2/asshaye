@@ -19,6 +19,10 @@ const preSchema = new mongoose.Schema(
       ref: "BlogSEO",
     },
 
+    staticUrl: {
+      type: String,
+    },
+
     altText: {
       type: String,
     },

@@ -826,7 +826,7 @@ const BlogDisplay = () => {
                 </div>
               </div>
 
-              <div className='md:col-span-2'>
+              {/* <div className='md:col-span-2'>
                 <h3 className='text-lg font-medium text-gray-900 mb-2'>
                   SEO Settings
                 </h3>
@@ -880,7 +880,7 @@ const BlogDisplay = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <label className='block text-sm font-medium text-gray-700 mb-1'>

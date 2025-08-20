@@ -17,7 +17,7 @@ const fileUpload = async (file) => {
 
 const WhatsNewSave = async (req, res) => {
   try {
-    const { title, category, altText } = req.body;
+    const { title, category, altText, staticUrl } = req.body;
     const pdfFile = req.files?.PDFbrochure;
 
     if (!title || !category || !pdfFile) {
@@ -32,6 +32,7 @@ const WhatsNewSave = async (req, res) => {
       Coursename: title,
       category,
       altText,
+      staticUrl,
       PDFbrochure: pdfUrl,
     });
 
@@ -150,7 +151,7 @@ const editDataSave = async (req, res) => {
     if (!id) return res.status(400).json({ message: "ID is required." });
 
     // Get form data from either multipart form or JSON body
-    const { Coursename, category, altText } = req.body;
+    const { Coursename, category, altText, staticUrl } = req.body;
     let PDFbrochure = req.body.PDFbrochure;
 
     // Handle file upload if new file is provided
@@ -169,6 +170,7 @@ const editDataSave = async (req, res) => {
       Coursename,
       category,
       altText,
+      staticUrl,
       ...(PDFbrochure && { PDFbrochure }), // Only include if exists
     };
 

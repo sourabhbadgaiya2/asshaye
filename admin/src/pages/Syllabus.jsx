@@ -11,6 +11,7 @@ const Syllabus = () => {
   const [courseName, setCourseName] = useState("");
   const [category, setCategory] = useState("");
   const [altText, setAltText] = useState("");
+  const [staticUrl, setStaticUrl] = useState("");
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -60,6 +61,7 @@ const Syllabus = () => {
     formData.append("title", courseName);
     formData.append("category", category);
     formData.append("altText", altText);
+    formData.append("staticUrl", staticUrl);
 
     if (pdfFile) {
       formData.append("PDFbrochure", pdfFile);
@@ -68,7 +70,8 @@ const Syllabus = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/syllabus/create",
+        // "https://backend.aashayeinjudiciary.com/syllabus/create",
+        "http://localhost:8000/syllabus/create",
         formData,
         {
           headers: {
@@ -141,6 +144,16 @@ const Syllabus = () => {
         </select>
       </div>
 
+      <div className='mb-4'>
+        <label className='block mb-1 font-medium'>Static Url</label>
+        <input
+          type='text'
+          value={staticUrl}
+          onChange={(e) => setStaticUrl(e.target.value)}
+          className='w-full p-2 border border-gray-300 rounded'
+          required
+        />
+      </div>
       <div className='mb-4'>
         <label className='block mb-1 font-medium'>Alt Text</label>
         <input

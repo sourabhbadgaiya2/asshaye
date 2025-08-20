@@ -29,6 +29,15 @@ const SyllabusRegisterSchema = new mongoose.Schema(
         message: (props) => `${props.value} is not a valid phone number!`,
       },
     },
+
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
+
+    staticUrl: {
+      type: String,
+    },
     city: {
       type: String,
     },

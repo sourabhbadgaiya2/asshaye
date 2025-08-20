@@ -742,7 +742,7 @@ const JudgementDisplay = () => {
               </div>
             </div>
 
-            <div className='md:col-span-2'>
+            {/* <div className='md:col-span-2'>
               <h3 className='text-lg font-semibold'>SEO Settings</h3>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-2'>
                 <div>
@@ -794,7 +794,7 @@ const JudgementDisplay = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className='md:col-span-2'>
               <label className='block text-sm font-medium text-gray-700 mb-1'>
