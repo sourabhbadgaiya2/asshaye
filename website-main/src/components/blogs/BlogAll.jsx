@@ -77,11 +77,10 @@ export const BlogAll = () => {
       <MarqueeStrike />
 
       <div className='container '>
-        <h3 className='text-center  fw-bold mb-4 mt-10 d-none d-sm-block'>
-          <span style={{ borderBottom: "3px solid red", paddingBottom: "5px" }}>
-            Explore Our Blogs
-          </span>
-        </h3>
+         <h4 className='text-center mt-2 mb-2 d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+               Explore Our Blogs
+          </h4>
+
 
         <div className='row'>
           <div className='col-lg-4'>

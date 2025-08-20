@@ -93,7 +93,7 @@ export const CoursesAllList = ({ selectedCategoryId }) => {
   );
 
   const renderCourseCard = (course) => (
-    <div key={course._id} className='col-xl-12 mb-4'>
+    <div key={course._id} id="radiologu" className='col-12 mb-4'>
       <div className='td_card td_style_5 td_type_3 hover-effect'>
         <div
           className='td_card_thumb clickable'

@@ -58,15 +58,18 @@ export const BlogSidebar = ({ selectedCategoryId, setSelectedCategoryId }) => {
     <>
       {/* Mobile Toggle Button */}
       <div className="d-lg-none d-flex align-items-center justify-content-between p-3">
-        <h4 className="mb-0">Explore Our Blog</h4>
+         <h4 className='mb-0 td_section_subtitle_up td_fs_20 td_semibold   text-uppercase td_accent_color'>
+               Explore Our Blog
+          </h4>
+
         <button
-          className="btn btn-danger x shadow"
+          className="btn btn-danger  x shadow"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#mobileSidebar"
           aria-controls="mobileSidebar"
         >
-          <i className="bi bi-funnel-fill me-2"></i>Open Filter
+          <i className="bi bi-funnel-fill ms-2"></i>Open Filter
         </button>
       </div>
 

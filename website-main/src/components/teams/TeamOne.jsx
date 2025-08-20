@@ -76,19 +76,14 @@ export const TeamOne = () => {
           data-wow-duration='1s'
           data-wow-delay='0.2s'
         >
-          <p className='td_section_subtitle_up td_fs_30 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color'>
-            <i></i>
-            team members
-            <i></i>
-          </p>
-          <h2 className='td_section_title td_fs_30 mb-0'>
-            Our Expert Instructor
-          </h2>
-          <p className='td_section_subtitle td_fs_18 mb-0'>
-            Far far away, behind the word mountains, far from the Consonantia,
-            there <br />
-            live the blind texts. Separated they marks grove right
-          </p>
+
+             <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+            Our Judiciary Mentors
+          </h4>
+       <p className='td_section_title text-center td_fs_20 mb-4'>Meet the dedicated mentors shaping future judges through quality training.
+
+    </p>
+
         </div>
         <div className='td_height_50 td_height_lg_50' />
 

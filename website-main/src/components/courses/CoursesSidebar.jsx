@@ -44,7 +44,11 @@ export const CoursesSidebar = ({ onCategorySelect, selectedCategoryId }) => {
   return (
     <>
       <div className='d-lg-none d-flex align-items-center mb-3 justify-content-between mt-4 '>
-        <h5 className='fs-4 mb-0'>Explore Our Judgement</h5>
+         <h4 className=' mb-0 fw-bold text-center td_section_subtitle_up td_fs_20 td_semibold text-uppercase td_accent_color'>
+              Explore Our Judgement
+          </h4>
+
+
         <button
           className='btn btn-danger  shadow'
           type='button'

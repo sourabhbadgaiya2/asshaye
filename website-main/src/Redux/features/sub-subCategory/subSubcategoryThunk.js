@@ -88,7 +88,7 @@ export const fetchSubSubcategoriesByParent = createAsyncThunk(
   async (subCategoryId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/subsubcategory/by-sub/${subCategoryId}`
+        `https://backend.aashayeinjudiciary.com/subsubcategory/by-sub/${subCategoryId}`
       );
       return response.data;
     } catch (error) {

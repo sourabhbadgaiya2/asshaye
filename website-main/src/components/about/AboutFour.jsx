@@ -175,9 +175,12 @@ export const AboutFour = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <SectionTitle>Director's Message</SectionTitle>
-
-            <Salutation>Dear Students,</Salutation>
+             <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+            Director's Message
+          </h4>
+          <p className='td_section_title td_fs_20 mb-0'>Dear Students,
+</p>
+           
 
             <MessageText>
               This passage is about preparing for competitive exams to become a judge.

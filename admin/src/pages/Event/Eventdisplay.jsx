@@ -146,7 +146,7 @@ const Eventdisplay = () => {
       }
 
       const response = await fetch(
-        `http://backend.aashayeinjudiciary.com/event/editsave/${editingEvent._id}`,
+        `https://backend.aashayeinjudiciary.com/event/editsave/${editingEvent._id}`,
         {
           method: "PUT",
           body: formData,

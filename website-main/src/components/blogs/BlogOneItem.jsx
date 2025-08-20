@@ -69,7 +69,7 @@ export const BlogOneItem = ({
     <div className='td_post td_style_1'>
       <Link to={link} state={state}>
         <div id='block-section' className='td_post_thumb d-block'>
-          <img src={src} alt='blog post' />
+          <img style={{ height:"320 !important" }} id="imaging" src={src} alt='blog post' />
           <i className='fa-solid fa-link'></i>
         </div>
 
@@ -86,7 +86,7 @@ export const BlogOneItem = ({
           </div>
 
           <h2 className='td_post_title td_fs_14 td_medium td_mb_16'>{title}</h2>
-          {/* 
+          {/*
           <p className='td_post_subtitle td_mb_24 td_heading_color td_opacity_7'>
             {description.slice(0, 100)}
           </p> */}

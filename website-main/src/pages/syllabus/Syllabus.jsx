@@ -15,7 +15,7 @@ export const SyllabusDownload = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -131,9 +131,11 @@ export const SyllabusDownload = () => {
 const SyllabusTable = ({ syllabusData, onDownloadClick }) => (
   <div className='table-responsive text-center'>
     <div className='cart_wrapper'>
-      <h3 className='main-heading'>
-        Download the Syllabus for Judicial Services
-      </h3>
+     
+         <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+               Download the Syllabus for Judicial Services
+          </h4>
+
       <Table striped bordered>
         <thead className='bg-dark text-white'>
           <tr>

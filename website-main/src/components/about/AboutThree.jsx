@@ -269,21 +269,12 @@ export const AboutThree = () => {
 
           <div className="col-lg-6">
             <ContentSection>
-              <SectionSubtitle
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                About us
-              </SectionSubtitle>
+                   <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+           About us
+          </h4>
+          <p className='td_section_title td_fs_20 mb-0'> About the Director :
+</p>
 
-              <SectionTitle
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                About the Director
-              </SectionTitle>
 
               <SectionText
                 initial={{ opacity: 0 }}

@@ -122,7 +122,7 @@ const Blog = () => {
 
     try {
       // const api = "https://backend.aashayeinjudiciary.com/blog/create";
-      const api = "http://backend.aashayeinjudiciary.com/blog/create";
+      const api = "https://backend.aashayeinjudiciary.com/blog/create";
       const response = await axios.post(api, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });

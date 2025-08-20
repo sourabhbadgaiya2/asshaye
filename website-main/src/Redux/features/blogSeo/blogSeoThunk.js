@@ -24,7 +24,7 @@ export const getAllBlogSEOs = createAsyncThunk(
     console.log(modelName, "thunks");
     try {
       const response = axios.get(
-        "http://localhost:8000/api/seo?modelName=Blog"
+        "https://backend.aashayeinjudiciary.com/api/seo?modelName=Blog"
       );
 
       return response.data;

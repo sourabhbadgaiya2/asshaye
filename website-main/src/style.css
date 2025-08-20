@@ -9,6 +9,22 @@ th, td {
   text-align: center;
 }
 
+#radiologu{
+  width: auto !important;
+}
+
+.td_card.td_style_5 .td_card_thumb .td_card_thumb_in > img {
+    height: 146px !important;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+#imaging{
+  width: 100% !important;
+  height: 230px !important;
+  /* object-fit: cover; */
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

@@ -10,7 +10,7 @@
 // }
 
 // // Use: example ----
-// fetchSitemapUrls("http://localhost:8000/sitemap.xml").then((urls) => {
+// fetchSitemapUrls("https://backend.aashayeinjudiciary.com/sitemap.xml").then((urls) => {
 //   console.log(urls); // All page URLs from sitemap.xml!
 // });
 

@@ -306,7 +306,7 @@ export const HeroThree = () => {
                 </div>
 
                 <div className='form-floating'>
-                  <select
+                  {/* <select
                     className='form-select'
                     name='State'
                     value={formData.State}
@@ -318,8 +318,31 @@ export const HeroThree = () => {
                     <option value='Uttar Pradesh'>Uttar Pradesh</option>
                     <option value='Chhattisgarh'>Chhattisgarh</option>
                     <option value='Delhi'>Delhi</option>
-                    {/* Add all other states if needed */}
-                  </select>
+
+                  </select> */}
+
+                  <select
+  className="form-select"
+  name="State"
+  value={formData.State}
+  onChange={handleChange}
+  required
+>
+  <option value="">Select your State</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Himachal Pradesh">Himachal Pradesh</option>
+  <option value="Uttarakhand">Uttarakhand</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Haryana">Haryana</option>
+  <option value="Rajasthan">Rajasthan</option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Jharkhand">Jharkhand</option>
+  <option value="Chhattisgarh">Chhattisgarh</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="Other">Other</option>
+</select>
+
                 </div>
 
                 <div className='form-floating'>
