@@ -32,6 +32,10 @@ const Course = () => {
     LastDate: "",
     payNow: "",
     staticUrl: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
+    metaCanonical: "",
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -232,6 +236,12 @@ const Course = () => {
 
   const otherFields = [
     { name: "LastDate", label: "Last Date to Enroll", type: "date" },
+  ];
+  const seoFields = [
+    { name: "metaTitle", label: "Meta Title", type: "text" },
+    { name: "metaDescription", label: "Meta Description", type: "text" },
+    { name: "metaKeywords", label: "Meta Keywords", type: "text" },
+    { name: "metaCanonical", label: "Meta Canonical", type: "text" },
   ];
 
   // Render category select dropdown
@@ -438,6 +448,15 @@ const Course = () => {
           </h3>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             {otherFields.map(renderInputField)}
+          </div>
+        </div>
+
+        <div className='mb-8'>
+          <h3 className='text-lg font-semibold mb-4 text-gray-700 border-b pb-2'>
+            SEO
+          </h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            {seoFields.map(renderInputField)}
           </div>
         </div>
 

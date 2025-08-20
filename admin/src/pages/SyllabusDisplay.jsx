@@ -25,7 +25,9 @@ const SyllabusDisplay = () => {
     fetchSyllabus();
     fetchcategory();
   }, []);
+// const fetchSyllabus = async () => {
 
+// const fetchSyllabus = async () => {
   const fetchSyllabus = async () => {
     try {
       const response = await fetch(

@@ -59,17 +59,54 @@ const SocialMedia = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="icon">
-            Icon Name (e.g., facebook, twitter, instagram)
+            Social Platform
           </label>
-          <input
-            type="text"
+          <select
             id="icon"
             name="icon"
             value={formData.icon}
-            onChange={handleChange}
+            onChange={(e) => {
+              const val = e.target.value;
+              setFormData((prev) => ({
+                ...prev,
+                icon: val,
+                ...(prev.altText?.trim() ? {} : { altText: `Follow us on ${val.charAt(0).toUpperCase()}${val.slice(1)}` }),
+              }));
+            }}
             className="w-full px-3 py-2 border rounded"
             required
-          />
+          >
+            <option value="">-- Select Platform --</option>
+            <option value="facebook">Facebook</option>
+            <option value="twitter">Twitter</option>
+            <option value="instagram">Instagram</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="youtube">YouTube</option>
+            <option value="pinterest">Pinterest</option>
+            <option value="tiktok">TikTok</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="telegram">Telegram</option>
+            <option value="github">GitHub</option>
+            <option value="reddit">Reddit</option>
+            <option value="discord">Discord</option>
+            <option value="twitch">Twitch</option>
+            <option value="snapchat">Snapchat</option>
+            <option value="medium">Medium</option>
+            <option value="quora">Quora</option>
+            <option value="dribbble">Dribbble</option>
+            <option value="behance">Behance</option>
+            <option value="stackoverflow">Stack Overflow</option>
+            <option value="vimeo">Vimeo</option>
+            <option value="skype">Skype</option>
+            <option value="slack">Slack</option>
+            <option value="google">Google</option>
+            <option value="apple">Apple</option>
+            <option value="spotify">Spotify</option>
+            <option value="soundcloud">SoundCloud</option>
+            <option value="weixin">WeChat</option>
+            <option value="weibo">Weibo</option>
+            <option value="vk">VK</option>
+          </select>
         </div>
 
         <div className="mb-4">

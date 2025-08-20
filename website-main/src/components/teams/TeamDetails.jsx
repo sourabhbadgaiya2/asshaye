@@ -6,6 +6,8 @@ import DOMPurify from "dompurify";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 export const TeamDetails = () => {
   const [member, setMember] = useState({});
   const [error, setError] = useState(false);
@@ -98,6 +100,12 @@ export const TeamDetails = () => {
 
   return (
     <section>
+      <SEO
+        title={member?.metaTitle}
+        description={member?.metaDescription}
+        keywords={member?.metaKeywords}
+        canonical={member?.metaCanonical}
+      />
       <div className='td_height_120 td_height_lg_80' />
       <div className='container'>
         <div className='row td_gap_y_40'>

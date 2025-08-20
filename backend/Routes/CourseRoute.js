@@ -9,6 +9,8 @@ route.post("/course", CourseController.CourseSave);
 route.get("/allcourse", CourseController.getAllCourse);
 
 route.get("/alldisplay", CourseController.getAllCoursedisplay);
+route.put("/reorder", express.json(), CourseController.reorderCourses);
+route.post("/reorder", express.json(), CourseController.reorderCourses);
 
 // routes/courseRoutes.js
 route.get("/filter", async (req, res) => {

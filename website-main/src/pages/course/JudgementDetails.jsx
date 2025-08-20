@@ -9,6 +9,8 @@ import OtherCoursesSlider from "./OtherCourses";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 import { useDispatch, useSelector } from "react-redux";
 
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
+import { useDispatch, useSelector } from "react-redux";
 export const JudgementDetails = ({ courseId }) => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -124,6 +126,12 @@ export const JudgementDetails = ({ courseId }) => {
 
   return (
     <Layout header={9} footer={1}>
+      <SEO
+        title={product?.metaTitle}
+        description={product?.metaDescription}
+        keywords={product?.metaKeywords}
+        canonical={product?.metaCanonical}
+      />
       <JudgementDetailContent
         id={id}
         alt={product.altText}

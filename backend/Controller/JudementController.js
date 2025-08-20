@@ -13,6 +13,10 @@ const judegemntcreate = async (req, res) => {
       altText,
       staticUrl,
       size, // assuming you want to handle size as in your original code, though your schema doesn't have it
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // Parse size if needed (you may remove if not used in schema)
@@ -57,6 +61,10 @@ const judegemntcreate = async (req, res) => {
       publicerName,
       images: uploadedImages,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
       // add size if you want to save it and schema supports it
     });
 
@@ -160,6 +168,10 @@ const editDataSave = async (req, res) => {
       category,
       altText,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     console.log(req.body);
@@ -191,6 +203,10 @@ const editDataSave = async (req, res) => {
       altText,
       staticUrl,
       judementCategory: category,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
       ...(lastDate && { lastDate: new Date(lastDate) }),
       ...(images.length > 0 && { images }),
     };

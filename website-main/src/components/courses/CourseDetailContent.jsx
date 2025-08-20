@@ -5,6 +5,7 @@ import authorImg from "../../assets/img/others/author_1.jpg";
 import videoThumb from "../../assets/img/others/video_thumb.jpg";
 import { VideoPlayer } from "../videos/VideoPlayer";
 import axios from "axios";
+import SEO from "../../common/Seo";
 // import CourseDetails from "./CourseDetails";
 import CoursesSummry from "./CoursesSummry";
 import { CoursesAllGrid } from "./CoursesAllGrid";
@@ -14,7 +15,7 @@ import MpSidebar from "../../pages/course/MpSidebar";
 export const CourseDetailContent = ({ courseId }) => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [error, setError] = useState(false);
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ export const CourseDetailContent = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/api/${id}`
+          `https://backend.aashayeinjudiciary.com/api/course/${id}`
         );
         console.log(res.data);
         setProduct(res.data);
@@ -46,6 +47,12 @@ export const CourseDetailContent = ({ courseId }) => {
 
   return (
     <section>
+      <SEO
+        title={product?.metaTitle}
+        description={product?.metaDescription}
+        keywords={product?.metaKeywords}
+        canonical={product?.metaCanonical}
+      />
       <div className="td_height_140 td_height_lg_10" />
 
       <div className="container">

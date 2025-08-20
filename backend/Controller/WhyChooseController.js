@@ -15,6 +15,10 @@ const SuccesserStudent = async (req, res) => {
       keywordsix,
       altText,
       size,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     const parsedSize = typeof size === 'string' ? JSON.parse(size) : size;
@@ -46,6 +50,10 @@ const SuccesserStudent = async (req, res) => {
       altText,
       images: uploadedImages,
       size: parsedSize,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json(banner);
@@ -107,6 +115,10 @@ const editDataSave = async (req, res) => {
       altText,
       keywordsix,
       size,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     const { id } = req.params;
@@ -139,6 +151,10 @@ const editDataSave = async (req, res) => {
       altText,
       keywordsix,
       size: parsedSize,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     };
 
     // Only update images if new ones were uploaded

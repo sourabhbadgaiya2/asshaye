@@ -64,6 +64,18 @@ const courseSchema = new mongoose.Schema(
     staticUrl: {
       type: String,
     },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    metaKeywords: {
+      type: String,
+    },
+    metaCanonical: {
+      type: String,
+    },
     Certification: {
       // Corrected the typo here
       type: String,
@@ -91,6 +103,11 @@ const courseSchema = new mongoose.Schema(
 
     payNow: {
       type: String,
+    },
+    sortOrder: {
+      type: Number,
+      default: 0,
+      index: true,
     },
   },
   {

@@ -35,6 +35,9 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
+// Use local backend by default; override with VITE_API_BASE in .env
+const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.aashayeinjudiciary.com/api";
+
 const CourseDisplay = () => {
   const [courses, setCourses] = useState([]);
   const [filterText, setFilterText] = useState("");
@@ -64,7 +67,7 @@ const CourseDisplay = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const api = "https://backend.aashayeinjudiciary.com/api/alldisplay";
+  const api = `${API_BASE}/alldisplay`;
 
   const fetchCourses = async () => {
     try {
@@ -146,7 +149,7 @@ const CourseDisplay = () => {
 
     try {
       await axios.delete(
-        `https://backend.aashayeinjudiciary.com/api/coursedelte/${id}`
+        `${API_BASE}/coursedelte/${id}`
       );
       toast.success("Course deleted successfully");
       setCourses((prev) => prev.filter((course) => course._id !== id));
@@ -166,7 +169,7 @@ const CourseDisplay = () => {
   const startEdit = async (id) => {
     try {
       const res = await axios.get(
-        `https://backend.aashayeinjudiciary.com/api/courses/${id}`
+        `${API_BASE}/courses/${id}`
       );
       const course = res.data;
 
@@ -186,6 +189,10 @@ const CourseDisplay = () => {
         staticUrl: course.staticUrl || "",
         payNow: course.payNow || "",
         images: course.images || [],
+        metaTitle: course.metaTitle || "",
+        metaDescription: course.metaDescription || "",
+        metaKeywords: course.metaKeywords || "",
+        metaCanonical: course.metaCanonical || "",
       });
 
       const categoryId = course.category?._id || course.category;
@@ -214,7 +221,7 @@ const CourseDisplay = () => {
     const newStatus = !checked;
     try {
       await axios.put(
-        `https://backend.aashayeinjudiciary.com/api/${id}/home-visibility`,
+        `${API_BASE}/${id}/home-visibility`,
         {
           homeVisibility: newStatus,
         }
@@ -264,7 +271,7 @@ const CourseDisplay = () => {
       });
 
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/api/editsave/${editId}`,
+        `${API_BASE}/editsave/${editId}`,
         formData,
         {
           headers: {
@@ -534,12 +541,39 @@ const CourseDisplay = () => {
   useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
 );
 
-const handleDragEnd = ({ active, over }) => {
+const handleDragEnd = async ({ active, over }) => {
+  // Avoid reordering when filtered, to prevent corrupting the full list
+  const isFiltered = filterText.trim().length > 0;
+  if (isFiltered) {
+    toast.warn("Clear search before reordering.");
+    return;
+  }
+
   if (!over || active.id === over.id) return;
-  const oldIndex = filteredCourses.findIndex((c) => c._id === active.id);
-  const newIndex = filteredCourses.findIndex((c) => c._id === over.id);
-  const reordered = arrayMove(filteredCourses, oldIndex, newIndex);
-  setCourses(reordered); // or setCourses([...reordered]) if using Immer
+
+  // Work from the full list
+  const oldIndex = courses.findIndex((c) => c._id === active.id);
+  const newIndex = courses.findIndex((c) => c._id === over.id);
+  if (oldIndex === -1 || newIndex === -1) return;
+
+  const reordered = arrayMove(courses, oldIndex, newIndex);
+  setCourses(reordered);
+
+  // Persist to backend with explicit sortOrder indices
+  try {
+    const payload = {
+      order: reordered.map((c, idx) => ({ id: c._id, sortOrder: idx }))
+    };
+    await axios.post(
+      `${API_BASE}/reorder`,
+      payload,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    toast.success("Order saved");
+  } catch (err) {
+    toast.error("Failed to save order");
+    console.error("Reorder error:", err);
+  }
 };
 
 
@@ -623,7 +657,7 @@ const handleDragEnd = ({ active, over }) => {
   onDragEnd={handleDragEnd}
 >
   <SortableContext
-    items={filteredCourses.map((c) => c._id)}
+    items={(filterText.trim() ? filteredCourses : courses).map((c) => c._id)}
     strategy={verticalListSortingStrategy}
   >
     <table className="w-full text-sm text-left text-gray-700">
@@ -648,7 +682,7 @@ const handleDragEnd = ({ active, over }) => {
         </tr>
       </thead>
       <tbody>
-        {filteredCourses.map((row, idx) => (
+        {(filterText.trim() ? filteredCourses : courses).map((row, idx) => (
           <SortableRow key={row._id} row={row} index={idx} />
         ))}
       </tbody>
@@ -659,7 +693,7 @@ const handleDragEnd = ({ active, over }) => {
 {/* simple pagination – replicate DataTable style quickly */}
 <div className="flex justify-between items-center p-4 bg-white border-t">
   <span className="text-sm text-gray-600">
-    Showing {filteredCourses.length} courses
+    Showing {(filterText.trim() ? filteredCourses : courses).length} courses
   </span>
 </div>
 
@@ -1054,6 +1088,62 @@ const handleDragEnd = ({ active, over }) => {
                       }}
                     />
                   </div>
+                  <div className='md:col-span-2'>
+                    <h3 className='text-lg font-medium text-gray-900 mb-2'>
+                      SEO Settings
+                    </h3>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                      <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>
+                          Meta Title
+                        </label>
+                        <input
+                          type='text'
+                          name='metaTitle'
+                          value={editForm.metaTitle}
+                          onChange={handleEditChange}
+                          className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                        />
+                      </div>
+                      <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>
+                          Meta Keywords
+                        </label>
+                        <input
+                          type='text'
+                          name='metaKeywords'
+                          value={editForm.metaKeywords}
+                          onChange={handleEditChange}
+                          className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                        />
+                      </div>
+                      <div className='md:col-span-2'>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>
+                          Meta Description
+                        </label>
+                        <textarea
+                          name='metaDescription'
+                          value={editForm.metaDescription}
+                          onChange={handleEditChange}
+                          className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                          rows='3'
+                        />
+                      </div>
+                      <div className='md:col-span-2'>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>
+                          Canonical URL
+                        </label>
+                        <input
+                          type='text'
+                          name='metaCanonical'
+                          value={editForm.metaCanonical}
+                          onChange={handleEditChange}
+                          className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   <div className='md:col-span-2'>
                     <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Images

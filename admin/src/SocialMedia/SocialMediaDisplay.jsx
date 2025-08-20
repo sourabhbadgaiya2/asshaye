@@ -19,6 +19,21 @@ import {
   FaDiscord,
   FaTwitch,
   FaSnapchat,
+  FaMedium,
+  FaQuora,
+  FaDribbble,
+  FaBehance,
+  FaStackOverflow,
+  FaVimeo,
+  FaSkype,
+  FaSlack,
+  FaGoogle,
+  FaApple,
+  FaSpotify,
+  FaSoundcloud,
+  FaWeixin,
+  FaWeibo,
+  FaVk,
 } from "react-icons/fa";
 
 const SocialMediaDisplay = () => {
@@ -54,10 +69,13 @@ const SocialMediaDisplay = () => {
   // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+      ...(name === "icon" && (!prev.altText || prev.altText.trim() === "")
+        ? { altText: `Follow us on ${value.charAt(0).toUpperCase()}${value.slice(1)}` }
+        : {}),
+    }));
   };
 
   // Handle form submit (create/update)
@@ -135,6 +153,21 @@ const SocialMediaDisplay = () => {
       discord: <FaDiscord />,
       twitch: <FaTwitch />,
       snapchat: <FaSnapchat />,
+      medium: <FaMedium />,
+      quora: <FaQuora />,
+      dribbble: <FaDribbble />,
+      behance: <FaBehance />,
+      stackoverflow: <FaStackOverflow />,
+      vimeo: <FaVimeo />,
+      skype: <FaSkype />,
+      slack: <FaSlack />,
+      google: <FaGoogle />,
+      apple: <FaApple />,
+      spotify: <FaSpotify />,
+      soundcloud: <FaSoundcloud />,
+      weixin: <FaWeixin />,
+      weibo: <FaWeibo />,
+      vk: <FaVk />,
     };
 
     return iconMap[iconName.toLowerCase()] || <FaLink />;
@@ -156,36 +189,48 @@ const SocialMediaDisplay = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-2">Icon Name</label>
-            <input
-              type="text"
+            <label className="block text-gray-700 mb-2">Social Platform</label>
+            <select
               name="icon"
               value={formData.icon}
               onChange={handleInputChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="facebook, twitter, instagram, etc."
               required
-              list="icon-suggestions"
-            />
-            <datalist id="icon-suggestions">
-              <option value="Facebook" />
-              <option value="Twitter" />
-              <option value="Instagram" />
-              <option value="Linkedin" />
-              <option value="Youtube" />
-              <option value="Pinterest" />
-              <option value="Tiktok" />
-              <option value="Whatsapp" />
-              <option value="Telegram" />
-              <option value="Github" />
-              <option value="Reddit" />
-              <option value="Discord" />
-              <option value="Twitch" />
-              <option value="Snapchat" />
-            </datalist>
-            <p className="text-sm text-gray-500 mt-1">
-              Enter the name of the icon (e.g., "facebook" for Facebook icon)
-            </p>
+            >
+              <option value="">-- Select Platform --</option>
+              <option value="facebook">Facebook</option>
+              <option value="twitter">Twitter</option>
+              <option value="instagram">Instagram</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="youtube">YouTube</option>
+              <option value="pinterest">Pinterest</option>
+              <option value="tiktok">TikTok</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="telegram">Telegram</option>
+              <option value="github">GitHub</option>
+              <option value="reddit">Reddit</option>
+              <option value="discord">Discord</option>
+              <option value="twitch">Twitch</option>
+              <option value="snapchat">Snapchat</option>
+              <option value="medium">Medium</option>
+              <option value="quora">Quora</option>
+              <option value="dribbble">Dribbble</option>
+              <option value="behance">Behance</option>
+              <option value="stackoverflow">Stack Overflow</option>
+              <option value="vimeo">Vimeo</option>
+              <option value="skype">Skype</option>
+              <option value="slack">Slack</option>
+              <option value="google">Google</option>
+              <option value="apple">Apple</option>
+              <option value="spotify">Spotify</option>
+              <option value="soundcloud">SoundCloud</option>
+              <option value="weixin">WeChat</option>
+              <option value="weibo">Weibo</option>
+              <option value="vk">VK</option>
+            </select>
+            <div className="mt-2 text-gray-600 flex items-center gap-2">
+              Preview: <span className="text-2xl">{getIconComponent(formData.icon)}</span>
+            </div>
           </div>
 
           <div>

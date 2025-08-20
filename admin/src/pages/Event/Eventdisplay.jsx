@@ -92,7 +92,13 @@ const Eventdisplay = () => {
   };
 
   const handleEditClick = (event) => {
-    setEditingEvent(event);
+    setEditingEvent({
+      ...event,
+      metaTitle: event.metaTitle || "",
+      metaDescription: event.metaDescription || "",
+      metaKeywords: event.metaKeywords || "",
+      metaCanonical: event.metaCanonical || "",
+    });
     setImagePreview(
       Array.isArray(event.images) ? event.images[0] : event.images
     );
@@ -129,6 +135,10 @@ const Eventdisplay = () => {
       formData.append("Slot", editingEvent.Slot);
       formData.append("Description", editingEvent.Description);
       formData.append("staticUrl", editingEvent.staticUrl);
+      formData.append("metaTitle", editingEvent.metaTitle);
+      formData.append("metaDescription", editingEvent.metaDescription);
+      formData.append("metaKeywords", editingEvent.metaKeywords);
+      formData.append("metaCanonical", editingEvent.metaCanonical);
 
       // Append image file if it exists
       if (imageFile) {
@@ -673,6 +683,62 @@ const Eventdisplay = () => {
                     onChange={handleInputChange}
                     className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                   />
+                </div>
+
+                <div className='md:col-span-2'>
+                  <h3 className='text-lg font-medium text-gray-900 mb-2'>
+                    SEO Settings
+                  </h3>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                    <div>
+                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                        Meta Title
+                      </label>
+                      <input
+                        type='text'
+                        name='metaTitle'
+                        value={editingEvent?.metaTitle || ""}
+                        onChange={handleInputChange}
+                        className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                      />
+                    </div>
+                    <div>
+                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                        Meta Keywords
+                      </label>
+                      <input
+                        type='text'
+                        name='metaKeywords'
+                        value={editingEvent?.metaKeywords || ""}
+                        onChange={handleInputChange}
+                        className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                      />
+                    </div>
+                    <div className='md:col-span-2'>
+                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                        Meta Description
+                      </label>
+                      <textarea
+                        name='metaDescription'
+                        value={editingEvent?.metaDescription || ""}
+                        onChange={handleInputChange}
+                        className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        rows='3'
+                      />
+                    </div>
+                    <div className='md:col-span-2'>
+                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                        Canonical URL
+                      </label>
+                      <input
+                        type='text'
+                        name='metaCanonical'
+                        value={editingEvent?.metaCanonical || ""}
+                        onChange={handleInputChange}
+                        className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className='md:col-span-2'>

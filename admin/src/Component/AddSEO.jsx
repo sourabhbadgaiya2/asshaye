@@ -133,6 +133,29 @@ const AddSEO = () => {
     setShowForm(true);
   };
 
+  const handleSelectExisting = (e) => {
+    const id = e.target.value;
+    if (!id) {
+      setEditId(null);
+      setIsEditMode(false);
+      setFormData({ path: "", element: "", title: "", description: "", keywords: "" });
+      return;
+    }
+    const item = seoData.find((s) => s._id === id);
+    if (item) {
+      setFormData({
+        path: item.path || "",
+        element: item.element || "",
+        title: item.title || "",
+        description: item.description || "",
+        keywords: item.keywords || "",
+      });
+      setEditId(item._id);
+      setIsEditMode(true);
+      setShowForm(true);
+    }
+  };
+
   return (
     <div className='max-w-6xl mx-auto p-6 mt-8'>
       {/* Toast Container */}
@@ -140,22 +163,37 @@ const AddSEO = () => {
 
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-semibold text-gray-800'>SEO Dashboard</h1>
-        <button
-          onClick={() => {
-            setShowForm(!showForm);
-            setIsEditMode(false);
-            setFormData({
-              path: "",
-              element: "",
-              title: "",
-              description: "",
-              keywords: "",
-            });
-          }}
-          className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700'
-        >
-          {showForm ? "Close" : "Add SEO"}
-        </button>
+        <div className='flex items-center gap-3'>
+          <select
+            className='px-3 py-2 border rounded-md'
+            value={editId || ""}
+            onChange={handleSelectExisting}
+          >
+            <option value=''>-- Select SEO to edit --</option>
+            {seoData.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.path || item.title}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => {
+              setShowForm(!showForm);
+              setIsEditMode(false);
+              setEditId(null);
+              setFormData({
+                path: "",
+                element: "",
+                title: "",
+                description: "",
+                keywords: "",
+              });
+            }}
+            className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700'
+          >
+            {showForm ? "Close" : "Add SEO"}
+          </button>
+        </div>
       </div>
 
       {/* Add/Edit Form */}
@@ -204,18 +242,7 @@ const AddSEO = () => {
               </select>
             </div>
 
-            <div>
-              <label className='block text-sm font-medium'>Element</label>
-              <input
-                type='text'
-                name='element'
-                value={formData.element}
-                onChange={handleChange}
-                readOnly
-                required
-                className='w-full mt-1 px-4 py-2 border rounded-md'
-              />
-            </div>
+            {/* Element field hidden from UI but still set via route selection */}
             <div className='md:col-span-2'>
               <label className='block text-sm font-medium'>Title</label>
               <input
@@ -270,8 +297,7 @@ const AddSEO = () => {
             <thead className='bg-gray-100'>
               <tr>
                 <th className='px-4 py-2 text-left'>Path</th>
-                <th className='px-4 py-2 text-left'>Element</th>
-                <th className='px-4 py-2 text-left'>Title</th>
+                                <th className='px-4 py-2 text-left'>Title</th>
                 <th className='px-4 py-2 text-left'>Description</th>
                 <th className='px-4 py-2 text-left'>Keywords</th>
                 <th className='px-4 py-2 text-left'>Actions</th>
@@ -282,8 +308,7 @@ const AddSEO = () => {
                 seoData.map((item) => (
                   <tr key={item._id} className='border-t'>
                     <td className='px-4 py-2'>{item.path}</td>
-                    <td className='px-4 py-2'>{item.element}</td>
-                    <td className='px-4 py-2'>{item.title}</td>
+                                        <td className='px-4 py-2'>{item.title}</td>
                     <td className='px-4 py-2'>{item.description}</td>
                     <td className='px-4 py-2'>{item.keywords}</td>
                     <td className='px-4 py-2 flex space-x-2 text-lg'>

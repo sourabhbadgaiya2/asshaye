@@ -14,6 +14,10 @@ const ContactSave = async (req, res) => {
       staticUrl,
       Slot,
       subTitle,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // Handle image uploads
@@ -52,6 +56,10 @@ const ContactSave = async (req, res) => {
       Cost: Number(Cost),
       Slot: Number(Slot),
       subTitle,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json(contact);
@@ -183,6 +191,10 @@ const editDataSave = async (req, res) => {
       Cost,
       Slot,
       subTitle,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // Handle image uploads if any
@@ -212,6 +224,10 @@ const editDataSave = async (req, res) => {
       Cost: Number(Cost),
       Slot: Number(Slot),
       subTitle,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     };
 
     if (StartDate) {

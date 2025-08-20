@@ -17,6 +17,10 @@ const Judgement = () => {
     altText: "",
     lastDate: "",
     staticUrl: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
+    metaCanonical: "",
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -135,6 +139,10 @@ const Judgement = () => {
     { name: "lastDate", label: "Last Date", type: "date" },
     { name: "altText", label: "altText", type: "text" },
     { name: "staticUrl", label: "Static Url", type: "text" },
+    { name: "metaTitle", label: "Meta Title", type: "text" },
+    { name: "metaDescription", label: "Meta Description", type: "text" },
+    { name: "metaKeywords", label: "Meta Keywords", type: "text" },
+    { name: "metaCanonical", label: "Meta Canonical", type: "text" },
   ];
 
   const renderCategorySelect = () => (

@@ -21,6 +21,18 @@ const SucessSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    staticUrl: {
+      type: String,
+    },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    metaKeywords: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

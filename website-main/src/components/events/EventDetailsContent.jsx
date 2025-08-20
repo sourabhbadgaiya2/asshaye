@@ -4,6 +4,7 @@ import Countdown from "react-countdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
+import SEO from "../../common/Seo";
 
 import eventThumb1 from "../../assets/img/home_1/event_thumb_1.jpg";
 import eventThumb5 from "../../assets/img/home_1/event_thumb_5.jpg";
@@ -121,6 +122,12 @@ export const EventDetailsContent = () => {
 
   return (
     <section>
+      <SEO
+        title={event?.metaTitle}
+        description={event?.metaDescription}
+        keywords={event?.metaKeywords}
+        canonical={event?.metaCanonical}
+      />
       <div className='td_height_120 td_height_lg_80' />
       <div className='container'>
         <div className='row td_gap_y_50'>
@@ -305,7 +312,7 @@ export const EventDetailsContent = () => {
                   <li>
                     <span className='td_heading_color'>Cost:</span>
                     <span className='td_accent_color'>
-                      ${event.Cost || "0"}.00
+                      ₹{event.Cost || "0"}.00
                     </span>
                   </li>
                   <li>

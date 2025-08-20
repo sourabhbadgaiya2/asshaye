@@ -15,7 +15,17 @@ const fileUpload = async (file) => {
 
 const WhatsNewSave = async (req, res) => {
   try {
-    const { title, description, category, altText, staticUrl } = req.body;
+    const {
+      title,
+      description,
+      category,
+      altText,
+      staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
+    } = req.body;
 
     // Handle image uploads
     const imageFiles = req.files?.images || [];
@@ -33,6 +43,10 @@ const WhatsNewSave = async (req, res) => {
       staticUrl,
       images: imageUrls,
       PDFbrochure: pdfUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json({
@@ -145,7 +159,17 @@ const editDisplay = async (req, res) => {
 const editDataSave = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, category, altText, staticUrl } = req.body;
+    const {
+      title,
+      description,
+      category,
+      altText,
+      staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
+    } = req.body;
 
     // Initialize update data with basic fields
     const updateData = {
@@ -154,6 +178,10 @@ const editDataSave = async (req, res) => {
       category,
       altText,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     };
 
     // Handle PDF update if new file provided

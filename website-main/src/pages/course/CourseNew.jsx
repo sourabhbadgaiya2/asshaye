@@ -499,7 +499,7 @@ const CourseNew = () => {
   return (
     <div className='mb-6'>
       <Layout header={9} footer={1}>
-        <div className='td_height_140 td_height_lg_60' />
+        <div className='td_height_120 td_height_lg_80' />
         <SliderCard
           selectedSubCategoryId='2'
           onSlideClick={handleSubSubcategoryClick}

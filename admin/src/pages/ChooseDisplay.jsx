@@ -32,6 +32,10 @@ const ChooseDisplay = () => {
     keywordsix: '',
     images: [],
     size: { width: '', height: '' },
+    metaTitle: '',
+    metaDescription: '',
+    metaKeywords: '',
+    metaCanonical: '',
   });
 
   const [newImages, setNewImages] = useState([]);
@@ -55,6 +59,10 @@ const ChooseDisplay = () => {
         altText: editingItem.altText || "",
         images: editingItem.images || [],
         size: editingItem.size || { width: '', height: '' },
+        metaTitle: editingItem.metaTitle || '',
+        metaDescription: editingItem.metaDescription || '',
+        metaKeywords: editingItem.metaKeywords || '',
+        metaCanonical: editingItem.metaCanonical || '',
       });
       setPreviewImages(editingItem.images || []);
     }
@@ -116,6 +124,10 @@ const ChooseDisplay = () => {
     data.append('keywordsix', formData.keywordsix);
     data.append('altText', formData.altText);
     data.append('size', JSON.stringify(formData.size));
+    data.append('metaTitle', formData.metaTitle);
+    data.append('metaDescription', formData.metaDescription);
+    data.append('metaKeywords', formData.metaKeywords);
+    data.append('metaCanonical', formData.metaCanonical);
 
     newImages.forEach(image => {
       data.append('images', image);
@@ -145,6 +157,10 @@ const ChooseDisplay = () => {
       altText: "",
       images: [],
       size: { width: '', height: '' },
+      metaTitle: '',
+      metaDescription: '',
+      metaKeywords: '',
+      metaCanonical: '',
     });
     setNewImages([]);
     setPreviewImages([]);
@@ -273,7 +289,21 @@ const ChooseDisplay = () => {
       {isEditing && (
         <form onSubmit={handleSubmit} className="p-4 bg-white shadow rounded space-y-4 mb-6">
           <div className="grid grid-cols-2 gap-4">
-            {['Title', 'description', 'keywordone', 'keywordtwo', 'keywordthree', 'keywordfour', 'keywordfive', 'keywordsix','altText'].map(field => (
+            {[
+              'Title',
+              'description',
+              'keywordone',
+              'keywordtwo',
+              'keywordthree',
+              'keywordfour',
+              'keywordfive',
+              'keywordsix',
+              'altText',
+              'metaTitle',
+              'metaDescription',
+              'metaKeywords',
+              'metaCanonical',
+            ].map((field) => (
               <input
                 key={field}
                 type="text"

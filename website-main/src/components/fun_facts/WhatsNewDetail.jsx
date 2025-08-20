@@ -6,9 +6,9 @@ import { useLocation, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DOMPurify from "dompurify";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
-
 const DetailSection = () => {
   const { id } = useParams();
   const [whatsNew, setWhatsNew] = useState(null);
@@ -167,6 +167,12 @@ const DetailSection = () => {
 
   return (
     <Layout header={9} footer={1}>
+      <SEO
+        title={whatsNew?.metaTitle}
+        description={whatsNew?.metaDescription}
+        keywords={whatsNew?.metaKeywords}
+        canonical={whatsNew?.metaCanonical}
+      />
       <ToastContainer position='top-right' autoClose={3000} />
       <div className='td_height_120 td_height_lg_60' />
       <section className='py-5 bg-light'>

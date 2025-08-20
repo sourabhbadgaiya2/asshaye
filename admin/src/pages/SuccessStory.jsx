@@ -9,6 +9,10 @@ const SuccessStory = () => {
     Judicial: "",
     altText: "",
     description: "",
+    staticUrl: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
   });
 
   const [imageFiles, setImageFiles] = useState([]);
@@ -73,6 +77,10 @@ const SuccessStory = () => {
     formData.append("Judicial", input.Judicial);
     formData.append("altText", input.altText);
     formData.append("description", input.description);
+    formData.append("staticUrl", input.staticUrl);
+    formData.append("metaTitle", input.metaTitle);
+    formData.append("metaDescription", input.metaDescription);
+    formData.append("metaKeywords", input.metaKeywords);
 
     imageFiles.forEach((file) => formData.append("images", file));
 
@@ -88,6 +96,10 @@ const SuccessStory = () => {
         Judicial: "",
         altText: "",
         description: "",
+        staticUrl: "",
+        metaTitle: "",
+        metaDescription: "",
+        metaKeywords: "",
       });
       setImageFiles([]);
       setImagePreviews([]);
@@ -151,6 +163,46 @@ const SuccessStory = () => {
             onChange={handleInput}
             className="w-full p-2 border border-gray-300 rounded"
             rows={3}
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium capitalize">Static Url</label>
+          <input
+            type="text"
+            name="staticUrl"
+            value={input.staticUrl}
+            onChange={handleInput}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium capitalize">Meta Title</label>
+          <input
+            type="text"
+            name="metaTitle"
+            value={input.metaTitle}
+            onChange={handleInput}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium capitalize">Meta Description</label>
+          <input
+            type="text"
+            name="metaDescription"
+            value={input.metaDescription}
+            onChange={handleInput}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium capitalize">Meta Keywords</label>
+          <input
+            type="text"
+            name="metaKeywords"
+            value={input.metaKeywords}
+            onChange={handleInput}
+            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
       </div>

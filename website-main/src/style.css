@@ -1,6 +1,13 @@
 /* 70% height Offcanvas */
 
-
+table, th, td {
+  border: 1px solid black !important;
+  border-collapse: collapse !important;
+}
+th, td {
+  padding: 8px;
+  text-align: center;
+}
 
 .cursor-pointer {
   cursor: pointer;

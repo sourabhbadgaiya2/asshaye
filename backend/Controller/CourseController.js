@@ -149,6 +149,10 @@ const CourseSave = async (req, res) => {
       category,
       payNow,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     } = req.body;
 
     // if (!subCategory || !category) {
@@ -210,6 +214,10 @@ const CourseSave = async (req, res) => {
       images: uploadedImages,
       payNow,
       staticUrl,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      metaCanonical,
     });
 
     res.status(201).json(course);
@@ -238,7 +246,8 @@ const getAllCourse = async (req, res) => {
     const products = await Course.find({ homeVisibility: true })
       .populate("category")
       .populate("subCategory")
-      .populate("subsubCategory");
+      .populate("subsubCategory")
+      .sort({ sortOrder: 1, createdAt: 1 });
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -252,7 +261,8 @@ const getAllCoursedisplay = async (req, res) => {
       .sort({ createdAt: -1 })
       .populate("category")
       .populate("subCategory")
-      .populate("subsubCategory"); // Add this line to populate subcategory
+      .populate("subsubCategory") // Add this line to populate subcategory
+      .sort({ sortOrder: 1, createdAt: 1 });
 
     res.status(200).json(productsall);
   } catch (error) {
@@ -266,7 +276,8 @@ const getAllCourseHome = async (req, res) => {
     const product = await Course.find({ homeVisibility: true })
       .populate("category")
       .populate("subCategory")
-      .populate("subsubCategory");
+      .populate("subsubCategory")
+      .sort({ sortOrder: 1, createdAt: 1 });
 
     res.status(200).json(product);
   } catch (error) {
@@ -448,4 +459,5 @@ module.exports = {
   getAllCoursedisplay,
   getsubcategory,
   getrecorededcourse,
+  reorderCourses,
 };

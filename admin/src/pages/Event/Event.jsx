@@ -16,6 +16,10 @@ const Event = () => {
     subTitle: "",
     staticUrl: "",
     images: [],
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "",
+    metaCanonical: "",
   });
   const [files, setFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
@@ -101,6 +105,10 @@ const Event = () => {
         subTitle: "",
         staticUrl: "",
         images: [],
+        metaTitle: "",
+        metaDescription: "",
+        metaKeywords: "",
+        metaCanonical: "",
       });
       setFiles([]);
       setPreviewUrls([]);
@@ -151,6 +159,20 @@ const Event = () => {
           </div>
 
           <div>
+            <label className='block text-gray-700 mb-2' htmlFor='metaCanonical'>
+              Meta Canonical
+            </label>
+            <input
+              type='text'
+              id='metaCanonical'
+              name='metaCanonical'
+              value={formData.metaCanonical}
+              onChange={handleChange}
+              className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+            />
+          </div>
+
+          <div>
             <label className='block text-gray-700 mb-2' htmlFor='subTitle'>
               Sub Title
             </label>
@@ -159,6 +181,45 @@ const Event = () => {
               id='subTitle'
               name='subTitle'
               value={formData.subTitle}
+              onChange={handleChange}
+              className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+            />
+          </div>
+          <div>
+            <label className='block text-gray-700 mb-2' htmlFor='metaTitle'>
+              Meta Title
+            </label>
+            <input
+              type='text'
+              id='metaTitle'
+              name='metaTitle'
+              value={formData.metaTitle}
+              onChange={handleChange}
+              className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+            />
+          </div>
+          <div>
+            <label className='block text-gray-700 mb-2' htmlFor='metaDescription'>
+              Meta Description
+            </label>
+            <input
+              type='text'
+              id='metaDescription'
+              name='metaDescription'
+              value={formData.metaDescription}
+              onChange={handleChange}
+              className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+            />
+          </div>
+          <div>
+            <label className='block text-gray-700 mb-2' htmlFor='metaKeywords'>
+              Meta Keywords
+            </label>
+            <input
+              type='text'
+              id='metaKeywords'
+              name='metaKeywords'
+              value={formData.metaKeywords}
               onChange={handleChange}
               className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
             />
