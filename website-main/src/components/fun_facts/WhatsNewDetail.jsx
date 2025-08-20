@@ -6,6 +6,8 @@ import { useLocation, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DOMPurify from "dompurify";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
 const DetailSection = () => {
   const { id } = useParams();
@@ -14,6 +16,48 @@ const DetailSection = () => {
   const [error, setError] = useState(null);
 
   const { state } = useLocation();
+
+  const { currentSEO } = useSelector((state) => state.blogSeo);
+  // console.log(currentSEO, "SBSBSBSBSB");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (whatsNew && whatsNew?.seo) {
+      dispatch(getBlogSEOById(whatsNew.seo));
+    }
+  }, [whatsNew]);
+
+  useEffect(() => {
+    if (currentSEO) {
+      // Set document title
+      document.title = currentSEO.title || "Default Blog Title";
+
+      // Set or update meta description
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", currentSEO.description || "");
+      } else {
+        const descTag = document.createElement("meta");
+        descTag.name = "description";
+        descTag.content = currentSEO.description || "";
+        document.head.appendChild(descTag);
+      }
+
+      // Set or update meta keywords
+      const metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute("content", currentSEO.keywords || "");
+      } else {
+        const keywordTag = document.createElement("meta");
+        keywordTag.name = "keywords";
+        keywordTag.content = currentSEO.keywords || "";
+        document.head.appendChild(keywordTag);
+      }
+    }
+  }, [currentSEO]);
 
   useEffect(() => {
     const fetchData = async () => {

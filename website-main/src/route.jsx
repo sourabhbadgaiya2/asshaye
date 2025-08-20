@@ -124,7 +124,7 @@ function App() {
         <Route path='/privacy' element={<PrivacyPolicy />} />
         <Route path='/pretestseries/:id' element={<Pretestseries />} />
         <Route path='/details' element={<CoursesSummry />} />
-        <Route path='/courses/:id' element={<CouresesFull />} />
+        <Route path='/course/:slug' element={<CouresesFull />} />
         <Route path='/testseries/:id' element={<TestSeriesdeatil />} />
         <Route path='/mainseries/:id' element={<MainSeriesdeatils />} />
 

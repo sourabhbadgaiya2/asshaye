@@ -54,7 +54,7 @@ const Sucesserstudent = async (req, res) => {
 
 const Successerdisplay = async (req, res) => {
   try {
-    const products = await Banner.find();
+    const products = await Banner.find().sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);

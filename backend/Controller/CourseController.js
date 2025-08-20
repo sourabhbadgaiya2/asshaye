@@ -249,6 +249,7 @@ const getAllCourse = async (req, res) => {
 const getAllCoursedisplay = async (req, res) => {
   try {
     const productsall = await Course.find()
+      .sort({ createdAt: -1 })
       .populate("category")
       .populate("subCategory")
       .populate("subsubCategory"); // Add this line to populate subcategory
@@ -401,7 +402,36 @@ const getCoursesByCategory = async (req, res) => {
   }
 };
 
+const getCourseBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    if (!slug) {
+      return res.status(400).json({ message: "Slug is required" });
+    }
+
+    const course = await Course.findOne({ slug })
+      .populate("category")
+      .populate("subCategory")
+      .populate("subsubCategory");
+
+    if (!course) {
+      return res
+        .status(404)
+        .json({ message: "Course not found with this slug" });
+    }
+
+    res.status(200).json(course);
+  } catch (error) {
+    console.error("Error fetching course by slug:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
 module.exports = {
+  getCourseBySlug,
   Querysave,
   CourseSave,
   getAllCourse,

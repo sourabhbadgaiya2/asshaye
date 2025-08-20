@@ -1,5 +1,5 @@
 const EnquiryModel = require("../Module/ContactModule");
-const nodemailer = require("nodemailer"); // You missed this import
+const nodemailer = require("nodemailer");
 
 const ContactProduct = async (req, res) => {
   const { name, email, phone, message } = req.body; // Added productName here
@@ -47,7 +47,7 @@ const ContactProduct = async (req, res) => {
 
 const ContactDisplay = async (req, res) => {
   try {
-    const myData = await EnquiryModel.find();
+    const myData = await EnquiryModel.find().sort({ createdAt: -1 });
     res.status(200).json({
       success: true,
       data: myData,
@@ -150,7 +150,7 @@ const ContactDisplayToday = async (req, res) => {
         $gte: startOfDay,
         $lte: endOfDay,
       },
-    });
+    }).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,

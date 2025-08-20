@@ -11,10 +11,10 @@ import { Layout } from "../../layouts/Layout";
 import { CoursesAllGrid } from "./CoursesAllGrid";
 import OtherCoursesSlider from "../../pages/course/OtherCourses";
 import { SliderCard } from "../../common/SliderCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
 const CouresesFull = () => {
-  // const { id } = useParams();
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,6 +25,47 @@ const CouresesFull = () => {
   const { routesData } = useSelector((state) => state.routes);
 
   const { path } = routesData.find((route) => route.element === "CourseNew");
+
+  const { currentSEO } = useSelector((state) => state.blogSeo);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (course && course?.seo) {
+      dispatch(getBlogSEOById(course.seo));
+    }
+  }, [course]);
+
+  useEffect(() => {
+    if (currentSEO) {
+      // Set document title
+      document.title = currentSEO.title || "Default Course Title";
+
+      // Set or update meta description
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", currentSEO.description || "");
+      } else {
+        const descTag = document.createElement("meta");
+        descTag.name = "description";
+        descTag.content = currentSEO.description || "";
+        document.head.appendChild(descTag);
+      }
+
+      // Set or update meta keywords
+      const metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute("content", currentSEO.keywords || "");
+      } else {
+        const keywordTag = document.createElement("meta");
+        keywordTag.name = "keywords";
+        keywordTag.content = currentSEO.keywords || "";
+        document.head.appendChild(keywordTag);
+      }
+    }
+  }, [currentSEO]);
 
   const handleSubSubcategoryClick = ({ id, name }) => {
     navigate(`${path}`, { state: { id, name, fromDetails: true } });
@@ -47,14 +88,40 @@ const CouresesFull = () => {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
 
-      const newUrl = `/course-details/${slug}`;
+      const newUrl = `/course/${slug}`;
       const currentPath = window.location.pathname;
 
       if (!currentPath.includes(slug)) {
         window.history.replaceState(null, "", newUrl);
       }
+
+      const canonicalUrl = window.location.origin + newUrl;
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalUrl);
     }
   }, [course]);
+
+  // useEffect(() => {
+  //   if (course && course.staticUrl) {
+  //     const slug = course.staticUrl
+  //       .toLowerCase()
+  //       .replace(/"/g, "")
+  //       .replace(/[^a-z0-9]+/g, "-")
+  //       .replace(/(^-|-$)+/g, "");
+
+  //     const newUrl = `/course-details/${slug}`;
+  //     const currentPath = window.location.pathname;
+
+  //     if (!currentPath.includes(slug)) {
+  //       window.history.replaceState(null, "", newUrl);
+  //     }
+  //   }
+  // }, [course]);
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -64,7 +131,8 @@ const CouresesFull = () => {
 
         // Fetch the main course data
         const courseResponse = await axios.get(
-          `https://backend.aashayeinjudiciary.com/api/courses/${id}`
+          // `https://backend.aashayeinjudiciary.com/api/courses/${id}`
+          `http://localhost:8000/api/courses/${id}`
         );
         if (!courseResponse.data) {
           throw new Error("Course not found");
@@ -244,9 +312,13 @@ const CouresesFull = () => {
                     ) : (
                       <div className='d-flex justify-content-center align-items-center h-100 text-white'>
                         {/* <div className='text-center'> */}
-                          {/* <div className='fs-1 mb-2'>🎬</div> */}
-                          {/* <p>Video Coming Soon</p> */}
-                          <img  className=" h-full w-full"src={course.images} alt="" />
+                        {/* <div className='fs-1 mb-2'>🎬</div> */}
+                        {/* <p>Video Coming Soon</p> */}
+                        <img
+                          className=' h-full w-full'
+                          src={course.images}
+                          alt=''
+                        />
                         {/* </div> */}
                       </div>
                     )}
@@ -485,4 +557,3 @@ const CouresesFull = () => {
   );
 };
 export default CouresesFull;
-// export default ;

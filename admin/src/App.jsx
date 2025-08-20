@@ -58,6 +58,8 @@ import SocialMedia from "./SocialMedia/SocialMedia";
 import SocialMediaDisplay from "./SocialMedia/SocialMediaDisplay";
 import PlayStore from "./Playstore/PlayStore";
 import AddSEO from "./Component/AddSEO";
+import SEOManager from "./pages/seo/SEOManager";
+import GeneratedUrls from "./pages/seo/GeneratedUrls";
 
 const App = () => {
   return (
@@ -73,6 +75,8 @@ const App = () => {
         {/* Protected Routes */}
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Layout />}>
+            <Route path='/generated-url' element={<GeneratedUrls />} />
+            <Route path='/seo-manager' element={<SEOManager />} />
             <Route index element={<Dashboard />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/SEO' element={<AddSEO />} />

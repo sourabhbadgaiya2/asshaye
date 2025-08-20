@@ -51,7 +51,9 @@ const WhatsNewSave = async (req, res) => {
 
 const getWhatsNew = async (req, res) => {
   try {
-    const courses = await Course.find().populate("category");
+    const courses = await Course.find()
+      .populate("category")
+      .sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,

@@ -28,6 +28,10 @@ const MemberSchema = new mongoose.Schema(
     altText: {
       type: String,
     },
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
     staticUrl: {
       type: String,
     },

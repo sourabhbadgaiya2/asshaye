@@ -43,6 +43,11 @@ const courseSchema = new mongoose.Schema(
       type: Number,
     },
 
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
+
     language: {
       type: String,
     },

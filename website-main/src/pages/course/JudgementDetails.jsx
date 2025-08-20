@@ -6,6 +6,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
 import OtherCoursesSlider from "./OtherCourses";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
+import { useDispatch, useSelector } from "react-redux";
 
 export const JudgementDetails = ({ courseId }) => {
   const { id } = useParams();
@@ -15,6 +17,48 @@ export const JudgementDetails = ({ courseId }) => {
   const [error, setError] = useState(false);
 
   const { state } = useLocation();
+
+  const { currentSEO } = useSelector((state) => state.blogSeo);
+  // console.log(currentSEO, "SBSBSBSBSB");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (product && product?.seo) {
+      dispatch(getBlogSEOById(product.seo));
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (currentSEO) {
+      // Set document title
+      document.title = currentSEO.title || "Default Blog Title";
+
+      // Set or update meta description
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", currentSEO.description || "");
+      } else {
+        const descTag = document.createElement("meta");
+        descTag.name = "description";
+        descTag.content = currentSEO.description || "";
+        document.head.appendChild(descTag);
+      }
+
+      // Set or update meta keywords
+      const metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute("content", currentSEO.keywords || "");
+      } else {
+        const keywordTag = document.createElement("meta");
+        keywordTag.name = "keywords";
+        keywordTag.content = currentSEO.keywords || "";
+        document.head.appendChild(keywordTag);
+      }
+    }
+  }, [currentSEO]);
 
   useEffect(() => {
     if (courseId) {

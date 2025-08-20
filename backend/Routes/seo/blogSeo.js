@@ -1,29 +1,33 @@
 const express = require("express");
 const router = express.Router();
 
-
-
 const {
-  createBlogSEO,
+  createSEO,
   getAllBlogSEOs,
   getBlogSEOById,
-  updateBlogSEO,
-  deleteBlogSEO,
+  updateSEO,
+  deleteSEO,
+  getSEOsByModel,
+  generatedUrl,
 } = require("../../Controller/Seo/blogSeoCtrl");
 
 // Create
-router.post("/create", createBlogSEO);
+router.post("/create", createSEO);
 
 // Read All
 router.get("/", getAllBlogSEOs);
+
+router.get("/by-model", getSEOsByModel);
+
+router.get('/generated-urls', generatedUrl);
 
 // Read One
 router.get("/:id", getBlogSEOById);
 
 // Update
-router.put("/:id", updateBlogSEO);
+router.put("/:id", updateSEO);
 
 // Delete
-router.delete("/:id", deleteBlogSEO);
+router.delete("/:id", deleteSEO);
 
 module.exports = router;

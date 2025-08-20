@@ -44,4 +44,6 @@ route.post("/:id", CourseController.getAllCourseHome);
 route.put("/:id/home-visibility", CourseController.getproducthome);
 route.get("/getrecordedcourse/:id", CourseController.getrecorededcourse);
 
+route.get("/slug/:slug", CourseController.getCourseBySlug);
+
 module.exports = route;

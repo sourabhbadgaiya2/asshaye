@@ -18,6 +18,10 @@ const judgementSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "judementCategory",
     },
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
 
     description: {
       type: String,

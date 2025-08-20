@@ -48,7 +48,8 @@ const ContactProduct = async (req, res) => {
 
 const ContactDisplay = async (req, res) => {
   try {
-    const myData = await EnquiryModel.find();
+    const myData = await EnquiryModel.find().sort({ createdAt: -1 });
+
     res.status(200).json({
       success: true,
       data: myData,

@@ -3,15 +3,9 @@ const imagekit = require("../Utils/imageKit");
 
 const Sucesserstudent = async (req, res) => {
   try {
-    const {
-      StudentName,
-      Judicial,
-      size,
-      altText,
-      description,
-    } = req.body;
+    const { StudentName, Judicial, size, altText, description } = req.body;
 
-    const parsedSize = typeof size === 'string' ? JSON.parse(size) : size;
+    const parsedSize = typeof size === "string" ? JSON.parse(size) : size;
 
     // Handle image uploads
     const uploadedImages = [];
@@ -28,14 +22,13 @@ const Sucesserstudent = async (req, res) => {
       uploadedImages.push(uploadResponse.url);
     }
 
-
     const banner = await Banner.create({
       StudentName,
       Judicial,
       altText,
       description,
       images: uploadedImages,
-      size: parsedSize
+      size: parsedSize,
     });
 
     res.status(201).json(banner);
@@ -45,25 +38,22 @@ const Sucesserstudent = async (req, res) => {
   }
 };
 
-
 const Successerdisplay = async (req, res) => {
-    try {
-        const products = await Banner .find();
-        res.status(200).json(products);
-    } catch (error) {
-        console.error("Error fetching products:", error);
-        res.status(500).json({ message: error.message });
-    }
+  try {
+    const products = await Banner.find().sort({ createdAt: -1 });
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const StoryDelete = async(req, res)=>{
+const StoryDelete = async (req, res) => {
+  const { id } = req.params;
+  await Banner.findByIdAndDelete(id);
 
-     const {id} = req.params;
-   await Banner.findByIdAndDelete(id);
-
-    res.status(200).send("Task deleted")
-}
-
+  res.status(200).send("Task deleted");
+};
 
 const editDisplay = async (req, res) => {
   try {
@@ -83,7 +73,7 @@ const editDisplay = async (req, res) => {
 // Save updated success student record
 const editDataSave = async (req, res) => {
   try {
-    const { id, StudentName, Judicial, size ,altText, description } = req.body;
+    const { id, StudentName, Judicial, size, altText, description } = req.body;
 
     if (!id) return res.status(400).json({ message: "ID is required." });
 
@@ -105,7 +95,11 @@ const editDataSave = async (req, res) => {
         Judicial,
         altText,
         description,
-        size: size ? (typeof size === "string" ? JSON.parse(size) : size) : undefined,
+        size: size
+          ? typeof size === "string"
+            ? JSON.parse(size)
+            : size
+          : undefined,
         images,
       },
       { new: true }
@@ -115,7 +109,9 @@ const editDataSave = async (req, res) => {
       return res.status(404).json({ message: "Record not found." });
     }
 
-    res.status(200).json({ message: "Record updated successfully", data: updated });
+    res
+      .status(200)
+      .json({ message: "Record updated successfully", data: updated });
   } catch (error) {
     console.error("Error updating record:", error);
     res.status(500).json({ message: error.message });
@@ -127,5 +123,5 @@ module.exports = {
   Successerdisplay,
   StoryDelete,
   editDisplay,
-  editDataSave
+  editDataSave,
 };

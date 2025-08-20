@@ -84,7 +84,7 @@ const CreateCourse = () => {
       });
 
       await axios.post(
-        "http://backend.aashayeinjudiciary.com/othercourse",
+        "https://backend.aashayeinjudiciary.com/othercourse",
         formData,
         {
           headers: {

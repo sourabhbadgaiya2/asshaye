@@ -20,6 +20,11 @@ const SucessSchema = new mongoose.Schema(
       type: String,
     },
 
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
+
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",

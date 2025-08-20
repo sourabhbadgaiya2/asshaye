@@ -69,7 +69,9 @@ const judegemntcreate = async (req, res) => {
 
 const judegementdiplay = async (req, res) => {
   try {
-    const products = await JudgementModel.find().populate("judementCategory");
+    const products = await JudgementModel.find()
+      .populate("judementCategory")
+      .sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);

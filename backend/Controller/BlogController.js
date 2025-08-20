@@ -65,7 +65,9 @@ const BlogSave = async (req, res) => {
 
 const BlogDisplayAll = async (req, res) => {
   try {
-    const enquiries = await Banner.find().populate("BlogCategory");
+    const enquiries = await Banner.find()
+      .populate("BlogCategory")
+      .sort({ createdAt: -1 });
     res.status(200).json({
       success: true,
       data: enquiries,

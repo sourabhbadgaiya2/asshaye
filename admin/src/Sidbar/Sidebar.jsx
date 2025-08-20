@@ -22,6 +22,9 @@ import {
   FiFileText,
   FiStar,
   FiLink,
+  FiRefreshCcw,
+  FiPlay,
+  FiGlobe,
 } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -79,10 +82,6 @@ const Sidebar = () => {
         { name: "View Courses", to: "/allcourse" },
         { name: "Other Course", to: "/othercourse" },
         { name: "OtherCourse View", to: "/otherdisplay" },
-        //   { name: 'Add pre test', to: '/test' },
-        // { name: 'Add main test', to: '/main' },
-        // { name: 'View Pre Show', to: '/predisplay' },
-        // { name: 'View Main Show', to: '/maindisplay' },
       ],
     },
     {
@@ -205,32 +204,39 @@ const Sidebar = () => {
     {
       name: "Discount",
       icon: <FiBook />,
-      subItems: [{ name: "Add Discount", to: "/discount" }],
+      to: "/discount",
+      // subItems: [{ name: "Add Discount", to: "/discount" }],
     },
 
     {
       name: "Socialmedia",
-      icon: <FiBook />,
-      subItems: [{ name: "Add Socialmedia Icon", to: "/socialmediadisplay" }],
+      icon: <FiGlobe />,
+      to: "/socialmediadisplay",
+      // subItems: [{ name: "Add Socialmedia Icon", to: "/socialmediadisplay" }],
     },
 
     {
       name: "Play Store",
-      icon: <FiBook />,
-      subItems: [{ name: "Add playstore Icon", to: "/playstore" }],
+      icon: <FiPlay />,
+      // subItems: [{ name: "Add playstore Icon", to: "/playstore" }],
+      to: "/playstore",
     },
 
     {
       name: "Refund",
-      icon: <FiBook />,
-      subItems: [{ name: "Refund", to: "/refund" }],
+      icon: <FiRefreshCcw />,
+      // subItems: [{ name: "Refund", to: "/refund" }],
+      to: "/refund",
     },
     {
       name: "Dynamic",
       icon: <FiBook />,
-      subItems: [{ name: "Dynamic", to: "/dynamic" }],
+      // subItems: [{ name: "Dynamic", to: "/dynamic" }],
+      to: "/dynamic",
     },
-    { name: "AddSEO", to: "/SEO", icon: <FiHome /> },
+    { name: "AddSEO", to: "/SEO", icon: <FiLink /> },
+    { name: "SEO Manager", to: "/seo-manager", icon: <FiHome /> },
+    // { name: "Generated Url", to: "/generated-url", icon: <FiLink /> },
   ];
 
   return (
@@ -347,12 +353,19 @@ const Sidebar = () => {
               <FiUser />
             </div>
             {!collapsed && (
-              <div>
+              <div className='flex justify-between items-center w-full'>
                 <p className='text-sm font-semibold'>Admin</p>
+
+                <button
+                  className='p-2 rounded-lg hover:bg-gray-700'
+                  onClick={handleLogout}
+                >
+                  <FiLogOut />
+                </button>
               </div>
             )}
           </div>
-          {!collapsed && (
+          {/* {!collapsed && (
             <div className='flex justify-between mt-4'>
               <button className='p-2 rounded-lg hover:bg-gray-700'>
                 <FiSettings />
@@ -364,14 +377,14 @@ const Sidebar = () => {
                 <FiLogOut />
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
       {/* Mobile Overlay */}
       {isMobile && mobileOpen && (
         <div
-          className='fixed inset-0 bg-black bg-opacity-50 z-30'
+          className='fixed inset-0 bg-opacity-50 z-30'
           onClick={() => setMobileOpen(false)}
         />
       )}

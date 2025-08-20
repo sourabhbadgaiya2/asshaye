@@ -21,6 +21,10 @@ const ContactSchema = new mongoose.Schema(
       type: Date,
     },
 
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
     Description: {
       type: String,
     },

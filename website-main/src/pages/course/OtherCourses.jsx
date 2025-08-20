@@ -59,19 +59,43 @@ const OtherCoursesSlider = () => {
     return "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF3fGVufDB8fDB8fHww";
   };
 
+  // const sliderSettings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 3000,
+  //   responsive: [
+  //     {
+  //       breakpoint: 992,
+  //       settings: {
+  //         slidesToShow: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 768,
+  //       settings: {
+  //         slidesToShow: 1,
+  //       },
+  //     },
+  //   ],
+  // };
+
   const sliderSettings = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: courses.length > 3, // agar kam items ho to infinite mat chalao
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: Math.min(courses.length, 3), // jitne items hai utne hi dikhaye
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: courses.length > 1, // ek hi item ho to autoplay off
     autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(courses.length, 2),
         },
       },
       {

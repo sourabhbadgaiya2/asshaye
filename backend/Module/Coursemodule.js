@@ -49,6 +49,10 @@ const courseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subcategory",
     },
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
 
     subsubCategory: {
       type: mongoose.Schema.Types.ObjectId,

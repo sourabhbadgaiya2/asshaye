@@ -55,6 +55,9 @@ const OtherCourse = require("./Routes/OtherRoute/OtherRoute");
 const SocialRoute = require("./Routes/SocialMedia/SocailRoute");
 const PlayStoreRoute = require("./Routes/PlayStoreRoute/PlayStoreRoute");
 const seoRoutes = require("./Routes/seo/seoRoutes");
+const fetchSitemapUrls = require("./sitemap-fetcher");
+
+const generateSitemap = require("./sitemap-generator");
 
 // app.use("/uploads", express.static("uploads"));
 mongoose.connect(process.env.MONGO_URI, {
@@ -106,6 +109,38 @@ app.use("/dynamics", dynamicRoute);
 app.use("/othercourse", OtherCourse);
 app.use("/social", SocialRoute);
 app.use("/playstore", PlayStoreRoute);
+
+app.get("/api/sitemap-urls", async (req, res) => {
+  const urls = await fetchSitemapUrls("http://localhost:8000/sitemap.xml");
+  console.log("Sitemap URLs:", urls);
+  // res.json({ urls });
+});
+
+const fs = require("fs");
+
+const generateAndSaveSitemap = async () => {
+  const xml = await generateSitemap();
+  if (xml) {
+    fs.writeFileSync("public/sitemap.xml", xml);
+    console.log("Sitemap updated!");
+  }
+};
+
+// इसे सर्वर start होने पर call करें
+generateAndSaveSitemap();
+// और फिर हर 24 घंटे में call करने के लिए एक cron job या setInterval का उपयोग करें
+setInterval(generateAndSaveSitemap, 86400000); // 24 hours
+
+app.get("/sitemap.xml", async (req, res) => {
+  const xml = await generateSitemap();
+
+  if (xml) {
+    res.header("Content-Type", "application/xml");
+    res.send(xml);
+  } else {
+    res.status(500).send("Error generating sitemap");
+  }
+});
 
 app.listen(PORT, function (error) {
   if (error) throw error;

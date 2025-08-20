@@ -14,6 +14,10 @@ const preSchema = new mongoose.Schema(
     testmodule: {
       type: String,
     },
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
 
     altText: {
       type: String,

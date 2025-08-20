@@ -27,7 +27,6 @@ export const BlogDetails = ({ courseId }) => {
   const blogRoute = routesData.find((route) => route.element === "BlogDetails");
 
   const { currentSEO } = useSelector((state) => state.blogSeo);
-  // console.log(currentSEO, "SBSBSBSBSB");
 
   const dispatch = useDispatch();
 
@@ -101,6 +100,29 @@ export const BlogDetails = ({ courseId }) => {
   }, [id]);
 
   // ! url
+  // useEffect(() => {
+  //   if (product) {
+  //     // Set tab title
+  //     document.title = product.title || "Your Default Title";
+
+  //     if (product.blogUrl) {
+  //       const slug = product.blogUrl
+  //         .toLowerCase()
+  //         .replace(/"/g, "")
+  //         .replace(/[^a-z0-9]+/g, "-")
+  //         .replace(/(^-|-$)+/g, "");
+
+  //       const newUrl = `/blog-details/${slug}`;
+
+  //       const currentPath = window.location.pathname;
+
+  //       if (!currentPath.includes(slug)) {
+  //         window.history.replaceState(null, "", newUrl);
+  //       }
+  //     }
+  //   }
+  // }, [product]);
+
   useEffect(() => {
     if (product) {
       // Set tab title
@@ -119,7 +141,17 @@ export const BlogDetails = ({ courseId }) => {
 
         if (!currentPath.includes(slug)) {
           window.history.replaceState(null, "", newUrl);
+        } // ✅ नया Canonical URL लॉजिक यहाँ से शुरू होता है
+
+        const canonicalUrl = window.location.origin + newUrl;
+        let link = document.querySelector("link[rel='canonical']");
+
+        if (!link) {
+          link = document.createElement("link");
+          link.setAttribute("rel", "canonical");
+          document.head.appendChild(link);
         }
+        link.setAttribute("href", canonicalUrl); // ✅ Canonical URL लॉजिक यहाँ खत्म होता है
       }
     }
   }, [product]);

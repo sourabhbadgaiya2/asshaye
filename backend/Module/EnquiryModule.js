@@ -33,9 +33,7 @@ const enquirySchema = new mongoose.Schema(
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   },
-  {
-    date: true,
-  }
+
 );
 
 const Enquiry = mongoose.model("Enquiry", enquirySchema);

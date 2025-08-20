@@ -7,6 +7,8 @@ import DOMPurify from "dompurify";
 
 import eventThumb1 from "../../assets/img/home_1/event_thumb_1.jpg";
 import eventThumb5 from "../../assets/img/home_1/event_thumb_5.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
 export const EventDetailsContent = () => {
   const navigate = useNavigate();
@@ -16,6 +18,48 @@ export const EventDetailsContent = () => {
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
+
+  const { currentSEO } = useSelector((state) => state.blogSeo);
+  // console.log(currentSEO, "SBSBSBSBSB");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (event && event?.seo) {
+      dispatch(getBlogSEOById(event.seo));
+    }
+  }, [event]);
+
+  useEffect(() => {
+    if (currentSEO) {
+      // Set document title
+      document.title = currentSEO.title || "Default Blog Title";
+
+      // Set or update meta description
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", currentSEO.description || "");
+      } else {
+        const descTag = document.createElement("meta");
+        descTag.name = "description";
+        descTag.content = currentSEO.description || "";
+        document.head.appendChild(descTag);
+      }
+
+      // Set or update meta keywords
+      const metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute("content", currentSEO.keywords || "");
+      } else {
+        const keywordTag = document.createElement("meta");
+        keywordTag.name = "keywords";
+        keywordTag.content = currentSEO.keywords || "";
+        document.head.appendChild(keywordTag);
+      }
+    }
+  }, [currentSEO]);
 
   useEffect(() => {
     const fetchEvent = async () => {
