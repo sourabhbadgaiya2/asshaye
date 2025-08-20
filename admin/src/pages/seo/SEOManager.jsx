@@ -23,7 +23,11 @@ const models = [
   "Blog",
   "Course",
   "Judgment",
-  
+  "Event",
+  "TeamMember",
+  "WhatsNew",
+  "Othercourse",
+  "SuccessStory",
 ];
 
 const SEOManager = () => {
