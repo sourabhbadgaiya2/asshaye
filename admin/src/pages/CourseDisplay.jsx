@@ -36,7 +36,8 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 // Use local backend by default; override with VITE_API_BASE in .env
-const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.aashayeinjudiciary.com/api";
+// const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.aashayeinjudiciary.com/api";
+const API_BASE = "http://localhost:8000/api";
 
 const CourseDisplay = () => {
   const [courses, setCourses] = useState([]);
@@ -58,6 +59,7 @@ const CourseDisplay = () => {
     URL: "",
     payNow: "",
     staticUrl: "",
+    order: null,
     images: [],
   });
   const [categories, setCategories] = useState([]);
@@ -148,9 +150,7 @@ const CourseDisplay = () => {
     if (!window.confirm("Are you sure you want to delete this course?")) return;
 
     try {
-      await axios.delete(
-        `${API_BASE}/coursedelte/${id}`
-      );
+      await axios.delete(`${API_BASE}/coursedelte/${id}`);
       toast.success("Course deleted successfully");
       setCourses((prev) => prev.filter((course) => course._id !== id));
     } catch (error) {
@@ -168,9 +168,7 @@ const CourseDisplay = () => {
 
   const startEdit = async (id) => {
     try {
-      const res = await axios.get(
-        `${API_BASE}/courses/${id}`
-      );
+      const res = await axios.get(`${API_BASE}/courses/${id}`);
       const course = res.data;
 
       setEditId(id);
@@ -190,6 +188,7 @@ const CourseDisplay = () => {
         payNow: course.payNow || "",
         images: course.images || [],
         metaTitle: course.metaTitle || "",
+        order: course.order || "",
         metaDescription: course.metaDescription || "",
         metaKeywords: course.metaKeywords || "",
         metaCanonical: course.metaCanonical || "",
@@ -220,12 +219,9 @@ const CourseDisplay = () => {
   const handleToggle = async (id, checked) => {
     const newStatus = !checked;
     try {
-      await axios.put(
-        `${API_BASE}/${id}/home-visibility`,
-        {
-          homeVisibility: newStatus,
-        }
-      );
+      await axios.put(`${API_BASE}/${id}/home-visibility`, {
+        homeVisibility: newStatus,
+      });
       fetchCourses();
       toast.success("Visibility updated successfully");
     } catch (error) {
@@ -313,28 +309,28 @@ const CourseDisplay = () => {
   };
 
   const columns = [
-     {
-    name: "",
-    width: "40px",
-    cell: () => (
-      <div className="cursor-grab text-gray-400 hover:text-gray-600">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </div>
-    ),
-  },
+    {
+      name: "",
+      width: "40px",
+      cell: () => (
+        <div className='cursor-grab text-gray-400 hover:text-gray-600'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-5 w-5'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M4 6h16M4 12h16M4 18h16'
+            />
+          </svg>
+        </div>
+      ),
+    },
     {
       name: "Sr. No",
       cell: (row, index) => index + 1,
@@ -538,44 +534,41 @@ const CourseDisplay = () => {
   ];
 
   const sensors = useSensors(
-  useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
-);
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+  );
 
-const handleDragEnd = async ({ active, over }) => {
-  // Avoid reordering when filtered, to prevent corrupting the full list
-  const isFiltered = filterText.trim().length > 0;
-  if (isFiltered) {
-    toast.warn("Clear search before reordering.");
-    return;
-  }
+  const handleDragEnd = async ({ active, over }) => {
+    // Avoid reordering when filtered, to prevent corrupting the full list
+    const isFiltered = filterText.trim().length > 0;
+    if (isFiltered) {
+      toast.warn("Clear search before reordering.");
+      return;
+    }
 
-  if (!over || active.id === over.id) return;
+    if (!over || active.id === over.id) return;
 
-  // Work from the full list
-  const oldIndex = courses.findIndex((c) => c._id === active.id);
-  const newIndex = courses.findIndex((c) => c._id === over.id);
-  if (oldIndex === -1 || newIndex === -1) return;
+    // Work from the full list
+    const oldIndex = courses.findIndex((c) => c._id === active.id);
+    const newIndex = courses.findIndex((c) => c._id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
 
-  const reordered = arrayMove(courses, oldIndex, newIndex);
-  setCourses(reordered);
+    const reordered = arrayMove(courses, oldIndex, newIndex);
+    setCourses(reordered);
 
-  // Persist to backend with explicit sortOrder indices
-  try {
-    const payload = {
-      order: reordered.map((c, idx) => ({ id: c._id, sortOrder: idx }))
-    };
-    await axios.post(
-      `${API_BASE}/reorder`,
-      payload,
-      { headers: { "Content-Type": "application/json" } }
-    );
-    toast.success("Order saved");
-  } catch (err) {
-    toast.error("Failed to save order");
-    console.error("Reorder error:", err);
-  }
-};
-
+    // Persist to backend with explicit sortOrder indices
+    try {
+      const payload = {
+        order: reordered.map((c, idx) => ({ id: c._id, sortOrder: idx })),
+      };
+      await axios.post(`${API_BASE}/reorder`, payload, {
+        headers: { "Content-Type": "application/json" },
+      });
+      toast.success("Order saved");
+    } catch (err) {
+      toast.error("Failed to save order");
+      console.error("Reorder error:", err);
+    }
+  };
 
   const filteredCourses = courses.filter(
     (course) =>
@@ -649,53 +642,57 @@ const handleDragEnd = async ({ active, over }) => {
             }}
           />
         </div> */}
-        
 
-<DndContext
-  sensors={sensors}
-  collisionDetection={closestCenter}
-  onDragEnd={handleDragEnd}
->
-  <SortableContext
-    items={(filterText.trim() ? filteredCourses : courses).map((c) => c._id)}
-    strategy={verticalListSortingStrategy}
-  >
-    <table className="w-full text-sm text-left text-gray-700">
-      <thead className="text-xs uppercase bg-gray-50">
-        <tr>
-          <th className="px-4 py-3 w-10"></th>
-          <th className="px-4 py-3 w-20">Sr. No</th>
-          <th className="px-4 py-3">Course Image</th>
-          <th className="px-4 py-3">Category</th>
-          <th className="px-4 py-3">Subcategory</th>
-          <th className="px-4 py-3">Judicary</th>
-          <th className="px-4 py-3">Description</th>
-          <th className="px-4 py-3">Status</th>
-          <th className="px-4 py-3">Price</th>
-          <th className="px-4 py-3">Duration</th>
-          <th className="px-4 py-3">Trainer</th>
-          <th className="px-4 py-3">Static Url</th>
-          <th className="px-4 py-3">URL</th>
-          <th className="px-4 py-3">Pay Now</th>
-          <th className="px-4 py-3">Front display</th>
-          <th className="px-4 py-3">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {(filterText.trim() ? filteredCourses : courses).map((row, idx) => (
-          <SortableRow key={row._id} row={row} index={idx} />
-        ))}
-      </tbody>
-    </table>
-  </SortableContext>
-</DndContext>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={(filterText.trim() ? filteredCourses : courses).map(
+              (c) => c._id
+            )}
+            strategy={verticalListSortingStrategy}
+          >
+            <table className='w-full text-sm text-left text-gray-700'>
+              <thead className='text-xs uppercase bg-gray-50'>
+                <tr>
+                  <th className='px-4 py-3 w-10'></th>
+                  <th className='px-4 py-3 w-20'>Sr. No</th>
+                  <th className='px-4 py-3'>Course Image</th>
+                  <th className='px-4 py-3'>Category</th>
+                  <th className='px-4 py-3'>Subcategory</th>
+                  <th className='px-4 py-3'>Judicary</th>
+                  <th className='px-4 py-3'>Description</th>
+                  <th className='px-4 py-3'>Status</th>
+                  <th className='px-4 py-3'>Price</th>
+                  <th className='px-4 py-3'>Duration</th>
+                  <th className='px-4 py-3'>Trainer</th>
+                  <th className='px-4 py-3'>Static Url</th>
+                  <th className='px-4 py-3'>URL</th>
+                  <th className='px-4 py-3'>Pay Now</th>
+                  <th className='px-4 py-3'>Front display</th>
+                  <th className='px-4 py-3'>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(filterText.trim() ? filteredCourses : courses).map(
+                  (row, idx) => (
+                    <SortableRow key={row._id} row={row} index={idx} />
+                  )
+                )}
+              </tbody>
+            </table>
+          </SortableContext>
+        </DndContext>
 
-{/* simple pagination – replicate DataTable style quickly */}
-<div className="flex justify-between items-center p-4 bg-white border-t">
-  <span className="text-sm text-gray-600">
-    Showing {(filterText.trim() ? filteredCourses : courses).length} courses
-  </span>
-</div>
+        {/* simple pagination – replicate DataTable style quickly */}
+        <div className='flex justify-between items-center p-4 bg-white border-t'>
+          <span className='text-sm text-gray-600'>
+            Showing {(filterText.trim() ? filteredCourses : courses).length}{" "}
+            courses
+          </span>
+        </div>
 
         {/* View Details Modal */}
         {viewId && (
@@ -988,6 +985,19 @@ const handleDragEnd = async ({ active, over }) => {
 
                   <div>
                     <label className='block text-sm font-medium text-gray-700 mb-1'>
+                      Order
+                    </label>
+                    <input
+                      type='text'
+                      name='order'
+                      value={editForm.order}
+                      onChange={handleEditChange}
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                      placeholder='do something'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Static Url
                     </label>
                     <input
@@ -1088,7 +1098,7 @@ const handleDragEnd = async ({ active, over }) => {
                       }}
                     />
                   </div>
-                  <div className='md:col-span-2'>
+                  {/* <div className='md:col-span-2'>
                     <h3 className='text-lg font-medium text-gray-900 mb-2'>
                       SEO Settings
                     </h3>
@@ -1142,7 +1152,7 @@ const handleDragEnd = async ({ active, over }) => {
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className='md:col-span-2'>
                     <label className='block text-sm font-medium text-gray-700 mb-1'>
@@ -1235,151 +1245,149 @@ const handleDragEnd = async ({ active, over }) => {
     </div>
   );
 
-
-
   function SortableRow({ row, index }) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: row._id });
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({ id: row._id });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+    };
 
-  return (
-    <tr
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="border-b hover:bg-gray-50"
-    >
-      {/* drag handle */}
-      <td className="px-2 py-2 cursor-grab">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </td>
-
-      {/* cells copied 1-for-1 from your old columns */}
-      <td className="px-2 py-2 text-center">{index + 1}</td>
-      <td className="px-2 py-2">
-        <img
-          src={Array.isArray(row.images) ? row.images[0] : row.images}
-          alt="course"
-          className="h-12 w-12 object-cover rounded"
-        />
-      </td>
-      <td>
-        <span className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
-          {row.category?.name || "Uncategorized"}
-        </span>
-      </td>
-      <td>
-        <span className="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
-          {row.subCategory?.name || "N/A"}
-        </span>
-      </td>
-      <td>
-        <span className="px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-800">
-          {row.subsubCategory?.name || "N/A"}
-        </span>
-      </td>
-      <td
-        className="text-sm text-gray-600 line-clamp-2"
-        dangerouslySetInnerHTML={{
-          __html: row.CourseDescription || "No description",
-        }}
-      />
-      <td>
-        <span
-          className={`px-2 py-1 rounded-full text-xs ${
-            row.InstructorCourse === "Published"
-              ? "bg-green-100 text-green-800"
-              : "bg-yellow-100 text-yellow-800"
-          }`}
-        >
-          {row.InstructorCourse}
-        </span>
-      </td>
-      <td>₹{row.Price}</td>
-      <td>{row.Durations}</td>
-      <td>{row.TrainerName}</td>
-      <td>{row.staticUrl?.slice(0, 10)}</td>
-      <td>
-        <a
-          href={row.URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline truncate"
-        >
-          {row.URL ? "View Link" : "No URL"}
-        </a>
-      </td>
-      <td>
-        {row.payNow ? (
-          <a
-            href={row.payNow}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-600 hover:underline"
+    return (
+      <tr
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className='border-b hover:bg-gray-50'
+      >
+        {/* drag handle */}
+        <td className='px-2 py-2 cursor-grab'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-5 w-5 text-gray-400'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
           >
-            Pay Now
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M4 6h16M4 12h16M4 18h16'
+            />
+          </svg>
+        </td>
+
+        {/* cells copied 1-for-1 from your old columns */}
+        <td className='px-2 py-2 text-center'>{index + 1}</td>
+        <td className='px-2 py-2'>
+          <img
+            src={Array.isArray(row.images) ? row.images[0] : row.images}
+            alt='course'
+            className='h-12 w-12 object-cover rounded'
+          />
+        </td>
+        <td>
+          <span className='px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800'>
+            {row.category?.name || "Uncategorized"}
+          </span>
+        </td>
+        <td>
+          <span className='px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800'>
+            {row.subCategory?.name || "N/A"}
+          </span>
+        </td>
+        <td>
+          <span className='px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-800'>
+            {row.subsubCategory?.name || "N/A"}
+          </span>
+        </td>
+        <td
+          className='text-sm text-gray-600 line-clamp-2'
+          dangerouslySetInnerHTML={{
+            __html: row.CourseDescription || "No description",
+          }}
+        />
+        <td>
+          <span
+            className={`px-2 py-1 rounded-full text-xs ${
+              row.InstructorCourse === "Published"
+                ? "bg-green-100 text-green-800"
+                : "bg-yellow-100 text-yellow-800"
+            }`}
+          >
+            {row.InstructorCourse}
+          </span>
+        </td>
+        <td>₹{row.Price}</td>
+        <td>{row.Durations}</td>
+        <td>{row.TrainerName}</td>
+        <td>{row.staticUrl?.slice(0, 10)}</td>
+        <td>
+          <a
+            href={row.URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline truncate'
+          >
+            {row.URL ? "View Link" : "No URL"}
           </a>
-        ) : (
-          <span className="text-gray-400">No Link</span>
-        )}
-      </td>
-      <td>
-        <button
-          onClick={() => changeStatus(row._id, row.homeVisibility)}
-          className={`flex items-center gap-1 text-sm px-3 py-1 rounded transition-colors ${
-            row.homeVisibility
-              ? "bg-green-100 hover:bg-green-200 text-green-800"
-              : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-          }`}
-        >
-          <FiHome size={14} />
-          {row.homeVisibility ? "Visible" : "Hidden"}
-        </button>
-      </td>
-      <td className="flex gap-2">
-        <button
-          onClick={() => viewDetails(row._id)}
-          className="p-1 text-gray-600 hover:text-gray-800"
-          title="View Details"
-        >
-          <FiEye size={14} />
-        </button>
-        <button
-          onClick={() => startEdit(row._id)}
-          className="p-1 text-blue-600 hover:text-blue-800"
-          title="Edit"
-        >
-          <FiEdit2 size={14} />
-        </button>
-        <button
-          onClick={() => delcourse(row._id)}
-          className="p-1 text-red-600 hover:text-red-800"
-          title="Delete"
-        >
-          <FiTrash2 size={14} />
-        </button>
-      </td>
-    </tr>
-  );
-}
+        </td>
+        <td>
+          {row.payNow ? (
+            <a
+              href={row.payNow}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-green-600 hover:underline'
+            >
+              Pay Now
+            </a>
+          ) : (
+            <span className='text-gray-400'>No Link</span>
+          )}
+        </td>
+        <td>
+          <button
+            onClick={() => changeStatus(row._id, row.homeVisibility)}
+            className={`flex items-center gap-1 text-sm px-3 py-1 rounded transition-colors ${
+              row.homeVisibility
+                ? "bg-green-100 hover:bg-green-200 text-green-800"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+            }`}
+          >
+            <FiHome size={14} />
+            {row.homeVisibility ? "Visible" : "Hidden"}
+          </button>
+        </td>
+        <td className='flex gap-2'>
+          <button
+            onClick={() => viewDetails(row._id)}
+            className='p-1 text-gray-600 hover:text-gray-800'
+            title='View Details'
+          >
+            <FiEye size={14} />
+          </button>
+          <button
+            onClick={() => startEdit(row._id)}
+            className='p-1 text-blue-600 hover:text-blue-800'
+            title='Edit'
+          >
+            <FiEdit2 size={14} />
+          </button>
+          <button
+            onClick={() => delcourse(row._id)}
+            className='p-1 text-red-600 hover:text-red-800'
+            title='Delete'
+          >
+            <FiTrash2 size={14} />
+          </button>
+        </td>
+      </tr>
+    );
+  }
 };
 
 export default CourseDisplay;

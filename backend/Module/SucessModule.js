@@ -15,6 +15,11 @@ const SucessSchema = new mongoose.Schema(
       type: String,
     },
 
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
+
     altText: {
       type: String,
     },
@@ -27,6 +32,8 @@ const SucessSchema = new mongoose.Schema(
     metaTitle: {
       type: String,
     },
+
+
     metaDescription: {
       type: String,
     },

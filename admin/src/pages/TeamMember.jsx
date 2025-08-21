@@ -158,7 +158,7 @@ const TeamMember = () => {
         ))}
       </div>
 
-      <div className='mt-6'>
+      {/* <div className='mt-6'>
         <h3 className='text-lg font-semibold mb-4 text-gray-700 border-b pb-2'>
           SEO
         </h3>
@@ -183,7 +183,7 @@ const TeamMember = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className='mt-6'>
         <label className='block mb-1 font-medium'>Description</label>

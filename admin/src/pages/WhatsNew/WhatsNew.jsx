@@ -264,46 +264,6 @@ const WhatsNewForm = () => {
       </div>
 
       <div className='mb-4'>
-        <label className='block mb-1 font-medium'>Meta Title</label>
-        <input
-          type='text'
-          value={metaTitle}
-          onChange={(e) => setMetaTitle(e.target.value)}
-          className='w-full p-2 border border-gray-300 rounded'
-        />
-      </div>
-
-      <div className='mb-4'>
-        <label className='block mb-1 font-medium'>Meta Canonical</label>
-        <input
-          type='text'
-          value={metaCanonical}
-          onChange={(e) => setMetaCanonical(e.target.value)}
-          className='w-full p-2 border border-gray-300 rounded'
-        />
-      </div>
-
-      <div className='mb-4'>
-        <label className='block mb-1 font-medium'>Meta Description</label>
-        <input
-          type='text'
-          value={metaDescription}
-          onChange={(e) => setMetaDescription(e.target.value)}
-          className='w-full p-2 border border-gray-300 rounded'
-        />
-      </div>
-
-      <div className='mb-4'>
-        <label className='block mb-1 font-medium'>Meta Keywords</label>
-        <input
-          type='text'
-          value={metaKeywords}
-          onChange={(e) => setMetaKeywords(e.target.value)}
-          className='w-full p-2 border border-gray-300 rounded'
-        />
-      </div>
-
-      <div className='mb-4'>
         <label className='block mb-1 font-medium'>Description</label>
         <div className='ckeditor-container border border-gray-300 rounded'>
           <CKEditor

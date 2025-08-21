@@ -86,7 +86,7 @@ const ReviewBadge = styled(motion.div)`
   bottom: -1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #ED1E24, #9b59b6);
+  background: linear-gradient(135deg, #ed1e24, #9b59b6);
   color: white;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -171,7 +171,7 @@ const SectionSubtitle = styled(motion.p)`
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #ED1E24;
+  color: #ed1e24;
   margin-bottom: 1rem;
 `;
 
@@ -190,7 +190,7 @@ const SectionTitle = styled(motion.h2)`
     left: 0;
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, #ED1E24, #9b59b6);
+    background: linear-gradient(90deg, #ed1e24, #9b59b6);
     border-radius: 2px;
   }
 `;
@@ -204,13 +204,13 @@ const SectionText = styled(motion.p)`
 
 export const AboutThree = () => {
   return (
-    <AboutSection  id="margin-top">
+    <AboutSection id='margin-top'>
       <Shape
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.15, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <img src={aboutShape1} alt="Decorative shape" />
+        <img src={aboutShape1} alt='Decorative shape' />
       </Shape>
 
       <Shape
@@ -218,30 +218,27 @@ export const AboutThree = () => {
         animate={{ opacity: 0.15, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <img src={aboutShape2} alt="Decorative shape" />
+        <img src={aboutShape2} alt='Decorative shape' />
       </Shape>
 
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-6 mb-5 mb-lg-0">
+      <div className='container'>
+        <div className='row align-items-center'>
+          <div className='col-lg-6 mb-5 mb-lg-0'>
             <ImageGrid>
               <MainImage
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <img src={aboutImg1} alt="AASHAYEIN JUDICIARY" />
+                <img src={aboutImg1} alt='AASHAYEIN JUDICIARY' />
               </MainImage>
-
-
-
 
               <ReviewBadge
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <img src={reviewImg} alt="Review" />
+                <img src={reviewImg} alt='Review' />
                 <div>
                   <h3>30k+</h3>
                   <p>Positive Reviews</p>
@@ -256,7 +253,7 @@ export const AboutThree = () => {
                 <h3>Mr. Nitesh Choubey</h3>
                 <p>Director</p>
               </DirectorBadge>
-{/*
+              {/*
               <AwardBadge
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -267,7 +264,7 @@ export const AboutThree = () => {
             </ImageGrid>
           </div>
 
-          <div className="col-lg-6">
+          <div className='col-lg-6'>
             <ContentSection>
                    <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
            About us
@@ -281,7 +278,11 @@ export const AboutThree = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Hailing from the city of Hoshangabad (M.P.) and being an alumnus of one of India's premier educational institutes, Faculty of law, Banaras Hindu University, Mr. Nitesh earned the degree of LLM, and is a complete man of immense diligence, outstanding enthusiasm and utmost calibre.
+                Hailing from the city of Hoshangabad (M.P.) and being an alumnus
+                of one of India's premier educational institutes, Faculty of
+                law, Banaras Hindu University, Mr. Nitesh earned the degree of
+                LLM, and is a complete man of immense diligence, outstanding
+                enthusiasm and utmost calibre.
               </SectionText>
 
               <SectionText
@@ -289,7 +290,14 @@ export const AboutThree = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Ever since he graduated in 2013 and although being a bright student, he instead of availing or craving onto becoming a Judge or establishing a career in litigation, law firms or corporate sector, which all similar aspirants hanker for, he went the extra mile and embarked his career aiming to do something exceptional in academic field by providing quality guidance and thereby helping students in pursuing their aim of becoming a Judge.
+                Ever since he graduated in 2013 and although being a bright
+                student, he instead of availing or craving onto becoming a Judge
+                or establishing a career in litigation, law firms or corporate
+                sector, which all similar aspirants hanker for, he went the
+                extra mile and embarked his career aiming to do something
+                exceptional in academic field by providing quality guidance and
+                thereby helping students in pursuing their aim of becoming a
+                Judge.
               </SectionText>
 
               <SectionText
@@ -297,7 +305,13 @@ export const AboutThree = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                His deep inclination and ardour for teaching was so lofty, that he commenced experimenting legal pedagogy since his graduation days itself. As yet, he possesses more than 6 years of enriching experience in educating law, jointly in some prestigious coaching institutes and his own ambitious vocation Aashayein Judiciary 'ALEC' - for Judicial Services Examination stationed in the central Indian state of Madhya Pradesh city, Bhopal.
+                His deep inclination and ardour for teaching was so lofty, that
+                he commenced experimenting legal pedagogy since his graduation
+                days itself. As yet, he possesses more than 6 years of enriching
+                experience in educating law, jointly in some prestigious
+                coaching institutes and his own ambitious vocation Aashayein
+                Judiciary 'ALEC' - for Judicial Services Examination stationed
+                in the central Indian state of Madhya Pradesh city, Bhopal.
               </SectionText>
 
               <SectionText
@@ -305,7 +319,10 @@ export const AboutThree = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                His classes reflect his untiring commitment towards imparting legal knowledge, legal proficiency and lucid pedagogy. His efforts and dynamism can easily be seen in his classes and notes personally prepared and continuously updated by him.
+                His classes reflect his untiring commitment towards imparting
+                legal knowledge, legal proficiency and lucid pedagogy. His
+                efforts and dynamism can easily be seen in his classes and notes
+                personally prepared and continuously updated by him.
               </SectionText>
             </ContentSection>
           </div>

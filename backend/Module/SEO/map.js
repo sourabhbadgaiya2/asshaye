@@ -1,10 +1,10 @@
-// models/index.js
 const Blog = require("../BlogModule");
 const Course = require("../Coursemodule");
 const Judgment = require("../JudementModule");
 const Event = require("../EventModule");
 const TeamMember = require("../MemberModule");
 const WhatsNew = require("../WhatsModule");
+const SuccessStory = require("../SucessModule");
 const Othercourse = require("../OtherCourse/CourseModule");
 
 const modelMap = {
@@ -15,7 +15,7 @@ const modelMap = {
   teammember: TeamMember,
   whatsnew: WhatsNew,
   othercourse: Othercourse,
-  //   about: About,
+  successstory: SuccessStory,
 };
 
 module.exports = modelMap;

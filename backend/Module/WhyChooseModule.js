@@ -44,6 +44,15 @@ const WhyChooseSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
+    seo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogSEO",
+    },
+
+    staticUrl: {
+      type: String,
+    },
     metaTitle: {
       type: String,
     },

@@ -1464,7 +1464,7 @@ const TeamMemberDisplay = () => {
                 </div>
               </div>
 
-              <div className='md:col-span-2'>
+              {/* <div className='md:col-span-2'>
                 <h3 className='text-lg font-semibold text-gray-800 mb-2'>
                   SEO Settings
                 </h3>
@@ -1518,7 +1518,7 @@ const TeamMemberDisplay = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">

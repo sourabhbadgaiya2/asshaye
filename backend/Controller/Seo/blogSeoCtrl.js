@@ -1,4 +1,4 @@
-const Blog = require("../../Module/BlogModule"); // Adjust path as needed
+const Blog = require("../../Module/BlogModule");
 const BlogSEO = require("../../Module/SEO/blog");
 const modelMap = require("../../Module/SEO/map");
 const modelConfig = require("../../Module/SEO/urlConfig");
@@ -21,6 +21,8 @@ const pickName = (doc, modelName) => {
       return doc.title || "About";
     case "othercourse":
       return doc.Coursename || "othercourse";
+    case "successstory":
+      return doc.Judicial || "successstory";
     default:
       return "Untitled";
   }
@@ -62,6 +64,7 @@ const createSEO = async (req, res) => {
     }
 
     const Model = modelMap[modelName.toLowerCase()];
+
     if (!Model) {
       return res.status(400).json({ message: "Invalid model name" });
     }

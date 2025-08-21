@@ -3,6 +3,7 @@ import axios from "axios";
 import { Upload, X } from "react-feather";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const SuccessStory = () => {
   const [input, setInput] = useState({
     StudentName: "",
@@ -114,68 +115,74 @@ const SuccessStory = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-5xl mx-auto p-8 bg-gray-100 rounded-lg shadow-md"
+      className='w-full max-w-5xl mx-auto p-8 bg-gray-100 rounded-lg shadow-md'
     >
-      <ToastContainer position="top-center" />
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <ToastContainer position='top-center' />
+      <h2 className='text-2xl font-bold mb-6 text-center'>
         Success Story Submission
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         <div>
-          <label className="block mb-1 font-medium capitalize">Student Name</label>
+          <label className='block mb-1 font-medium capitalize'>
+            Student Name
+          </label>
           <input
-            type="text"
-            name="StudentName"
+            type='text'
+            name='StudentName'
             value={input.StudentName}
             onChange={handleInput}
-            className="w-full p-2 border border-gray-300 rounded"
+            className='w-full p-2 border border-gray-300 rounded'
             required
           />
         </div>
         <div>
-          <label className="block mb-1 font-medium capitalize">Judicial</label>
+          <label className='block mb-1 font-medium capitalize'>Judicial</label>
           <input
-            type="text"
-            name="Judicial"
+            type='text'
+            name='Judicial'
             value={input.Judicial}
             onChange={handleInput}
-            className="w-full p-2 border border-gray-300 rounded"
+            className='w-full p-2 border border-gray-300 rounded'
             required
           />
         </div>
         <div>
-          <label className="block mb-1 font-medium capitalize">Alt Text</label>
+          <label className='block mb-1 font-medium capitalize'>Alt Text</label>
           <input
-            type="text"
-            name="altText"
+            type='text'
+            name='altText'
             value={input.altText}
             onChange={handleInput}
-            className="w-full p-2 border border-gray-300 rounded"
+            className='w-full p-2 border border-gray-300 rounded'
             required
           />
         </div>
         <div>
-          <label className="block mb-1 font-medium capitalize">Description (optional)</label>
+          <label className='block mb-1 font-medium capitalize'>
+            Description (optional)
+          </label>
           <textarea
-            name="description"
+            name='description'
             value={input.description}
             onChange={handleInput}
-            className="w-full p-2 border border-gray-300 rounded"
+            className='w-full p-2 border border-gray-300 rounded'
             rows={3}
           />
         </div>
         <div>
-          <label className="block mb-1 font-medium capitalize">Static Url</label>
+          <label className='block mb-1 font-medium capitalize'>
+            Static Url
+          </label>
           <input
-            type="text"
-            name="staticUrl"
+            type='text'
+            name='staticUrl'
             value={input.staticUrl}
             onChange={handleInput}
-            className="w-full p-2 border border-gray-300 rounded"
+            className='w-full p-2 border border-gray-300 rounded'
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block mb-1 font-medium capitalize">Meta Title</label>
           <input
             type="text"
@@ -204,27 +211,27 @@ const SuccessStory = () => {
             onChange={handleInput}
             className="w-full p-2 border border-gray-300 rounded"
           />
-        </div>
+        </div> */}
       </div>
 
-      <div className="my-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+      <div className='my-6'>
+        <label className='block text-sm font-medium text-gray-700 mb-2'>
           Images (Max 5) <span>( Width: 1250px Height: 1250px )</span>
         </label>
 
         {imagePreviews.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4">
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4'>
             {imagePreviews.map((preview, index) => (
-              <div key={index} className="relative group">
+              <div key={index} className='relative group'>
                 <img
                   src={preview}
                   alt={`Preview ${index + 1}`}
-                  className="h-24 w-24 object-cover rounded-md border border-gray-300"
+                  className='h-24 w-24 object-cover rounded-md border border-gray-300'
                 />
                 <button
-                  type="button"
+                  type='button'
                   onClick={() => removeImage(index)}
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                  className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity'
                 >
                   <X size={16} />
                 </button>
@@ -238,36 +245,36 @@ const SuccessStory = () => {
             imageFiles.length >= 5 ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
-          <div className="flex flex-col items-center space-y-2">
-            <Upload className="w-6 h-6 text-gray-500" />
-            <span className="font-medium text-gray-600">
+          <div className='flex flex-col items-center space-y-2'>
+            <Upload className='w-6 h-6 text-gray-500' />
+            <span className='font-medium text-gray-600'>
               Drop files or{" "}
-              <span className="text-primary-600 underline ml-1">browse</span>
+              <span className='text-primary-600 underline ml-1'>browse</span>
             </span>
-            <span className="text-xs text-gray-500">
+            <span className='text-xs text-gray-500'>
               {imageFiles.length >= 5
                 ? "Maximum 5 images reached"
                 : `Upload up to 5 images (${imageFiles.length}/5)`}
             </span>
           </div>
           <input
-            type="file"
-            name="images"
-            accept="image/*"
+            type='file'
+            name='images'
+            accept='image/*'
             multiple
             onChange={handleImageChange}
-            className="hidden"
+            className='hidden'
             disabled={imageFiles.length >= 5}
           />
         </label>
       </div>
 
-      {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+      {error && <p className='text-red-500 text-sm mb-4'>{error}</p>}
 
       <button
-        type="submit"
+        type='submit'
         disabled={loading}
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        className='w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition'
       >
         {loading ? "Submitting..." : "Submit"}
       </button>

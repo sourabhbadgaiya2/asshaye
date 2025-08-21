@@ -24,6 +24,7 @@ const BlogSeoSchema = new mongoose.Schema(
         "teammember",
         "whatsnew",
         "othercourse",
+        "successstory",
       ], // Safe
     },
   },
