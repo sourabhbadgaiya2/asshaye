@@ -67,12 +67,15 @@ const PrivacyPolicy = () => {
 
   return (
       <Layout header={9} footer={1}>
-    <div  style={styles.container}>
+    <div   style={styles.container}>
       {/* You can add this to your index.html instead */}
-      <title >Privacy Policy - Aashayein Judiciary</title>
+        <h4 id='margin-top' className=' mt-5 d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1  text-uppercase td_accent_color'>
+          Privacy Policy - Aashayein Judiciary
+          </h4>
+
       <meta name="description" content="Learn how Aashayein Judiciary collects, uses, and protects your personal information." />
 
-      <div id='margin-top' style={styles.header}>
+      <div  style={styles.header}>
         <h1  style={styles.title}>Privacy Policy</h1>
         <p style={styles.subtitle}>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>

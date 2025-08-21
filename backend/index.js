@@ -111,7 +111,7 @@ app.use("/social", SocialRoute);
 app.use("/playstore", PlayStoreRoute);
 
 app.get("/api/sitemap-urls", async (req, res) => {
-  const urls = await fetchSitemapUrls("http://localhost:8000/sitemap.xml");
+  const urls = await fetchSitemapUrls("https://backend.aashayeinjudiciary.com/sitemap.xml");
   console.log("Sitemap URLs:", urls);
   // res.json({ urls });
 });

@@ -176,10 +176,10 @@ export const SuccessStory = () => {
   return (
     <section className="py-5 text-center bg-light mt-0 mt-md-5">
       <div className="px-3 px-md-5">
-        <h2 className="text-danger fw-bold text-uppercase">Success Story</h2>
-        <h3 className="fs-2 fw-bold mt-2 mb-4 text-dark">
-          Our Recent Success Stories
-        </h3>
+         <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>Student Success Stories
+</h4>
+<p className='td_section_title text-center td_fs_20 mb-4'>  Success stories of determination from Aashayein Judiciary alumni.
+    </p>
 
         {error && <p className="text-danger">Error: {error}</p>}
 

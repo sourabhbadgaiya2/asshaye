@@ -80,10 +80,12 @@ export const CoursesOne = () => {
       <div className='px-2 px-md-5'>
         {/* Header */}
         <div className='td_section_heading td_style_1 text-center'>
-          <p className='td_section_subtitle_up td_fs_30 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color'>
-            Popular Courses
-          </p>
-          <h2 className='td_section_title td_fs_30 mb-0'>Academic Courses</h2>
+          <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+            Popular Judiciary Courses
+          </h4>
+          <p className='td_section_title td_fs_20 mb-0'>Top-rated courses designed to prepare you for Civil Judge & Judiciary Exams with confidence.
+</p>
+
         </div>
         <div className='td_height_30 td_height_lg_30' />
 

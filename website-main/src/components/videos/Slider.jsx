@@ -130,9 +130,9 @@ export const Slider = () => {
 
   return (
     <div style={{ backgroundColor: "#f8f9fa" }} className="py-5">
-      <h2 className="td_section_title td_fs_30 mb-3 text-center">
-        Important courses available on YouTube
-      </h2>
+        <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>Important courses available on YouTube
+</h4>
+
 
       <div className="mx-auto px-3 px-md-5">
         {loading ? (

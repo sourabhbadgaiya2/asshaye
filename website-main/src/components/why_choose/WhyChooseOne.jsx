@@ -87,12 +87,14 @@ export const WhyChooseOne = () => {
             data-wow-delay="0.4s"
           >
             <div className="td_section_heading td_style_1">
-              <p className="td_section_subtitle_up td_fs_30 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-                <i></i>
-                Why Choose us
-                <i></i>
-              </p>
-              <h2 className="td_section_title td_fs_30 mb-0">{item?.Title}</h2>
+                     <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+         Why Choose us
+          </h4>
+       <p className='td_section_title td_fs_20 mb-4'>{item?.Title}
+
+    </p>
+
+
               <p className="td_section_subtitle td_fs_18 mb-0">
                 {item?.description}
               </p>

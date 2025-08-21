@@ -340,9 +340,10 @@ export const FaqOne = () => {
             data-wow-delay="0.3s"
           >
             <div className="td_section_heading td_style_1">
-              <p className="td_section_subtitle_up td_fs_30 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-                FREQUENTLY ASKED QUESTIONS
-              </p>
+                      <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+         FREQUENTLY ASKED QUESTIONS
+          </h4>
+            
             </div>
             <div className="td_height_50 td_height_lg_50" />
             <div className="td_accordians td_style_1 td_type_1">

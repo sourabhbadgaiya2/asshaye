@@ -16,6 +16,11 @@ import { clearBlogSeoMessages } from "../../redux/slices/blogSeoSlice";
 import axios from "axios";
 import { Logs } from "lucide-react";
 
+
+const API_BASE_URL = "https://backend.aashayeinjudiciary.com";
+
+const models = ["Blog", "Course"];
+
 const API_BASE_URL = "http://localhost:8000";
 // const API_BASE_URL = "https://backend.aashayeinjudiciary.com";
 
@@ -29,6 +34,7 @@ const models = [
   "Othercourse",
   "SuccessStory",
 ];
+
 
 const SEOManager = () => {
   const dispatch = useDispatch();

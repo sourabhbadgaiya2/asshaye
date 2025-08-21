@@ -113,7 +113,10 @@ const OtherCoursesSlider = () => {
 
   return (
     <div className='mt-5 mb-5'>
-      <h3 className='mb-4'>Other Courses</h3>
+       <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+            Other Courses
+          </h4>
+      {/* <h3 className='mb-4'></h3> */}
       {courses.length > 0 ? (
         <Slider {...sliderSettings}>
           {courses.map((course) => (

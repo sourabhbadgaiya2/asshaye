@@ -36,7 +36,7 @@ const SuccessStoryDisplay = () => {
         // setLoading(true);
       const response = await axios.get(
         "https://backend.aashayeinjudiciary.com/success/display"
-        // "http://localhost:8000/success/display"
+        // "https://backend.aashayeinjudiciary.com/success/display"
       );
       const storiesArray = Array.isArray(response.data) ? response.data : [];
       const formattedStories = storiesArray.map((story) => ({

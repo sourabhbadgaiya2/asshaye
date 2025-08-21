@@ -169,18 +169,18 @@ export const HeaderNine = () => {
                         <Link>About</Link>
                         <ul>
                           <li>
-                            <Link to='/about'>About the institute</Link>
+                            <Link to='/about-institute'>About the institute</Link>
                           </li>
                           <li>
-                            <Link to='/about-institue'>About the Director</Link>
+                            <Link to='/about-director'>About the Director</Link>
                           </li>
                           <li>
-                            <Link to='/about-why'>
+                            <Link to='/why-aashayein-judiciary'>
                               Why AASHAYEIN JUDICIARY (ALEC)?
                             </Link>
                           </li>
                           <li>
-                            <Link to='/about-Director'>Director's Message</Link>
+                            <Link to='/directors-message'>Director's Message</Link>
                           </li>
                           <li>
                             <Link to='/success-stories'>

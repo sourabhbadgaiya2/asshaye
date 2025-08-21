@@ -839,16 +839,16 @@ export const EventOne = () => {
 
   return (
     <section className="py-5 px-3 px-md-5 bg-light">
-      <div className="container">
+      <div className="">
         {/* Header Section */}
         <div className="text-center mb-5">
-          <p className='td_section_subtitle_up td_fs_30 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color'>
-            Event schedule
-          </p>
-          <h2 className='td_section_title td_fs_30 mb-0'>
-            Upcoming Event <br />
-            Hosted by Aashyein Judiciary
-          </h2>
+            <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+            Upcoming Events at Aashayein Judiciary
+          </h4>
+       <p className='td_section_title text-center td_fs_20 mb-4'>           Join our expert-led workshops, webinars, and special sessions to boost your judiciary preparation.
+
+    </p>
+
         </div>
 
         {/* Events Grid */}
@@ -868,7 +868,8 @@ export const EventOne = () => {
                           : fallbackImages[idx % fallbackImages.length]
                       }
                       alt={event.Title || "Event"}
-                      className="img-fluid w-100 h-100 object-fit-cover"
+                      id="imaging"
+                      className="img-fluid  "
                     />
                     <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-20 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-all">
                       <span className="text-white fw-semibold">

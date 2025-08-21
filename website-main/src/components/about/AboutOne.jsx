@@ -33,12 +33,12 @@ export const AboutOne = () => {
               data-wow-delay="0.3s"
             >
               <div className="td_section_heading td_style_1 td_mb_30">
-                <p className="td_section_subtitle_up td_fs_18 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color">
-                  About the institute
-                </p>
-                <h2 className="td_section_title td_fs_28 mb-0">
-                  About Aashayein Judiciary:
-                </h2>
+                       <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+           About the institute
+          </h4>
+          <p className='td_section_title td_fs_20 mb-0'> About Aashayein Judiciary:
+</p>
+                
                 <p className="td_section_subtitle td_fs_18 mb-0">
                   In today's increasingly complex legal landscape, the demand for more judges and law officers has never been greater.As the number
                   of legal cases grows, the limited avallability of courts and judges has created an urgent need for skilled professionals. Aashayein Judiaciary

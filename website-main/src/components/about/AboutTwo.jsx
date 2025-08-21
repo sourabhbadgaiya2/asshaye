@@ -101,16 +101,8 @@ export const AboutTwo = () => {
   return (
     <SectionContainer className="p-0"  id="margin-top">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-5"
-        >
-          <p className="text-uppercase td_accent_color  fw-semibold letter-spacing-1 mb-3">
-            Why AASHAYEIN JUDICIARY (ALEC)?
-          </p>
-        </motion.div>
+
+
 
         <div className="row align-items-center">
           <motion.div
@@ -130,8 +122,11 @@ export const AboutTwo = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Heading>Why AASHAYEIN JUDICIARY (ALEC)</Heading>
 
+             <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+          Why AASHAYEIN JUDICIARY (ALEC)
+          </h4>
+       
             <Subtitle>
               Unique is our student-centric approach. We understand that every student has different goals, ambitions, and learning needs. That's why we offer a variety of courses and personalized coaching, specifically tailored for judiciary exam preparation in <Highlight>10 Hindi-speaking states</Highlight>:
             </Subtitle>
