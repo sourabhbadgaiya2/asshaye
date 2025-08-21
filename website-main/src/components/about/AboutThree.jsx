@@ -266,12 +266,13 @@ export const AboutThree = () => {
 
           <div className='col-lg-6'>
             <ContentSection>
-                   <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-           About us
-          </h4>
-          <p className='td_section_title td_fs_20 mb-0'> About the Director :
-</p>
-
+              <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+                About us
+              </h4>
+              <p className='td_section_title td_fs_20 mb-0'>
+                {" "}
+                About the Director :
+              </p>
 
               <SectionText
                 initial={{ opacity: 0 }}

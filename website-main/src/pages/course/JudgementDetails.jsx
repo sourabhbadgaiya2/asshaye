@@ -103,13 +103,23 @@ export const JudgementDetails = ({ courseId }) => {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)+/g, "");
 
-        const newUrl = `/Judgement-Details/${slug}`;
+        const newUrl = `/Judgement/${slug}`;
 
         const currentPath = window.location.pathname;
 
         if (!currentPath.includes(slug)) {
           window.history.replaceState(null, "", newUrl);
         }
+
+        const canonicalUrl = window.location.origin + newUrl;
+        let link = document.querySelector("link[rel='canonical']");
+
+        if (!link) {
+          link = document.createElement("link");
+          link.setAttribute("rel", "canonical");
+          document.head.appendChild(link);
+        }
+        link.setAttribute("href", canonicalUrl);
       }
     }
   }, [product]);

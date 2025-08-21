@@ -106,7 +106,7 @@ export const BlogDetails = ({ courseId }) => {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)+/g, "");
 
-        const newUrl = `/blog-details/${slug}`;
+        const newUrl = `/blog/${slug}`;
 
         const currentPath = window.location.pathname;
 
