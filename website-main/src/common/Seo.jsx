@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
 
 function SEO({ title, description, keywords }) {
+
   const location = useLocation();
   const canonicalUrl = window.location.origin + location.pathname;
 
