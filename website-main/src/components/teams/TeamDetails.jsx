@@ -66,12 +66,22 @@ export const TeamDetails = () => {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
 
-      const newUrl = `/team-member-details/${slug}`;
+      const newUrl = `/team-member/${slug}`;
       const currentPath = window.location.pathname;
 
       if (!currentPath.includes(slug)) {
         window.history.replaceState(null, "", newUrl);
       }
+
+      // Set or update meta keywords
+      const canonicalUrl = window.location.origin + newUrl;
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalUrl);
     }
   }, [member]);
 
@@ -98,12 +108,12 @@ export const TeamDetails = () => {
 
   return (
     <section>
-      <SEO
+      {/* <SEO
         title={member?.metaTitle}
         description={member?.metaDescription}
         keywords={member?.metaKeywords}
         canonical={member?.metaCanonical}
-      />
+      /> */}
       <div className='td_height_120 td_height_lg_80' />
       <div className='container'>
         <div className='row td_gap_y_40'>

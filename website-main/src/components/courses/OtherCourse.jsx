@@ -11,6 +11,8 @@ import { Layout } from "../../layouts/Layout";
 import { CoursesAllGrid } from "./CoursesAllGrid";
 import OtherCoursesSlider from "../../pages/course/OtherCourses";
 import { SliderCard } from "../../common/SliderCard";
+import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
+import { useDispatch, useSelector } from "react-redux";
 
 const OtherCourse = () => {
   // const { id } = useParams();
@@ -24,9 +26,69 @@ const OtherCourse = () => {
   const { state } = useLocation();
 
   const id = state;
-  // console.log(state, "state course page");
+  // console.log(course, "state course page");
 
   // ! url
+  // useEffect(() => {
+  //   if (course && course.staticUrl) {
+  //     const slug = course.staticUrl
+  //       .toLowerCase()
+  //       .replace(/"/g, "")
+  //       .replace(/[^a-z0-9]+/g, "-")
+  //       .replace(/(^-|-$)+/g, "");
+
+  //     const newUrl = `/other-courses/${slug}`;
+  //     const currentPath = window.location.pathname;
+
+  //     if (!currentPath.includes(slug)) {
+  //       window.history.replaceState(null, "", newUrl);
+  //     }
+  //   }
+  // }, [course]);
+
+  const { currentSEO } = useSelector((state) => state.blogSeo);
+
+  const dispatch = useDispatch();
+
+  // Url
+
+  useEffect(() => {
+    if (course && course?.seo) {
+      dispatch(getBlogSEOById(course.seo));
+    }
+  }, [course]);
+
+  useEffect(() => {
+    if (currentSEO) {
+      // Set document title
+      document.title = currentSEO.title || "Default Blog Title";
+
+      // Set or update meta description
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute("content", currentSEO.description || "");
+      } else {
+        const descTag = document.createElement("meta");
+        descTag.name = "description";
+        descTag.content = currentSEO.description || "";
+        document.head.appendChild(descTag);
+      }
+
+      // Set or update meta keywords
+      const metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute("content", currentSEO.keywords || "");
+      } else {
+        const keywordTag = document.createElement("meta");
+        keywordTag.name = "keywords";
+        keywordTag.content = currentSEO.keywords || "";
+        document.head.appendChild(keywordTag);
+      }
+    }
+  }, [currentSEO]);
+
   useEffect(() => {
     if (course && course.staticUrl) {
       const slug = course.staticUrl
@@ -35,17 +97,26 @@ const OtherCourse = () => {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
 
-      const newUrl = `/other-course-details/${slug}`;
+      const newUrl = `/other-courses/${slug}`;
       const currentPath = window.location.pathname;
 
       if (!currentPath.includes(slug)) {
         window.history.replaceState(null, "", newUrl);
       }
+
+      const canonicalUrl = window.location.origin + newUrl;
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalUrl);
     }
   }, [course]);
 
   const handleSubSubcategoryClick = ({ id, name }) => {
-    console.log(id, name, "other course");
+    // console.log(id, name, "other course");
     navigate("/new-course", { state: { id, name } });
   };
   const handleCourseClick = (courseId) => {

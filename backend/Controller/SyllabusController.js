@@ -192,6 +192,38 @@ const editDataSave = async (req, res) => {
   }
 };
 
+const getCourseBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params; // frontend se aa raha hai :slug
+
+    console.log(slug, "asdasd");
+
+    if (!slug) {
+      return res.status(400).json({ message: "Slug is required" });
+    }
+
+    // staticUrl ko slug ki tarah use karna
+    const course = await Course.findOne({ staticUrl: slug }).populate(
+      "category"
+    );
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: course,
+    });
+  } catch (error) {
+    console.error("Error fetching course by slug:", error);
+    res.status(500).json({
+      success: false,
+      message: error.message || "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   WhatsNewSave,
   getWhatsNew,
@@ -200,4 +232,5 @@ module.exports = {
   getCoursesByCategory,
   editDisplay,
   editDataSave,
+  getCourseBySlug,
 };

@@ -144,7 +144,7 @@ const Syllabus = () => {
         </select>
       </div>
 
-      <div className='mb-4'>
+      {/* <div className='mb-4'>
         <label className='block mb-1 font-medium'>Static Url</label>
         <input
           type='text'
@@ -153,7 +153,7 @@ const Syllabus = () => {
           className='w-full p-2 border border-gray-300 rounded'
           required
         />
-      </div>
+      </div> */}
       <div className='mb-4'>
         <label className='block mb-1 font-medium'>Alt Text</label>
         <input

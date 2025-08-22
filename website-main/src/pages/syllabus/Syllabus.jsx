@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button, Form, Table } from "react-bootstrap";
 import { Layout } from "../../layouts/Layout";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import OtherCoursesSlider from "../course/OtherCourses";
+import { Helmet } from "react-helmet";
 
 export const SyllabusDownload = () => {
   const [syllabusData, setSyllabusData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categorySEO, setCategorySEO] = useState(null);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedSyllabus, setSelectedSyllabus] = useState(null);
 
   const [submitting, setSubmitting] = useState(false);
-
-
 
   const [formData, setFormData] = useState({
     name: "",
@@ -24,29 +24,43 @@ export const SyllabusDownload = () => {
     city: "",
   });
 
-  const { id } = useParams();
+  const { slug } = useParams();
+  const { state } = useLocation();
+
+  // console.log(syllabusData, "syllabus data");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/syllabus/category/${id}`
+          `http://localhost:8000/syllabus/category/${state?.id}`
         );
-        setSyllabusData(res.data);
+        setSyllabusData(res.data); // 👈 ensure array
+        // Assuming category info is inside each syllabus item, we take the first one
+        if (res.data.length > 0 && res.data[0].category) {
+          const category = res.data[0].category;
+          setCategorySEO({
+            name: category.name,
+            metaDescription: category.metaDescription,
+            metaKeywords: category.metaKeywords,
+            title: category.title,
+            staticUrl: category.staticUrl,
+            updatedAt: category.updatedAt,
+          });
+        }
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, [id]);
+  }, [state]);
 
   const handleShowModal = (syllabus) => {
     setSelectedSyllabus({
       ...syllabus,
-      pdfUrl: syllabus.PDFbrochure, // Ensure this field is used in download
+      pdfUrl: syllabus.PDFbrochure,
     });
     setShowModal(true);
   };
@@ -96,45 +110,65 @@ export const SyllabusDownload = () => {
   if (loading) return <LoadingView />;
   if (error) return <ErrorView error={error} />;
   if (!syllabusData.length) return <EmptyView />;
+  const canonicalUrl = window.location.href;
 
   return (
-    <Layout header={9} footer={1}>
-      <section className='ptb py-2'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12' style={{ marginTop: "100px" }}>
-              <div className='cart_wrapper'>
-                <SyllabusTable
-                  syllabusData={syllabusData}
-                  onDownloadClick={handleShowModal}
-                />
+    <>
+      {categorySEO && (
+        <Helmet>
+          <title>{categorySEO.title || categorySEO.name}</title>
+          <meta
+            name='description'
+            content={categorySEO.metaDescription || ""}
+          />
+          <meta
+            name='keywords'
+            content={
+              categorySEO.metaKeywords
+                ? categorySEO.metaKeywords.join(", ")
+                : ""
+            }
+          />
+          <link rel='canonical' href={canonicalUrl} />
+        </Helmet>
+      )}
+      <Layout header={9} footer={1}>
+        <section className='ptb py-2'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-12' style={{ marginTop: "100px" }}>
+                <div className='cart_wrapper'>
+                  <SyllabusTable
+                    syllabusData={syllabusData}
+                    onDownloadClick={handleShowModal}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <DownloadModal
-            show={showModal}
-            onHide={handleCloseModal}
-            onSubmit={handleSubmit}
-            formData={formData}
-            onInputChange={handleInputChange}
-            courseName={selectedSyllabus?.Coursename}
-            submitting={submitting}
-          />
-        </div>
-      </section>
-      <OtherCoursesSlider />
-    </Layout>
+            <DownloadModal
+              show={showModal}
+              onHide={handleCloseModal}
+              onSubmit={handleSubmit}
+              formData={formData}
+              onInputChange={handleInputChange}
+              courseName={selectedSyllabus?.Coursename}
+              submitting={submitting}
+            />
+          </div>
+        </section>
+        <OtherCoursesSlider />
+      </Layout>
+    </>
   );
 };
 
 const SyllabusTable = ({ syllabusData, onDownloadClick }) => (
   <div className='table-responsive text-center'>
     <div className='cart_wrapper'>
-     
-         <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-               Download the Syllabus for Judicial Services
-          </h4>
+      <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+        Download the Syllabus for Judicial Services
+      </h4>
 
       <Table striped bordered>
         <thead className='bg-dark text-white'>

@@ -169,7 +169,9 @@ export const HeaderNine = () => {
                         <Link>About</Link>
                         <ul>
                           <li>
-                            <Link to='/about-institute'>About the institute</Link>
+                            <Link to='/about-institute'>
+                              About the institute
+                            </Link>
                           </li>
                           <li>
                             <Link to='/about-director'>About the Director</Link>
@@ -180,7 +182,9 @@ export const HeaderNine = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link to='/directors-message'>Director's Message</Link>
+                            <Link to='/directors-message'>
+                              Director's Message
+                            </Link>
                           </li>
                           <li>
                             <Link to='/success-stories'>
@@ -228,9 +232,12 @@ export const HeaderNine = () => {
                           syllabusCategories.length > 0 ? (
                             syllabusCategories.map((category) => (
                               <li key={category._id}>
-                                <a href={`/syllabus/${category._id}`}>
+                                <Link
+                                  to={`/syllabus/${category.staticUrl}`}
+                                  state={{ id: category._id }}
+                                >
                                   {category.name}
-                                </a>
+                                </Link>
                               </li>
                             ))
                           ) : (

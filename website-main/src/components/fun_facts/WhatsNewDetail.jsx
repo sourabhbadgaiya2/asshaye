@@ -31,7 +31,7 @@ const DetailSection = () => {
   useEffect(() => {
     if (currentSEO) {
       // Set document title
-      document.title = currentSEO.title || "Default Blog Title";
+      document.title = currentSEO.title || "Default New Title";
 
       // Set or update meta description
       const metaDescription = document.querySelector(
@@ -110,12 +110,21 @@ const DetailSection = () => {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
 
-      const newUrl = `/whats-new-detail/${slug}`;
+      const newUrl = `/whats-new/${slug}`;
       const currentPath = window.location.pathname;
 
       if (!currentPath.includes(slug)) {
         window.history.replaceState(null, "", newUrl);
       }
+
+      const canonicalUrl = window.location.origin + newUrl;
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalUrl);
     }
   }, [whatsNew]);
 
@@ -167,12 +176,6 @@ const DetailSection = () => {
 
   return (
     <Layout header={9} footer={1}>
-      <SEO
-        title={whatsNew?.metaTitle}
-        description={whatsNew?.metaDescription}
-        keywords={whatsNew?.metaKeywords}
-        canonical={whatsNew?.metaCanonical}
-      />
       <ToastContainer position='top-right' autoClose={3000} />
       <div className='td_height_120 td_height_lg_60' />
       <section className='py-5 bg-light'>
