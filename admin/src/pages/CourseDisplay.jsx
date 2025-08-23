@@ -37,7 +37,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 // Use local backend by default; override with VITE_API_BASE in .env
 // const API_BASE = import.meta.env.VITE_API_BASE || "https://backend.aashayeinjudiciary.com/api";
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "https://backend.aashayeinjudiciary.com/api";
 
 const CourseDisplay = () => {
   const [courses, setCourses] = useState([]);

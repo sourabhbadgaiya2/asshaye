@@ -158,7 +158,7 @@ const SyllabusDisplay = () => {
 
       const response = await fetch(
         // `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
-        `http://localhost:8000/syllabus/editsave/${editingId}`,
+        `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
         {
           method: "PUT",
           body: formData,

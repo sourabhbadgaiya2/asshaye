@@ -49,7 +49,7 @@ const WhatsNewDisplay = () => {
     try {
       const response = await fetch(
         // "https://backend.aashayeinjudiciary.com/whatsnew/alldisplay"
-        "http://localhost:8000/whatsnew/alldisplay"
+        "https://backend.aashayeinjudiciary.com/whatsnew/alldisplay"
       );
       if (!response.ok) throw new Error("Failed to fetch entries");
 
