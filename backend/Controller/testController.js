@@ -3,7 +3,7 @@ const imagekit = require("../Utils/imageKit");
 
 // Save Course with all category levels
 const CourseSave = async (req, res) => {
-  console.log(req.body, 'request body')
+  console.log(req.body, "request body");
   try {
     const {
       Price,
@@ -18,7 +18,13 @@ const CourseSave = async (req, res) => {
       size,
     } = req.body;
 
-    if (!Price || !Durations || !testmodule || !CourseDescription || !category) {
+    if (
+      !Price ||
+      !Durations ||
+      !testmodule ||
+      !CourseDescription ||
+      !category
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -31,7 +37,9 @@ const CourseSave = async (req, res) => {
 
     const uploadedImages = [];
     if (req.files?.images) {
-      const files = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
+      const files = Array.isArray(req.files.images)
+        ? req.files.images
+        : [req.files.images];
       for (const file of files) {
         const uploadResponse = await imagekit.upload({
           file: file.data,
@@ -65,7 +73,6 @@ const CourseSave = async (req, res) => {
       message: "Course created successfully",
       data: newCourse,
     });
-
   } catch (error) {
     console.error("CourseSave error:", error);
     res.status(500).json({
@@ -107,7 +114,9 @@ const getCourseById = async (req, res) => {
       .populate("subsubCategory");
 
     if (!course) {
-      return res.status(404).json({ success: false, message: "Course not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Course not found" });
     }
 
     res.status(200).json({
@@ -131,7 +140,9 @@ const PreDelete = async (req, res) => {
     const deletedCourse = await Course.findByIdAndDelete(id);
 
     if (!deletedCourse) {
-      return res.status(404).json({ success: false, message: "Course not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Course not found" });
     }
 
     res.status(200).json({
@@ -184,71 +195,6 @@ const editDisplay = async (req, res) => {
   }
 };
 
-// Edit course (POST)
-// const editDataSave = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const {
-//       Price,
-//       testmodule,
-//       Durations,
-//       category,
-//       altText,
-//       subCategory,
-//       subsubCategory,
-//       CourseDescription,
-//       LastDate,
-//     } = req.body;
-
-//     if (!id) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Course ID is required.",
-//       });
-//     }
-
-//     const updateData = {
-//       Price,
-//       testmodule,
-//       Durations,
-//       altText,
-//       CourseDescription,
-//       ...(LastDate && { LastDate: new Date(LastDate) }),
-//       ...(category && { category }),
-//       ...(subCategory && { subCategory }),
-//       ...(subsubCategory && { subsubCategory }),
-//     };
-
-//     const updatedCourse = await Course.findByIdAndUpdate(id, updateData, {
-//       new: true,
-//       runValidators: true,
-//     })
-//       .populate("category")
-//       .populate("subCategory")
-//       .populate("subsubCategory");
-
-//     if (!updatedCourse) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Course not found.",
-//       });
-//     }
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Course updated successfully",
-//       data: updatedCourse,
-//     });
-//   } catch (error) {
-//     console.error("Edit save error:", error);
-//     res.status(500).json({
-//       success: false,
-//       message: error.message || "Internal server error",
-//       ...(process.env.NODE_ENV === "development" && { stack: error.stack }),
-//     });
-//   }
-// };
-
 const editDataSave = async (req, res) => {
   try {
     const { id } = req.params;
@@ -258,8 +204,8 @@ const editDataSave = async (req, res) => {
       Durations,
       category,
       altText,
-      subCategory,  // Changed to match frontend
-      subsubCategory,  // Changed to match frontend
+      subCategory, // Changed to match frontend
+      subsubCategory, // Changed to match frontend
       CourseDescription,
       LastDate,
     } = req.body;
@@ -279,8 +225,8 @@ const editDataSave = async (req, res) => {
       CourseDescription,
       ...(LastDate && { LastDate: new Date(LastDate) }),
       ...(category && { category }),
-      ...(subCategory && { subCategory }),  // Ensure this matches schema
-      ...(subsubCategory && { subsubCategory }),  // Ensure this matches schema
+      ...(subCategory && { subCategory }), // Ensure this matches schema
+      ...(subsubCategory && { subsubCategory }), // Ensure this matches schema
     };
 
     // Handle image upload if new image is provided
@@ -331,9 +277,9 @@ const getCourseWithTestModules = async (req, res) => {
     }
 
     const course = await Course.findById(req.params.id)
-   .populate("category")
-            .populate("subCategory")
-            .populate("subsubCategory"); // Add subcategory population
+      .populate("category")
+      .populate("subCategory")
+      .populate("subsubCategory"); // Add subcategory population
 
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
@@ -343,49 +289,19 @@ const getCourseWithTestModules = async (req, res) => {
     const responseData = {
       ...course._doc,
       category: course.category || null,
-      subCategory: course.subCategory || null
+      subCategory: course.subCategory || null,
     };
 
     res.status(200).json(responseData);
   } catch (err) {
     console.error("Error fetching course:", err);
-    res.status(500).json({ 
-      message: "Server Error", 
+    res.status(500).json({
+      message: "Server Error",
       error: err.message,
-      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+      stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
     });
   }
 };
-
-
-// Get all courses with test modules
-// const getCourseWithTestModules = async (req, res) => {
-//   try {
-//     const testSeries = await Course.find()
-//       .populate("category")
-//       .populate("subCategory")
-//       .populate("subsubCategory");
-
-//     if (!testSeries || testSeries.length === 0) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "No test series found",
-//       });
-//     }
-
-//     res.status(200).json({
-//       success: true,
-//       count: testSeries.length,
-//       data: testSeries,
-//     });
-//   } catch (error) {
-//     console.error("Test series error:", error);
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
 
 module.exports = {
   CourseSave,

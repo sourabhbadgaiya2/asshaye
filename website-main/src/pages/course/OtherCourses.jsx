@@ -59,30 +59,6 @@ const OtherCoursesSlider = () => {
     return "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF3fGVufDB8fDB8fHww";
   };
 
-  // const sliderSettings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 3000,
-  //   responsive: [
-  //     {
-  //       breakpoint: 992,
-  //       settings: {
-  //         slidesToShow: 2,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 768,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //   ],
-  // };
-
   const sliderSettings = {
     dots: false,
     infinite: courses.length > 3, // agar kam items ho to infinite mat chalao
@@ -113,9 +89,9 @@ const OtherCoursesSlider = () => {
 
   return (
     <div className='mt-5 mb-5'>
-       <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-            Other Courses
-          </h4>
+      <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+        Other Courses
+      </h4>
       {/* <h3 className='mb-4'></h3> */}
       {courses.length > 0 ? (
         <Slider {...sliderSettings}>
