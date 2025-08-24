@@ -16,7 +16,7 @@ import { clearBlogSeoMessages } from "../../redux/slices/blogSeoSlice";
 import axios from "axios";
 import { Logs } from "lucide-react";
 
-// const API_BASE_URL = "https://backend.aashayeinjudiciary.com";
+
 const API_BASE_URL = "https://backend.aashayeinjudiciary.com";
 
 const models = ["Blog", "Course", "Judgment", "Event"];
@@ -24,7 +24,7 @@ const models = ["Blog", "Course", "Judgment", "Event"];
 const SEOManager = () => {
   const dispatch = useDispatch();
   const { seoList, loading, error, successMessage } = useSelector(
-    (state) => state.blogSeo
+    (state) => state.blogS
   );
 
   // form modal states
