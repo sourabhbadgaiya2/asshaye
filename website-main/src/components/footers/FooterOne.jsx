@@ -136,9 +136,9 @@ export const FooterOne = () => {
           {/* Useful Links */}
           <div className='td_footer_col'>
             <div className='td_footer_widget'>
-              <h2 className='td_footer_widget_title td_fs_32 td_white_color td_medium td_mb_30'>
+              <h4 className='td_footer_widget_title td_fs_20 td_white_color td_medium td_mb_30'>
                 Useful Links
-              </h2>
+              </h4>
               <ul className='td_footer_widget_menu '>
                 <a
                   className='dropdown-item mb-2'
@@ -196,9 +196,9 @@ export const FooterOne = () => {
           {/* Courses */}
           <div className='td_footer_col td_footer_widget_menu'>
             <div className='td_footer_widget'>
-              <h2 className='td_footer_widget_title td_fs_32 td_white_color td_medium td_mb_30'>
+              <h4 className='td_footer_widget_title td_fs_20 td_white_color td_medium td_mb_30'>
                 Courses
-              </h2>
+              </h4>
               <li className='menu-item-has-children'>
                 <ul className='custom-dropdown'>
                   {categories.map((category) => (
@@ -229,9 +229,9 @@ export const FooterOne = () => {
           {/* Newsletter & Socials */}
           <div className='td_footer_col'>
             <div className='td_footer_widget'>
-              <h2 className='td_footer_widget_title td_fs_32 td_white_color td_medium td_mb_30'>
+              <h4 className='td_footer_widget_title td_fs_20 td_white_color td_medium td_mb_30'>
                 Subscribe Now
-              </h2>
+              </h4>
               <div className='td_newsletter td_style_1'>
                 <p className='td_mb_20 td_opacity_7'>
                   Far far away, behind the word mountains, far from the

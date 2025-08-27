@@ -4,7 +4,7 @@ import {
   createCourseName,
   updateCourseName,
   deleteCourseName,
-  CourseNameById,      // fetch by id
+  CourseNameById,      // 
 } from "./CourseThunk"; // Make sure the file name matches
 
 const initialState = {
