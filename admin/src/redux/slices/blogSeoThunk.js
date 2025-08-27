@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-const API_BASE = "http://localhost:8000/api/blog-seo";
+const API_BASE = "https://backend.aashayeinjudiciary.com/api/blog-seo";
 // const API_BASE = "https://backend.aashayeinjudiciary.com/api/blog-seo";
 
 
