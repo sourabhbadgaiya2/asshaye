@@ -484,7 +484,7 @@ const CourseNew = () => {
     : activeSubcategoryId
     ? "Filtered Courses"
     : activeCategoryId
-    ? `${activeCategoryLabel} Courses`
+    ? `${activeCategoryLabel}`
     : "All Courses";
 
   const isFilterActive = !!(
@@ -507,7 +507,6 @@ const CourseNew = () => {
 
         <div className='container-fluid'>
           <div className='row'>
-
             <div className='col-12 col-md-4 col-lg-3 mb-3 mb-md-0'>
               <CoursesnewSidebar
                 categories={categories}
@@ -527,8 +526,9 @@ const CourseNew = () => {
 
             <div className='col-12 col-md-8 col-lg-9'>
               <div className='d-flex justify-content-between align-items-center mb-3'>
-        <h4  className=' mb-0 td_section_subtitle_up td_fs_24 td_semibold td_spacing_1  text-uppercase td_accent_color'>
-{headingLabel}</h4>
+                <h4 className=' mb-0 td_section_subtitle_up td_fs_24 td_semibold td_spacing_1  text-uppercase td_accent_color'>
+                  {headingLabel}
+                </h4>
                 {courseLoading && (
                   <div className='spinner-border spinner-border-sm text-primary' />
                 )}

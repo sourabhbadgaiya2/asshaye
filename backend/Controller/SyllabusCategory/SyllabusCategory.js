@@ -120,9 +120,9 @@ const updateCategory = async (req, res) => {
         name: name.trim(),
         testSeries,
         staticUrl: staticUrl.trim(),
-        title: title.trim(),
-        metaKeywords: metaKeywords.trim(),
-        metaDescription: metaDescription.trim(),
+        title: title,
+        metaKeywords: metaKeywords,
+        metaDescription: metaDescription,
       },
       { new: true }
     );

@@ -40,6 +40,7 @@ const MainRoute = require("./Routes/MainRoute");
 const CallbackRoute = require("./Routes/CallbackPopUp");
 const JudementRoute = require("./Routes/judementRoute");
 const EventRoute = require("./Routes/EventRoute");
+const controlRoutes = require("./Routes/Courses");
 const URLRoute = require("./Routes/URLRoute");
 const AdminRoute = require("./Routes/Admin/AdminRoute");
 const subacategoryRouter = require("./Routes/subcategory.routes");
@@ -58,6 +59,7 @@ const seoRoutes = require("./Routes/seo/seoRoutes");
 const fetchSitemapUrls = require("./sitemap-fetcher");
 
 const generateSitemap = require("./sitemap-generator");
+const sitemapRouter = require("./Routes/sitemap.route");
 
 // app.use("/uploads", express.static("uploads"));
 mongoose.connect(process.env.MONGO_URI, {
@@ -72,6 +74,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
+app.use("/", sitemapRouter);
 app.use("/api/blog-seo", require("./Routes/seo/blogSeo"));
 
 app.use("/api/seo", seoRoutes);
@@ -79,6 +82,7 @@ app.use("/query", QueryRoutes);
 app.use("/banner", BannerRoutes);
 app.use("/api", CourseRoute);
 app.use("/success", AllSuccessRoute);
+app.use("/api/blog", controlRoutes);
 app.use("/category", categoryRouter);
 app.use("/judementcategory", judementRouter);
 app.use("/blogcategory", blogRouter);
@@ -111,7 +115,9 @@ app.use("/social", SocialRoute);
 app.use("/playstore", PlayStoreRoute);
 
 app.get("/api/sitemap-urls", async (req, res) => {
-  const urls = await fetchSitemapUrls("https://backend.aashayeinjudiciary.com/sitemap.xml");
+  const urls = await fetchSitemapUrls(
+    "https://backend.aashayeinjudiciary.com/sitemap.xml"
+  );
   console.log("Sitemap URLs:", urls);
   // res.json({ urls });
 });

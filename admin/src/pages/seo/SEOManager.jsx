@@ -24,6 +24,7 @@ const models = [
   "Course",
   "Judgment",
   "Event",
+  "TeamMember",
 
   "Othercourse",
   // "SuccessStory",
@@ -53,6 +54,10 @@ const SEOManager = () => {
   const [fetchError, setFetchError] = useState("");
   const [openMenuId, setOpenMenuId] = useState(null);
 
+  const [subsubCategories, setSubsubCategories] = useState([]);
+  const [selectedSubsubCategory, setSelectedSubsubCategory] = useState("");
+  const [courses, setCourses] = useState([]);
+
   const isMounted = useRef(true);
 
   useEffect(() => () => (isMounted.current = false), []);
@@ -79,7 +84,7 @@ const SEOManager = () => {
           url = `${API_BASE_URL}/blog/display`;
           break;
         case "Course":
-          url = `${API_BASE_URL}/api/alldisplay`;
+          url = `${API_BASE_URL}/subsubcategory`;
           break;
         case "Event":
           url = `${API_BASE_URL}/event`;
@@ -328,7 +333,81 @@ const SEOManager = () => {
                 </select>
               )}
 
-              {mode === "add" && items.length > 0 && (
+              {/* generic dropdown for all models except Course */}
+              {mode === "add" &&
+                formData.modelName !== "Course" &&
+                items.length > 0 && (
+                  <select
+                    name='itemId'
+                    value={formData.itemId}
+                    onChange={handleChange}
+                    className='border p-2 w-full'
+                    required
+                  >
+                    <option value=''>-- Select {formData.modelName} --</option>
+                    {items
+                      .filter((it) => !it.seoRef)
+                      .map((it) => (
+                        <option key={it._id} value={it._id}>
+                          {it.title}
+                        </option>
+                      ))}
+                  </select>
+                )}
+
+              {/* special dropdowns for Course */}
+              {mode === "add" && formData.modelName === "Course" && (
+                <>
+                  {/* SubsubCategory Dropdown */}
+                  <select
+                    value={selectedSubsubCategory}
+                    onChange={async (e) => {
+                      const subId = e.target.value;
+                      setSelectedSubsubCategory(subId);
+
+                      if (subId) {
+                        try {
+                          const res = await axios.get(
+                            `${API_BASE_URL}/api/getdata/${subId}`
+                          );
+                          setCourses(res.data);
+                        } catch (err) {
+                          console.error("Error fetching courses:", err);
+                          setCourses([]);
+                        }
+                      }
+                    }}
+                    className='border p-2 w-full'
+                  >
+                    <option value=''>-- Select SubsubCategory --</option>
+                    {items.map((ssc) => (
+                      <option key={ssc._id} value={ssc._id}>
+                        {ssc.title}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Course Dropdown */}
+                  {courses.length > 0 && (
+                    <select
+                      name='itemId'
+                      value={formData.itemId}
+                      onChange={handleChange}
+                      className='border p-2 w-full'
+                      required
+                    >
+                      <option value=''>-- Select Course --</option>
+                      {courses.map((c) => (
+                        <option key={c._id} value={c._id}>
+                          {c.Coursename}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </>
+              )}
+
+              {/* {mode === "add" && items.length > 0 && (
                 <select
                   name='itemId'
                   value={formData.itemId}
@@ -348,7 +427,7 @@ const SEOManager = () => {
                       </option>
                     ))}
                 </select>
-              )}
+              )} */}
 
               <div className='flex gap-2 justify-end'>
                 <button
