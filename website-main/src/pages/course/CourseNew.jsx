@@ -484,7 +484,7 @@ const CourseNew = () => {
     : activeSubcategoryId
     ? "Filtered Courses"
     : activeCategoryId
-    ? `${activeCategoryLabel} Courses`
+    ? `${activeCategoryLabel} `
     : "All Courses";
 
   const isFilterActive = !!(

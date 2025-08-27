@@ -18,9 +18,10 @@ const Container = styled.div`
 `;
 
 const ContentRow = styled.div`
+
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: start;
   gap: 3rem;
 `;
 
@@ -180,7 +181,7 @@ export const AboutFour = () => {
           </h4>
           <p className='td_section_title td_fs_20 mb-0'>Dear Students,
 </p>
-           
+
 
             <MessageText>
               This passage is about preparing for competitive exams to become a judge.

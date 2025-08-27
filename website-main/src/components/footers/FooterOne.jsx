@@ -233,10 +233,13 @@ export const FooterOne = () => {
                 Subscribe Now
               </h4>
               <div className='td_newsletter td_style_1'>
-                <p className='td_mb_20 td_opacity_7'>
-                  Far far away, behind the word mountains, far from the
-                  Consonantia.
+                <p className=' td_fs_20 '>
+                 Join Our Community
                 </p>
+                  <p className='td_mb_20 td_opacity_7'>
+                 Join Aashayein Judiciary for tips, notes, and exclusive exam updates.
+                </p>
+
                 <form action='#' className='td_newsletter_form'>
                   <input
                     type='email'

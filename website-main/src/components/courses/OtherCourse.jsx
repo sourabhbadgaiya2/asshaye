@@ -363,18 +363,18 @@ const OtherCourse = () => {
                         {course.Durations || "Self-paced"}
                       </span>
                     </div>
-                    <div className='mb-2'>
+                    {/* <div className='mb-2'>
                       <strong>👨‍🏫 Instructor:</strong>
                       <span className='ms-2'>
                         {course.InstructorCourse || "Expert Team"}
                       </span>
-                    </div>
-                    <div className='mb-2'>
+                    </div> */}
+                    {/* <div className='mb-2'>
                       <strong>📅 Start Date:</strong>
                       <span className='ms-2'>
                         {formatDate(course.LastDate)}
                       </span>
-                    </div>
+                    </div> */}
                     <div>
                       <strong>🎓 Level:</strong>
                       <span className='ms-2'>

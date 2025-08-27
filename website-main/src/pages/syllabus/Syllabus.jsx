@@ -33,7 +33,7 @@ export const SyllabusDownload = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/syllabus/category/${state?.id}`
+          `https://backend.aashayeinjudiciary.com/syllabus/category/${state?.id}`
         );
         setSyllabusData(res.data); // 👈 ensure array
         // Assuming category info is inside each syllabus item, we take the first one

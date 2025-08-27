@@ -4,7 +4,7 @@ import CourseCardSimple from "./CourseCardSimple";
 export const CoursesAllGrid = ({ courses, loading, error }) => {
   if (loading) return <p>Loading courses...</p>;
   if (error) return <p className='text-danger'>{error}</p>;
-  
+
   if (!courses || courses.length === 0) return <p>No courses found.</p>;
 
   // 1️⃣ Group courses by Judiciary name

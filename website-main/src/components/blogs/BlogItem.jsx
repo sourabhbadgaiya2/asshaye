@@ -49,9 +49,9 @@ export const BlogItem = ({
           </div>
 
           {/* <h2>bjdfnsdfnksdknsdsndsnk</h2> */}
-          <p className='td_post_subtitle td_mb_24 td_heading_color td_opacity_7'>
+          < h5 className='td_post_subtitle td_mb_24  td_heading_color td_opacity_7'>
             {title}
-          </p>
+          </h5>
           <p className='td_post_subtitle td_mb_24 td_heading_color td_opacity_7'>
             {excerpt}
           </p>

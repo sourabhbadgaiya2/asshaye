@@ -196,7 +196,7 @@ export const HeaderNine = () => {
 
                       {/* //mai hu yaha  */}
                       <li className='menu-item-has-children'>
-                        <Link to=''>Courses</Link>
+                        <Link to='/courses'>Courses</Link>
                         <ul className='custom-dropdown'>
                           {categories.map((category) => (
                             <li key={category._id}>

@@ -222,8 +222,8 @@ export const AboutThree = () => {
       </Shape>
 
       <div className='container'>
-        <div className='row align-items-center'>
-          <div className='col-lg-6 mb-5 mb-lg-0'>
+        <div className='row '>
+          <div className='col-lg-6 d-flex justify-baseline'>
             <ImageGrid>
               <MainImage
                 initial={{ opacity: 0, y: 20 }}
@@ -267,12 +267,9 @@ export const AboutThree = () => {
           <div className='col-lg-6'>
             <ContentSection>
               <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-                About us
+                 About the Director
               </h4>
-              <p className='td_section_title td_fs_20 mb-0'>
-                {" "}
-                About the Director :
-              </p>
+
 
               <SectionText
                 initial={{ opacity: 0 }}

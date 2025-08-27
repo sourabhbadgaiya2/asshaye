@@ -47,21 +47,19 @@ export const AboutOne = () => {
       <div className=' mt-4' />
       <div className='td_about td_style_1'>
         <div className='container'>
-          <div className='row align-items-center td_gap_y_40'>
-            <div
-              className='col-lg-6 wow fadeInLeft'
-              data-wow-duration='1s'
-              data-wow-delay='0.25s'
-            >
-              <div className='td_about_thumb_wrap'>
-                {/* <div className="td_about_year text-uppercase td_fs_64 td_bold">
-                  EST 1995
-                </div> */}
-                <div className='td_about_thumb_1 '>
-                  <img src={aboutImg1} alt='About' />
-                </div>
-              </div>
-            </div>
+          <div className='row  td_gap_y_40'>
+           <div style={{display:"flex",alignItems:"start",justifyContent:"start"}}
+  className='col-lg-6 wow fadeInLeft '
+  data-wow-duration='1s'
+  data-wow-delay='0.25s'
+>
+  <div className='td_about_thumb_wrap'>
+    <div className='td_about_thumb_1'>
+      <img src={aboutImg1} alt='About' />
+    </div>
+  </div>
+</div>
+
             <div
               className='col-lg-6 wow fadeInUp'
               data-wow-duration='1s'
@@ -71,10 +69,10 @@ export const AboutOne = () => {
                 <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
                   About the institute
                 </h4>
-                <p className='td_section_title td_fs_20 mb-0'>
+                {/* <p className='td_section_title td_fs_20 mb-0'>
                   {" "}
                   About Aashayein Judiciary:
-                </p>
+                </p> */}
 
                 <p className='td_section_subtitle td_fs_18 mb-0'>
                   In today's increasingly complex legal landscape, the demand
@@ -112,22 +110,7 @@ export const AboutOne = () => {
                   contribute to societal development.{" "}
                 </p>
               </div>
-              {/* <div className="td_mb_40">
-                <ul className="td_list td_style_5 td_mp_0">
-                  <li>
-                    <h3 className="td_fs_24 td_mb_8">Graduate Program</h3>
-                    <p className="td_fs_18 mb-0">
-                      Browse the Undergraduate Degrees
-                    </p>
-                  </li>
-                  <li>
-                    <h3 className="td_fs_24 td_mb_8">Undergraduate Program</h3>
-                    <p className="td_fs_18 mb-0">
-                      Browse the Undergraduate Degrees
-                    </p>
-                  </li>
-                </ul>
-              </div> */}
+
               <Link
                 to='/about'
                 className='td_btn td_style_1 td_radius_10 td_medium'
