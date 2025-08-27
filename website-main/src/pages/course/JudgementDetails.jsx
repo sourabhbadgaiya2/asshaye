@@ -22,6 +22,8 @@ export const JudgementDetails = ({ courseId }) => {
 
   const dispatch = useDispatch();
 
+  // Url
+
   useEffect(() => {
     if (product && product?.seo) {
       dispatch(getBlogSEOById(product.seo));

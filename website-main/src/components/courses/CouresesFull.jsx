@@ -826,7 +826,7 @@ const CouresesFull = () => {
                             "No description available."
                         ),
                       }}
-                      className="table-responsive" // Added for better table display
+                      className='table-responsive' // Added for better table display
                     />
 
                     {course.curriculum && course.curriculum.length > 0 && (
@@ -889,7 +889,7 @@ const CouresesFull = () => {
                           {course.Durations || "Self-paced"}
                         </span>
                       </div>
-                      <div className='mb-2'>
+                      {/* <div className='mb-2'>
                         <strong>👨‍🏫 Instructor:</strong>
                         <span className='ms-2'>
                           {course.InstructorCourse || "Expert Team"}
@@ -900,7 +900,7 @@ const CouresesFull = () => {
                         <span className='ms-2'>
                           {formatDate(course.LastDate)}
                         </span>
-                      </div>
+                      </div> */}
                       <div>
                         <strong>🎓 Level:</strong>
                         <span className='ms-2'>
@@ -965,7 +965,7 @@ const CouresesFull = () => {
                             "No description available."
                         ),
                       }}
-                      className="table-responsive" // Added for better table display
+                      className='table-responsive' // Added for better table display
                     />
 
                     {course.curriculum && course.curriculum.length > 0 && (

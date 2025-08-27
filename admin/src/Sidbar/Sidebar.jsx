@@ -236,7 +236,7 @@ const Sidebar = () => {
     },
     { name: "AddSEO", to: "/SEO", icon: <FiLink /> },
     { name: "SEO Manager", to: "/seo-manager", icon: <FiHome /> },
-    // { name: "Generated Url", to: "/generated-url", icon: <FiLink /> },
+    { name: "Generated Url", to: "/generated-url", icon: <FiLink /> },
   ];
 
   return (

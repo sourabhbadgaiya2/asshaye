@@ -292,12 +292,7 @@ const getsubcategory = async (req, res) => {
   try {
     const id = req.params.id;
 
-    // Validate MongoDB ObjectId
-    // if (!mongoose.Types.ObjectId.isValid(id)) {
-    //   return res.status(400).json({ message: "Invalid ID format" });
-    // }
-
-    console.log("Fetching courses for subsubCategory ID:", id);
+    // console.log("Fetching courses for subsubCategory ID:", id);
 
     const courses = await Course.find({ subsubCategory: id });
 

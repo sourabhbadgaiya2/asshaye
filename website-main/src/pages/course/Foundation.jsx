@@ -6,11 +6,9 @@ import { FoundationCategories } from "../../components/courses/FoundationCategor
 
 export const Foundation = () => {
   return (
-     <Layout header={9} footer={1}>
-
-        <CoursesAllGrid />
-        <FoundationCategories/>
-      
+    <Layout header={9} footer={1}>
+      <CoursesAllGrid />
+      <FoundationCategories />
     </Layout>
   );
 };

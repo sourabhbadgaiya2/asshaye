@@ -69,7 +69,12 @@ export const BlogOneItem = ({
     <div className='td_post td_style_1'>
       <Link to={link} state={state}>
         <div id='block-section' className='td_post_thumb d-block'>
-          <img style={{ height:"320 !important" }} id="imaging" src={src} alt='blog post' />
+          <img
+            style={{ height: "320 !important" }}
+            id='imaging'
+            src={src}
+            alt='blog post'
+          />
           <i className='fa-solid fa-link'></i>
         </div>
 
