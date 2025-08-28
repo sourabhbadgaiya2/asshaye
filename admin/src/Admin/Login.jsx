@@ -28,7 +28,7 @@
 //     setError("");
 
 //     try {
-//       const response = await axios.post("https://backend.aashayeinjudiciary.com/admin/login", {
+//       const response = await axios.post("http://localhost:8000/admin/login", {
 //         [loginMethod]: loginMethod === "email" ? email : name,
 //         password,
 //       });
@@ -89,7 +89,7 @@
 
 //   try {
 //     setIsLoading(true);
-//     const response = await axios.post("https://backend.aashayeinjudiciary.com/admin//resetpassword", {
+//     const response = await axios.post("http://localhost:8000/admin//resetpassword", {
 //       oldPassword: resetData.oldPassword,
 //       newPassword: resetData.newPassword,
 //       id: localStorage.getItem("id")
@@ -374,7 +374,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post("https://backend.aashayeinjudiciary.com/admin/login", {
+      const response = await axios.post("http://localhost:8000/admin/login", {
         [loginMethod]: loginMethod === "email" ? email : name,
         password,
       });
@@ -436,7 +436,7 @@ const Login = () => {
       setIsLoading(true);
 
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/admin/resetpassword",
+        "http://localhost:8000/admin/resetpassword",
         {
           email: resetData.email,
           oldPassword: resetData.oldPassword,
@@ -481,29 +481,29 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100'>
       <ToastContainer />
 
-      <div className="p-8 bg-white shadow-xl rounded-2xl w-full max-w-md">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Welcome Back</h2>
-          <p className="text-gray-600 mt-2">
+      <div className='p-8 bg-white shadow-xl rounded-2xl w-full max-w-md'>
+        <div className='text-center mb-8'>
+          <h2 className='text-3xl font-bold text-gray-800'>Welcome Back</h2>
+          <p className='text-gray-600 mt-2'>
             Please enter your credentials to login
           </p>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700">
+          <div className='mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700'>
             <p>{error}</p>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex justify-center mb-4">
+        <form onSubmit={handleSubmit} className='space-y-6'>
+          <div className='flex justify-center mb-4'>
             <button
-              type="button"
+              type='button'
               onClick={toggleLoginMethod}
-              className="text-sm text-blue-600 hover:text-blue-500 font-medium"
+              className='text-sm text-blue-600 hover:text-blue-500 font-medium'
             >
               {loginMethod === "email"
                 ? "Login with name instead"
@@ -512,96 +512,96 @@ const Login = () => {
           </div>
 
           {loginMethod === "email" ? (
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+            <div className='space-y-2'>
+              <label className='block text-sm font-medium text-gray-700'>
                 Email
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaAt className="text-gray-400" />
+              <div className='relative'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <FaAt className='text-gray-400' />
                 </div>
                 <input
-                  type="email"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  type='email'
+                  className='w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder='Enter your email'
                   required
                 />
               </div>
             </div>
           ) : (
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+            <div className='space-y-2'>
+              <label className='block text-sm font-medium text-gray-700'>
                 Name
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaUser className="text-gray-400" />
+              <div className='relative'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <FaUser className='text-gray-400' />
                 </div>
                 <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  type='text'
+                  className='w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
+                  placeholder='Enter your name'
                   required
                 />
               </div>
             </div>
           )}
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
+          <div className='space-y-2'>
+            <label className='block text-sm font-medium text-gray-700'>
               Password
             </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaLock className="text-gray-400" />
+            <div className='relative'>
+              <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                <FaLock className='text-gray-400' />
               </div>
               <input
                 type={showPassword ? "text" : "password"}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                className='w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
+                placeholder='Enter your password'
                 required
               />
               <button
-                type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                type='button'
+                className='absolute inset-y-0 right-0 pr-3 flex items-center'
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? (
-                  <FaEyeSlash className="text-gray-400 hover:text-gray-600" />
+                  <FaEyeSlash className='text-gray-400 hover:text-gray-600' />
                 ) : (
-                  <FaEye className="text-gray-400 hover:text-gray-600" />
+                  <FaEye className='text-gray-400 hover:text-gray-600' />
                 )}
               </button>
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+          <div className='flex items-center justify-between'>
+            <div className='flex items-center'>
               <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                id='remember-me'
+                name='remember-me'
+                type='checkbox'
+                className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
               />
               <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-700"
+                htmlFor='remember-me'
+                className='ml-2 block text-sm text-gray-700'
               >
                 Remember me
               </label>
             </div>
 
-            <div className="text-sm">
+            <div className='text-sm'>
               <button
-                type="button"
+                type='button'
                 onClick={() => setShowResetModal(true)}
-                className="font-medium text-blue-600 hover:text-blue-500"
+                className='font-medium text-blue-600 hover:text-blue-500'
               >
                 Reset password
               </button>
@@ -609,32 +609,32 @@ const Login = () => {
           </div>
 
           <button
-            type="submit"
+            type='submit'
             className={`w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 ${
               isLoading ? "opacity-70 cursor-not-allowed" : ""
             }`}
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="flex items-center justify-center">
+              <span className='flex items-center justify-center'>
                 <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
+                  className='animate-spin -ml-1 mr-3 h-5 w-5 text-white'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
                 >
                   <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
+                    className='opacity-25'
+                    cx='12'
+                    cy='12'
+                    r='10'
+                    stroke='currentColor'
+                    strokeWidth='4'
                   ></circle>
                   <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    className='opacity-75'
+                    fill='currentColor'
+                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
                   ></path>
                 </svg>
                 Processing...
@@ -657,38 +657,38 @@ const Login = () => {
 
       {/* Reset Password Modal */}
       {showResetModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
-            <h3 className="text-xl font-bold mb-4">Reset Password</h3>
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+          <div className='bg-white p-6 rounded-lg w-full max-w-md'>
+            <h3 className='text-xl font-bold mb-4'>Reset Password</h3>
             <form onSubmit={handleResetPassword}>
-              <div className="space-y-4">
+              <div className='space-y-4'>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Email
                   </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaAt className="text-gray-400" />
+                  <div className='relative'>
+                    <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                      <FaAt className='text-gray-400' />
                     </div>
                     <input
-                      type="email"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                      type='email'
+                      className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                       value={resetData.email}
                       onChange={(e) =>
                         setResetData({ ...resetData, email: e.target.value })
                       }
-                      placeholder="Enter your email"
+                      placeholder='Enter your email'
                       required
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Old Password
                   </label>
                   <input
-                    type="password"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    type='password'
+                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                     value={resetData.oldPassword}
                     onChange={(e) =>
                       setResetData({
@@ -696,17 +696,17 @@ const Login = () => {
                         oldPassword: e.target.value,
                       })
                     }
-                    placeholder="Enter old password"
+                    placeholder='Enter old password'
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     New Password
                   </label>
                   <input
-                    type="password"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    type='password'
+                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                     value={resetData.newPassword}
                     onChange={(e) =>
                       setResetData({
@@ -714,17 +714,17 @@ const Login = () => {
                         newPassword: e.target.value,
                       })
                     }
-                    placeholder="Enter new password"
+                    placeholder='Enter new password'
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Confirm New Password
                   </label>
                   <input
-                    type="password"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    type='password'
+                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition'
                     value={resetData.confirmPassword}
                     onChange={(e) =>
                       setResetData({
@@ -732,21 +732,21 @@ const Login = () => {
                         confirmPassword: e.target.value,
                       })
                     }
-                    placeholder="Confirm new password"
+                    placeholder='Confirm new password'
                     required
                   />
                 </div>
               </div>
-              <div className="mt-6 flex justify-end space-x-3">
+              <div className='mt-6 flex justify-end space-x-3'>
                 <button
-                  type="button"
+                  type='button'
                   onClick={() => setShowResetModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                  className='px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50'
                 >
                   Cancel
                 </button>
                 <button
-                  type="submit"
+                  type='submit'
                   className={`px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ${
                     isLoading ? "opacity-70 cursor-not-allowed" : ""
                   }`}

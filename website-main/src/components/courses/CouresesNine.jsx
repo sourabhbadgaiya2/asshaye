@@ -19,12 +19,12 @@
 //   const fetchCourseAndRelated = async () => {
 //     try {
 //       setLoading(true);
-//       const res = await axios.get(`https://backend.aashayeinjudiciary.com/api/coursess/${id}`);
+//       const res = await axios.get(`http://localhost:8000/api/coursess/${id}`);
 //       const mainCourse = res.data;
 //       setProduct(mainCourse);
 
 //       const relatedRes = await axios.get(
-//         `https://backend.aashayeinjudiciary.com/api/courses?category=${mainCourse.category._id}`
+//         `http://localhost:8000/api/courses?category=${mainCourse.category._id}`
 //       );
 //       const filtered = relatedRes.data.filter((p) => p._id !== mainCourse._id);
 //       setRelatedProducts(filtered);
@@ -185,16 +185,14 @@ export const CouresesNine = () => {
       try {
         setLoading(true);
         // Fetch main course by ID
-        const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/api/courses/${id}`
-        );
+        const res = await axios.get(`http://localhost:8000/api/courses/${id}`);
         const main = res.data;
         console.log(main);
         setMainCourse(main);
 
         // Now fetch all courses with the same category ID
         const sameCategoryRes = await axios.get(
-          `https://backend.aashayeinjudiciary.com/api/courses/category/${main.category._id}`
+          `http://localhost:8000/api/courses/category/${main.category._id}`
         );
         // Filter out the main course from the list
         const filtered = sameCategoryRes.data.filter(
@@ -216,45 +214,45 @@ export const CouresesNine = () => {
 
   return (
     <section>
-      <div className="container">
-        <h2 className="td_fs_48 td_mb_50">Courses you May Like</h2>
-        <div className="row td_gap_y_30 td_row_gap_30">
+      <div className='container'>
+        <h2 className='td_fs_48 td_mb_50'>Courses you May Like</h2>
+        <div className='row td_gap_y_30 td_row_gap_30'>
           {sameCategoryCourses.length > 0 ? (
             sameCategoryCourses.map((course) => (
-              <div key={course._id} className="col-lg-4 col-md-6">
-                <div className="td_card td_style_3 d-block td_radius_10">
-                  <span className="td_card_label td_accent_bg td_white_color">
+              <div key={course._id} className='col-lg-4 col-md-6'>
+                <div className='td_card td_style_3 d-block td_radius_10'>
+                  <span className='td_card_label td_accent_bg td_white_color'>
                     New
                   </span>
-                  <Link to={`/courses/${course._id}`} className="td_card_thumb">
+                  <Link to={`/courses/${course._id}`} className='td_card_thumb'>
                     <img
                       src={course.images?.[0] || "default-course-image.jpg"}
-                      alt="Course"
+                      alt='Course'
                     />
                   </Link>
-                  <div className="td_card_info td_white_bg">
-                    <div className="td_card_info_in">
-                      <ul className="td_card_meta td_mp_0 td_fs_18 td_medium td_heading_color">
+                  <div className='td_card_info td_white_bg'>
+                    <div className='td_card_info_in'>
+                      <ul className='td_card_meta td_mp_0 td_fs_18 td_medium td_heading_color'>
                         {/* <li><img src={userIcon} alt="User" /> {course.Seat} Seats</li> */}
                         {/* <li><img src={bookIcon} alt="Book" /> {course.Semester} Semesters</li> */}
                       </ul>
-                      <Link className="td_card_category td_fs_14 td_bold td_heading_color td_mb_14">
+                      <Link className='td_card_category td_fs_14 td_bold td_heading_color td_mb_14'>
                         {course?.category?.name || mainCourse?.category?.name}
                       </Link>
-                      <h2 className="td_card_title td_fs_24 td_mb_16">
+                      <h2 className='td_card_title td_fs_24 td_mb_16'>
                         <Link to={`/courses/${course._id}`}>
                           {course.Coursename}
                         </Link>
                       </h2>
-                      <p className="td_card_subtitle td_heading_color td_opacity_7 td_mb_20">
+                      <p className='td_card_subtitle td_heading_color td_opacity_7 td_mb_20'>
                         {course.CourseDescription?.slice(0, 100)}...
                       </p>
-                      <div className="td_card_btn">
+                      <div className='td_card_btn'>
                         <Link
-                          to="/cart"
-                          className="td_btn td_style_1 td_radius_10 td_medium"
+                          to='/cart'
+                          className='td_btn td_style_1 td_radius_10 td_medium'
                         >
-                          <span className="td_btn_in td_white_color td_accent_bg">
+                          <span className='td_btn_in td_white_color td_accent_bg'>
                             Enroll Now
                           </span>
                         </Link>

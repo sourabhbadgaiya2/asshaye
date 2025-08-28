@@ -18,7 +18,7 @@
 // //   const fetchContacts = async () => {
 // //     try {
 // //       const response = await axios.get(
-// //         "https://backend.aashayeinjudiciary.com/event"
+// //         "http://localhost:8000/event"
 // //       );
 // //       setContacts(response.data);
 // //       setIsLoading(false);
@@ -311,7 +311,7 @@
 //   const fetchContacts = async () => {
 //     try {
 //       const response = await axios.get(
-//         "https://backend.aashayeinjudiciary.com/event"
+//         "http://localhost:8000/event"
 //       );
 //       setContacts(response.data);
 //       setIsLoading(false);
@@ -506,7 +506,7 @@
 //   const fetchEvents = async () => {
 //     try {
 //       const response = await axios.get(
-//         "https://backend.aashayeinjudiciary.com/event"
+//         "http://localhost:8000/event"
 //       );
 //       setEvents(response.data);
 //       setIsLoading(false);
@@ -548,9 +548,7 @@
 //     );
 //   }
 
-
 //   const { path } = routesData.find((route) => route.element === "EventDetails");
-
 
 //   return (
 //     <section className="py-5 px-3 px-md-5 bg-light">
@@ -795,9 +793,7 @@ export const EventOne = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/event"
-      );
+      const response = await axios.get("http://localhost:8000/event");
       setEvents(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -821,9 +817,12 @@ export const EventOne = () => {
 
   if (isLoading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "300px" }}>
-        <div className="spinner-border td_accent_color" role="status">
-          <span className="visually-hidden">Loading...</span>
+      <div
+        className='d-flex justify-content-center align-items-center'
+        style={{ height: "300px" }}
+      >
+        <div className='spinner-border td_accent_color' role='status'>
+          <span className='visually-hidden'>Loading...</span>
         </div>
       </div>
     );
@@ -831,33 +830,35 @@ export const EventOne = () => {
 
   if (message.text) {
     return (
-      <div className="alert alert-danger text-center my-5">
-        {message.text}
-      </div>
+      <div className='alert alert-danger text-center my-5'>{message.text}</div>
     );
   }
 
   return (
-    <section className="py-5 px-3 px-md-5 bg-light">
-      <div className="">
+    <section className='py-5 px-3 px-md-5 bg-light'>
+      <div className=''>
         {/* Header Section */}
-        <div className="text-center mb-5">
-            <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+        <div className='text-center mb-5'>
+          <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
             Upcoming Events at Aashayein Judiciary
           </h4>
-       <p className='td_section_title text-center td_fs_20 mb-4'>           Join our expert-led workshops, webinars, and special sessions to boost your judiciary preparation.
-
-    </p>
-
+          <p className='td_section_title text-center td_fs_20 mb-4'>
+            {" "}
+            Join our expert-led workshops, webinars, and special sessions to
+            boost your judiciary preparation.
+          </p>
         </div>
 
         {/* Events Grid */}
-        <div className="row g-4">
+        <div className='row g-4'>
           {events.map((event, idx) => (
-            <div key={event._id || idx} className="col-md-6 col-lg-4">
-              <div className="card h-100 shadow-sm border-0 overflow-hidden">
+            <div key={event._id || idx} className='col-md-6 col-lg-4'>
+              <div className='card h-100 shadow-sm border-0 overflow-hidden'>
                 {/* Event Image */}
-                <div className="position-relative overflow-hidden" style={{ height: "200px" }}>
+                <div
+                  className='position-relative overflow-hidden'
+                  style={{ height: "200px" }}
+                >
                   <Link to={`${path}`} state={event._id}>
                     <img
                       src={
@@ -868,11 +869,11 @@ export const EventOne = () => {
                           : fallbackImages[idx % fallbackImages.length]
                       }
                       alt={event.Title || "Event"}
-                      id="imaging"
-                      className="img-fluid  "
+                      id='imaging'
+                      className='img-fluid  '
                     />
-                    <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-20 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-all">
-                      <span className="text-white fw-semibold">
+                    <div className='position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-20 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-all'>
+                      <span className='text-white fw-semibold'>
                         View Details
                       </span>
                     </div>
@@ -880,68 +881,75 @@ export const EventOne = () => {
                 </div>
 
                 {/* Event Details */}
-                <div className="card-body">
-                  <div className="d-flex align-items-center text-muted small mb-2">
+                <div className='card-body'>
+                  <div className='d-flex align-items-center text-muted small mb-2'>
                     <svg
-                      className="bi bi-calendar3 td_accent_color me-2"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
+                      className='bi bi-calendar3 td_accent_color me-2'
+                      width='16'
+                      height='16'
+                      fill='currentColor'
+                      viewBox='0 0 16 16'
                     >
-                      <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-                      <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      <path d='M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z' />
+                      <path d='M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z' />
                     </svg>
                     <span>{formatDate(event.StartDate)}</span>
-                    <span className="mx-2">•</span>
+                    <span className='mx-2'>•</span>
                     <svg
-                      className="bi bi-clock td_accent_color me-2"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
+                      className='bi bi-clock td_accent_color me-2'
+                      width='16'
+                      height='16'
+                      fill='currentColor'
+                      viewBox='0 0 16 16'
                     >
-                      <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                      <path d='M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z' />
+                      <path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z' />
                     </svg>
                     <span>{event.Time || "10.00 am"}</span>
                   </div>
 
-                  <h3 className="h5 fw-bold mb-3">
-                    <Link to={`${path}`} state={event._id} className="text-decoration-none text-dark hover-td_accent_color">
+                  <h3 className='h5 fw-bold mb-3'>
+                    <Link
+                      to={`${path}`}
+                      state={event._id}
+                      className='text-decoration-none text-dark hover-td_accent_color'
+                    >
                       {event.Title || "Event Title"}
                     </Link>
                   </h3>
 
-                  <div className="d-flex align-items-center text-muted small">
+                  <div className='d-flex align-items-center text-muted small'>
                     <svg
-                      className="bi bi-geo-alt td_accent_color me-2"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
+                      className='bi bi-geo-alt td_accent_color me-2'
+                      width='16'
+                      height='16'
+                      fill='currentColor'
+                      viewBox='0 0 16 16'
                     >
-                      <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-                      <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      <path d='M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z' />
+                      <path d='M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z' />
                     </svg>
                     <span>{event.Location || "Tsc Center, Northern Asia"}</span>
                   </div>
 
-                  <div className="mt-3">
+                  <div className='mt-3'>
                     <Link
                       to={`${path}`}
                       state={event._id}
-                      className="btn btn-link td_accent_color p-0 text-decoration-none"
+                      className='btn btn-link td_accent_color p-0 text-decoration-none'
                     >
                       Learn More
                       <svg
-                        className="bi bi-arrow-right ms-1"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
+                        className='bi bi-arrow-right ms-1'
+                        width='16'
+                        height='16'
+                        fill='currentColor'
+                        viewBox='0 0 16 16'
                       >
-                        <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        <path
+                          fillRule='evenodd'
+                          d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'
+                        />
                       </svg>
                     </Link>
                   </div>

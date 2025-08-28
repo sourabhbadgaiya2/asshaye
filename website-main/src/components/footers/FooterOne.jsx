@@ -48,13 +48,11 @@ export const FooterOne = () => {
           setCategories(categoriesResponse.data);
         }
 
-        const socialResponse = await axios.get(
-          "https://backend.aashayeinjudiciary.com/social"
-        );
+        const socialResponse = await axios.get("http://localhost:8000/social");
         setSocialLinks(socialResponse.data.data);
 
         const playstoreResponse = await axios.get(
-          "https://backend.aashayeinjudiciary.com/playstore/alldisplay"
+          "http://localhost:8000/playstore/alldisplay"
         );
         setPlaystoreLinks(playstoreResponse.data);
       } catch (error) {

@@ -70,8 +70,8 @@ const Syllabus = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        // "https://backend.aashayeinjudiciary.com/syllabus/create",
-        "https://backend.aashayeinjudiciary.com/syllabus/create",
+        // "http://localhost:8000/syllabus/create",
+        "http://localhost:8000/syllabus/create",
         formData,
         {
           headers: {

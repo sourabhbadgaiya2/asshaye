@@ -1,7 +1,3 @@
-
-
-
-
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import { toast } from "react-toastify";
@@ -67,7 +63,7 @@
 //   const fetchCourses = async () => {
 //     try {
 //       setLoading(true);
-//       const response = await axios.get("https://backend.aashayeinjudiciary.com/main/display");
+//       const response = await axios.get("http://localhost:8000/main/display");
 //       if (response.data && Array.isArray(response.data.data)) {
 //         setCourses(response.data.data);
 //       } else {
@@ -146,7 +142,7 @@
 //     if (!confirmDelete) return;
 
 //     try {
-//       await axios.delete(`https://backend.aashayeinjudiciary.com/main/${id}`);
+//       await axios.delete(`http://localhost:8000/main/${id}`);
 //       toast.success("Course deleted successfully");
 //       fetchCourses();
 //     } catch (error) {
@@ -237,7 +233,7 @@
 //       }
 
 //       const response = await axios.put(
-//         `https://backend.aashayeinjudiciary.com/main/editsave/${editId}`,
+//         `http://localhost:8000/main/editsave/${editId}`,
 //         formData,
 //         {
 //           headers: {
@@ -839,7 +835,7 @@ const MainDisplay = () => {
   const fetchCourses = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://backend.aashayeinjudiciary.com/main/display");
+      const response = await axios.get("http://localhost:8000/main/display");
       if (response.data && Array.isArray(response.data.data)) {
         setCourses(response.data.data);
       } else {
@@ -918,7 +914,7 @@ const MainDisplay = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://backend.aashayeinjudiciary.com/main/${id}`);
+      await axios.delete(`http://localhost:8000/main/${id}`);
       toast.success("Course deleted successfully");
       fetchCourses();
     } catch (error) {
@@ -1013,7 +1009,7 @@ const MainDisplay = () => {
       }
 
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/main/editsave/${editId}`,
+        `http://localhost:8000/main/editsave/${editId}`,
         formData,
         {
           headers: {
@@ -1040,18 +1036,18 @@ const MainDisplay = () => {
     {
       name: "Image",
       cell: (row) => (
-        <div className="flex items-center justify-center">
+        <div className='flex items-center justify-center'>
           {row.images?.[0] ? (
             <img
               src={row.images[0]}
               alt={row.altText || "Course"}
-              className="w-12 h-12 object-cover rounded-md"
-              data-tooltip-id="image-tooltip"
+              className='w-12 h-12 object-cover rounded-md'
+              data-tooltip-id='image-tooltip'
               data-tooltip-content={row.altText || "Course image"}
             />
           ) : (
-            <div className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center">
-              <FiImage className="text-gray-400" />
+            <div className='w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center'>
+              <FiImage className='text-gray-400' />
             </div>
           )}
         </div>
@@ -1062,8 +1058,8 @@ const MainDisplay = () => {
       name: "Price",
       selector: (row) => row.Price,
       cell: (row) => (
-        <div className="flex items-center">
-          <FaRupeeSign className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FaRupeeSign className='mr-1 text-gray-500' />
           <span>{row.Price || "N/A"}</span>
         </div>
       ),
@@ -1073,7 +1069,7 @@ const MainDisplay = () => {
       name: "Test Module",
       selector: (row) => row.testmodule,
       cell: (row) => (
-        <div className="font-medium text-gray-800">
+        <div className='font-medium text-gray-800'>
           {row.testmodule || "N/A"}
         </div>
       ),
@@ -1083,7 +1079,7 @@ const MainDisplay = () => {
       name: "Alt Text",
       selector: (row) => row.altText,
       cell: (row) => (
-        <div className="font-medium text-gray-800">{row.altText || "N/A"}</div>
+        <div className='font-medium text-gray-800'>{row.altText || "N/A"}</div>
       ),
       sortable: true,
     },
@@ -1091,8 +1087,8 @@ const MainDisplay = () => {
       name: "Duration",
       selector: (row) => row.Durations,
       cell: (row) => (
-        <div className="flex items-center">
-          <FiClock className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FiClock className='mr-1 text-gray-500' />
           <span>{row.Durations || "N/A"}</span>
         </div>
       ),
@@ -1102,8 +1098,8 @@ const MainDisplay = () => {
       name: "Mock/Sectional",
       selector: (row) => row.category?.name || row.category || "N/A",
       cell: (row) => (
-        <div className="flex items-center">
-          <FiTag className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FiTag className='mr-1 text-gray-500' />
           <span>{row.category?.name || row.category || "N/A"}</span>
         </div>
       ),
@@ -1114,8 +1110,8 @@ const MainDisplay = () => {
       selector: (row) =>
         row.subsubCategory?.name || row.subsubCategory || "N/A",
       cell: (row) => (
-        <div className="flex items-center">
-          <FiTag className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FiTag className='mr-1 text-gray-500' />
           <span>{row.subsubCategory?.name || row.subsubCategory || "N/A"}</span>
         </div>
       ),
@@ -1125,8 +1121,8 @@ const MainDisplay = () => {
       name: "Sub Category",
       selector: (row) => row.subCategory?.name || row.subCategory || "N/A",
       cell: (row) => (
-        <div className="flex items-center">
-          <FiTag className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FiTag className='mr-1 text-gray-500' />
           <span>{row.subCategory?.name || row.subCategory || "N/A"}</span>
         </div>
       ),
@@ -1135,9 +1131,9 @@ const MainDisplay = () => {
     {
       name: "Description",
       cell: (row) => (
-        <div className="flex flex-col">
-          <div className="flex items-start">
-            <FiFileText className="mr-1 text-gray-500 mt-1 flex-shrink-0" />
+        <div className='flex flex-col'>
+          <div className='flex items-start'>
+            <FiFileText className='mr-1 text-gray-500 mt-1 flex-shrink-0' />
             <div
               dangerouslySetInnerHTML={{
                 __html: sanitize(
@@ -1150,15 +1146,15 @@ const MainDisplay = () => {
                     : "No description"
                 ),
               }}
-              className="prose prose-sm max-w-none"
+              className='prose prose-sm max-w-none'
               style={{ maxWidth: "300px", overflowWrap: "break-word" }}
             />
           </div>
           {row.CourseDescription && row.CourseDescription.length > 100 && (
             <button
               onClick={() => toggleDescription(row._id)}
-              className="text-blue-600 text-sm mt-1 flex items-center self-end"
-              data-tooltip-id="desc-tooltip"
+              className='text-blue-600 text-sm mt-1 flex items-center self-end'
+              data-tooltip-id='desc-tooltip'
               data-tooltip-content={
                 expandedDescriptions[row._id] ? "Show less" : "Show more"
               }
@@ -1166,12 +1162,12 @@ const MainDisplay = () => {
               {expandedDescriptions[row._id] ? (
                 <>
                   <span>Show Less</span>
-                  <FiChevronUp className="ml-1" />
+                  <FiChevronUp className='ml-1' />
                 </>
               ) : (
                 <>
                   <span>Read More</span>
-                  <FiChevronDown className="ml-1" />
+                  <FiChevronDown className='ml-1' />
                 </>
               )}
             </button>
@@ -1185,8 +1181,8 @@ const MainDisplay = () => {
       selector: (row) =>
         row.LastDate ? new Date(row.LastDate).toLocaleDateString() : "N/A",
       cell: (row) => (
-        <div className="flex items-center">
-          <FiCalendar className="mr-1 text-gray-500" />
+        <div className='flex items-center'>
+          <FiCalendar className='mr-1 text-gray-500' />
           <span>
             {row.LastDate ? new Date(row.LastDate).toLocaleDateString() : "N/A"}
           </span>
@@ -1197,28 +1193,28 @@ const MainDisplay = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex gap-2">
+        <div className='flex gap-2'>
           <button
             onClick={() => startView(row)}
-            className="flex items-center gap-1 bg-green-50 hover:bg-green-100 text-green-600 text-sm px-3 py-1 rounded transition-colors"
-            data-tooltip-id="action-tooltip"
-            data-tooltip-content="View Details"
+            className='flex items-center gap-1 bg-green-50 hover:bg-green-100 text-green-600 text-sm px-3 py-1 rounded transition-colors'
+            data-tooltip-id='action-tooltip'
+            data-tooltip-content='View Details'
           >
             <FiEye size={14} />
           </button>
           <button
             onClick={() => startEdit(row)}
-            className="flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm px-3 py-1 rounded transition-colors"
-            data-tooltip-id="action-tooltip"
-            data-tooltip-content="Edit"
+            className='flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm px-3 py-1 rounded transition-colors'
+            data-tooltip-id='action-tooltip'
+            data-tooltip-content='Edit'
           >
             <FiEdit2 size={14} />
           </button>
           <button
             onClick={() => delcourse(row._id)}
-            className="flex items-center gap-1 bg-red-50 hover:bg-red-100 text-red-600 text-sm px-3 py-1 rounded transition-colors"
-            data-tooltip-id="action-tooltip"
-            data-tooltip-content="Delete"
+            className='flex items-center gap-1 bg-red-50 hover:bg-red-100 text-red-600 text-sm px-3 py-1 rounded transition-colors'
+            data-tooltip-id='action-tooltip'
+            data-tooltip-content='Delete'
           >
             <FiTrash2 size={14} />
           </button>
@@ -1246,21 +1242,21 @@ const MainDisplay = () => {
   });
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+    <div className='p-6 bg-gray-50 min-h-screen'>
+      <div className='max-w-7xl mx-auto'>
+        <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4'>
+          <h1 className='text-2xl md:text-3xl font-bold text-gray-800'>
             Course Main Test
           </h1>
 
-          <div className="relative w-full md:w-96">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <FiSearch className="text-gray-400" />
+          <div className='relative w-full md:w-96'>
+            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+              <FiSearch className='text-gray-400' />
             </div>
             <input
-              type="text"
-              placeholder="Search tests..."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              type='text'
+              placeholder='Search tests...'
+              className='pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
@@ -1268,154 +1264,174 @@ const MainDisplay = () => {
         </div>
 
         {/* Tooltips */}
-        <ReactTooltip id="image-tooltip" />
-        <ReactTooltip id="action-tooltip" />
-        <ReactTooltip id="desc-tooltip" />
+        <ReactTooltip id='image-tooltip' />
+        <ReactTooltip id='action-tooltip' />
+        <ReactTooltip id='desc-tooltip' />
 
         {/* View Details Modal */}
         {viewId && (
-          <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold text-gray-800">
+          <div className='fixed inset-0 bg-opacity-30 flex items-center justify-center z-50 p-4 backdrop-blur-sm'>
+            <div className='bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto'>
+              <div className='p-6'>
+                <div className='flex justify-between items-center mb-4'>
+                  <h2 className='text-xl font-semibold text-gray-800'>
                     Course Details
                   </h2>
                   <button
                     onClick={() => setViewId(null)}
-                    className="text-gray-500 hover:text-gray-700"
+                    className='text-gray-500 hover:text-gray-700'
                   >
                     <FiX size={20} />
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="md:col-span-2 flex justify-center">
-                    {courses.find(c => c._id === viewId)?.images?.[0] ? (
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-6'>
+                  <div className='md:col-span-2 flex justify-center'>
+                    {courses.find((c) => c._id === viewId)?.images?.[0] ? (
                       <img
-                        src={courses.find(c => c._id === viewId).images[0]}
-                        alt={courses.find(c => c._id === viewId).altText || "Course"}
-                        className="w-64 h-64 object-contain rounded-lg"
+                        src={courses.find((c) => c._id === viewId).images[0]}
+                        alt={
+                          courses.find((c) => c._id === viewId).altText ||
+                          "Course"
+                        }
+                        className='w-64 h-64 object-contain rounded-lg'
                       />
                     ) : (
-                      <div className="w-64 h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <FiImage className="text-gray-400 text-4xl" />
+                      <div className='w-64 h-64 bg-gray-100 rounded-lg flex items-center justify-center'>
+                        <FiImage className='text-gray-400 text-4xl' />
                       </div>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Test Module
                     </label>
-                    <div className="text-lg font-medium text-gray-800">
-                      {courses.find(c => c._id === viewId)?.testmodule || "N/A"}
+                    <div className='text-lg font-medium text-gray-800'>
+                      {courses.find((c) => c._id === viewId)?.testmodule ||
+                        "N/A"}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Price
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FaRupeeSign className="mr-1 text-gray-500" />
-                      <span>{courses.find(c => c._id === viewId)?.Price || "N/A"}</span>
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FaRupeeSign className='mr-1 text-gray-500' />
+                      <span>
+                        {courses.find((c) => c._id === viewId)?.Price || "N/A"}
+                      </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Duration
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FiClock className="mr-1 text-gray-500" />
-                      <span>{courses.find(c => c._id === viewId)?.Durations || "N/A"}</span>
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FiClock className='mr-1 text-gray-500' />
+                      <span>
+                        {courses.find((c) => c._id === viewId)?.Durations ||
+                          "N/A"}
+                      </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Category
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FiTag className="mr-1 text-gray-500" />
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FiTag className='mr-1 text-gray-500' />
                       <span>
-                        {courses.find(c => c._id === viewId)?.category?.name ||
-                         courses.find(c => c._id === viewId)?.category || "N/A"}
+                        {courses.find((c) => c._id === viewId)?.category
+                          ?.name ||
+                          courses.find((c) => c._id === viewId)?.category ||
+                          "N/A"}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Sub Category
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FiTag className="mr-1 text-gray-500" />
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FiTag className='mr-1 text-gray-500' />
                       <span>
-                        {courses.find(c => c._id === viewId)?.subCategory?.name ||
-                         courses.find(c => c._id === viewId)?.subCategory || "N/A"}
+                        {courses.find((c) => c._id === viewId)?.subCategory
+                          ?.name ||
+                          courses.find((c) => c._id === viewId)?.subCategory ||
+                          "N/A"}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Sub Sub Category
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FiTag className="mr-1 text-gray-500" />
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FiTag className='mr-1 text-gray-500' />
                       <span>
-                        {courses.find(c => c._id === viewId)?.subsubCategory?.name ||
-                         courses.find(c => c._id === viewId)?.subsubCategory || "N/A"}
+                        {courses.find((c) => c._id === viewId)?.subsubCategory
+                          ?.name ||
+                          courses.find((c) => c._id === viewId)
+                            ?.subsubCategory ||
+                          "N/A"}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Last Date
                     </label>
-                    <div className="flex items-center text-lg font-medium text-gray-800">
-                      <FiCalendar className="mr-1 text-gray-500" />
+                    <div className='flex items-center text-lg font-medium text-gray-800'>
+                      <FiCalendar className='mr-1 text-gray-500' />
                       <span>
-                        {courses.find(c => c._id === viewId)?.LastDate ?
-                         new Date(courses.find(c => c._id === viewId).LastDate).toLocaleDateString() : "N/A"}
+                        {courses.find((c) => c._id === viewId)?.LastDate
+                          ? new Date(
+                              courses.find((c) => c._id === viewId).LastDate
+                            ).toLocaleDateString()
+                          : "N/A"}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Alt Text
                     </label>
-                    <div className="text-lg font-medium text-gray-800">
-                      {courses.find(c => c._id === viewId)?.altText || "N/A"}
+                    <div className='text-lg font-medium text-gray-800'>
+                      {courses.find((c) => c._id === viewId)?.altText || "N/A"}
                     </div>
                   </div>
 
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-medium text-gray-500 mb-1'>
                       Description
                     </label>
                     <div
-                      className="prose max-w-none p-4 bg-gray-50 rounded-lg"
+                      className='prose max-w-none p-4 bg-gray-50 rounded-lg'
                       dangerouslySetInnerHTML={{
                         __html: sanitize(
-                          courses.find(c => c._id === viewId)?.CourseDescription || "No description available"
+                          courses.find((c) => c._id === viewId)
+                            ?.CourseDescription || "No description available"
                         ),
                       }}
                     />
                   </div>
                 </div>
 
-                <div className="flex justify-end">
+                <div className='flex justify-end'>
                   <button
                     onClick={() => {
                       setViewId(null);
                       toast.info("Course details closed");
                     }}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors'
                   >
                     Close
                   </button>
@@ -1427,55 +1443,55 @@ const MainDisplay = () => {
 
         {/* Pop-up Edit Form */}
         {editId && (
-          <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold text-gray-800">
+          <div className='fixed inset-0 bg-opacity-30 flex items-center justify-center z-50 p-4 backdrop-blur-sm'>
+            <div className='bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto'>
+              <div className='p-6'>
+                <div className='flex justify-between items-center mb-4'>
+                  <h2 className='text-xl font-semibold text-gray-800'>
                     Edit Test Details
                   </h2>
                   <button
                     onClick={() => setEditId(null)}
-                    className="text-gray-500 hover:text-gray-700"
+                    className='text-gray-500 hover:text-gray-700'
                   >
                     <FiX size={20} />
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Image
                     </label>
-                    <div className="flex items-center gap-4">
-                      <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden">
+                    <div className='flex items-center gap-4'>
+                      <div className='w-24 h-24 bg-gray-100 rounded-md overflow-hidden'>
                         {editForm.imagePreview ? (
                           <img
                             src={editForm.imagePreview}
-                            alt="Preview"
-                            className="w-full h-full object-cover"
+                            alt='Preview'
+                            className='w-full h-full object-cover'
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <div className='w-full h-full flex items-center justify-center text-gray-400'>
                             <FiImage size={24} />
                           </div>
                         )}
                       </div>
                       <div>
                         <input
-                          type="file"
-                          id="image-upload"
-                          accept="image/*"
+                          type='file'
+                          id='image-upload'
+                          accept='image/*'
                           onChange={handleImageChange}
-                          className="hidden"
+                          className='hidden'
                         />
                         <label
-                          htmlFor="image-upload"
-                          className="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
+                          htmlFor='image-upload'
+                          className='px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer'
                         >
                           Change Image
                         </label>
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className='mt-1 text-xs text-gray-500'>
                           JPG, PNG or GIF (Max. 5MB)
                         </p>
                       </div>
@@ -1483,17 +1499,17 @@ const MainDisplay = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Category*
                     </label>
                     <select
-                      name="category"
+                      name='category'
                       value={editForm.category}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
                       required
                     >
-                      <option value="">Select Category</option>
+                      <option value=''>Select Category</option>
                       {categories.map((cat) => (
                         <option key={cat._id} value={cat._id}>
                           {cat.name}
@@ -1503,17 +1519,17 @@ const MainDisplay = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Sub Category
                     </label>
                     <select
-                      name="subCategory"
+                      name='subCategory'
                       value={editForm.subCategory}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
                       disabled={!editForm.category}
                     >
-                      <option value="">Select Sub Category</option>
+                      <option value=''>Select Sub Category</option>
                       {filteredSubCategories.map((subCat) => (
                         <option key={subCat._id} value={subCat._id}>
                           {subCat.name}
@@ -1523,17 +1539,17 @@ const MainDisplay = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Sub Sub Category
                     </label>
                     <select
-                      name="subsubCategory"
+                      name='subsubCategory'
                       value={editForm.subsubCategory}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
                       disabled={!editForm.subCategory}
                     >
-                      <option value="">Select Sub Sub Category</option>
+                      <option value=''>Select Sub Sub Category</option>
                       {filteredSubSubCategories.map((subSubCat) => (
                         <option key={subSubCat._id} value={subSubCat._id}>
                           {subSubCat.name}
@@ -1543,81 +1559,81 @@ const MainDisplay = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Price
                     </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <FaRupeeSign className="text-gray-400" />
+                    <div className='relative'>
+                      <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                        <FaRupeeSign className='text-gray-400' />
                       </div>
                       <input
-                        type="text"
-                        name="Price"
+                        type='text'
+                        name='Price'
                         value={editForm.Price}
                         onChange={handleEditChange}
-                        className="pl-10 w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter price"
+                        className='pl-10 w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                        placeholder='Enter price'
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Test Module*
                     </label>
                     <input
-                      type="text"
-                      name="testmodule"
+                      type='text'
+                      name='testmodule'
                       value={editForm.testmodule}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter test module"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                      placeholder='Enter test module'
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Duration*
                     </label>
                     <input
-                      type="text"
-                      name="Durations"
+                      type='text'
+                      name='Durations'
                       value={editForm.Durations}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter duration"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                      placeholder='Enter duration'
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Alt Text
                     </label>
                     <input
-                      type="text"
-                      name="altText"
+                      type='text'
+                      name='altText'
                       value={editForm.altText}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter alt text for image"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
+                      placeholder='Enter alt text for image'
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Last Date
                     </label>
                     <input
-                      type="date"
-                      name="LastDate"
+                      type='date'
+                      name='LastDate'
                       value={editForm.LastDate}
                       onChange={handleEditChange}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500'
                     />
                   </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-1'>
                       Description*
                     </label>
-                    <div className="ckeditor-container">
+                    <div className='ckeditor-container'>
                       <CKEditor
                         editor={ClassicEditor}
                         data={editForm.CourseDescription}
@@ -1643,16 +1659,16 @@ const MainDisplay = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3">
+                <div className='flex justify-end gap-3'>
                   <button
                     onClick={() => setEditId(null)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                    className='px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors'
                   >
                     Cancel
                   </button>
                   <button
                     onClick={saveEdit}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className='flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors'
                   >
                     <FiSave size={16} />
                     Save Changes
@@ -1664,7 +1680,7 @@ const MainDisplay = () => {
         )}
 
         {/* DataTable */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className='bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden'>
           <DataTable
             columns={columns}
             data={filteredCourses}
@@ -1675,7 +1691,7 @@ const MainDisplay = () => {
             highlightOnHover
             responsive
             noDataComponent={
-              <div className="p-8 text-center text-gray-500">
+              <div className='p-8 text-center text-gray-500'>
                 {loading
                   ? "Loading..."
                   : "No tests found. Try adjusting your search."}

@@ -27,7 +27,7 @@
 //     setError(null);
 
 //     try {
-//       const response = await axios.post('https://backend.aashayeinjudiciary.com/faq/', formData);
+//       const response = await axios.post('http://localhost:8000/faq/', formData);
 //       console.log('FAQ created:', response.data);
 //       toast.success('FAQ created successfully!');
 //       setTimeout(() => {
@@ -142,7 +142,7 @@ const FAQCreate = () => {
     setError(null);
 
     try {
-      const response = await axios.post("https://backend.aashayeinjudiciary.com/faq/", formData);
+      const response = await axios.post("http://localhost:8000/faq/", formData);
       console.log("FAQ created:", response.data);
       toast.success("FAQ created successfully!");
       setTimeout(() => {
@@ -160,9 +160,9 @@ const FAQCreate = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className='max-w-2xl mx-auto p-4'>
       <ToastContainer
-        position="top-right"
+        position='top-right'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -173,72 +173,72 @@ const FAQCreate = () => {
         pauseOnHover
       />
 
-      <h1 className="text-2xl font-bold mb-6">Create New FAQ</h1>
+      <h1 className='text-2xl font-bold mb-6'>Create New FAQ</h1>
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4'>
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
           <label
-            htmlFor="title"
-            className="block text-sm font-medium text-gray-700"
+            htmlFor='title'
+            className='block text-sm font-medium text-gray-700'
           >
             Question
           </label>
           <input
-            type="text"
-            id="title"
-            name="title"
+            type='text'
+            id='title'
+            name='title'
             value={formData.title}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border'
           />
         </div>
 
         <div>
           <label
-            htmlFor="response"
-            className="block text-sm font-medium text-gray-700"
+            htmlFor='response'
+            className='block text-sm font-medium text-gray-700'
           >
             Answer
           </label>
           <textarea
-            id="response"
-            name="response"
+            id='response'
+            name='response'
             value={formData.response}
             onChange={handleChange}
             required
             rows={4}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border'
           />
         </div>
 
         <div>
           <label
-            htmlFor="altText"
-            className="block text-sm font-medium text-gray-700"
+            htmlFor='altText'
+            className='block text-sm font-medium text-gray-700'
           >
             Alt Text (for accessibility)
           </label>
           <input
-            type="text"
-            id="altText"
-            name="altText"
+            type='text'
+            id='altText'
+            name='altText'
             value={formData.altText}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+            className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border'
           />
         </div>
 
-        <div className="flex justify-end">
+        <div className='flex justify-end'>
           <button
-            type="submit"
+            type='submit'
             disabled={isSubmitting}
             className={`px-4 py-2 rounded-md text-white ${
               isSubmitting

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { BlogPagination } from "./BlogPagination";
 import { BlogItem } from "./BlogItem";
@@ -35,9 +34,7 @@ export const BlogAll = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/blog/display"
-      );
+      const response = await fetch("http://localhost:8000/blog/display");
       if (!response.ok) throw new Error("Failed to fetch blogs");
       const data = await response.json();
       const blogsArray = Array.isArray(data) ? data : data.data || [];
@@ -77,10 +74,9 @@ export const BlogAll = () => {
       <MarqueeStrike />
 
       <div className='container '>
-         <h4 className='text-center mt-2 mb-2 d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-               Explore Our Blogs
-          </h4>
-
+        <h4 className='text-center mt-2 mb-2 d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+          Explore Our Blogs
+        </h4>
 
         <div className='row'>
           <div className='col-lg-4'>

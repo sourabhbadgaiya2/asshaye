@@ -118,7 +118,7 @@ export default function RecentUpdates() {
     const fetchWhatsNew = async () => {
       try {
         const response = await fetch(
-          "https://backend.aashayeinjudiciary.com/whatsnew/alldisplay"
+          "http://localhost:8000/whatsnew/alldisplay"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch WhatsNew entries");
@@ -181,13 +181,13 @@ export default function RecentUpdates() {
     <div className='bg-white py-5 px-3 px-md-5'>
       <ToastContainer position='top-right' autoClose={3000} />
       <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>
-       Latest Updates from Aashayein Judiciary
-
+        Latest Updates from Aashayein Judiciary
       </h4>
-       <p className='td_section_title text-center td_fs_20 mb-4'> Stay informed with our newest announcements, exam updates, and study materials.
-</p>
-
-
+      <p className='td_section_title text-center td_fs_20 mb-4'>
+        {" "}
+        Stay informed with our newest announcements, exam updates, and study
+        materials.
+      </p>
 
       <div className='row g-4' style={{ minHeight: "400px" }}>
         {/* Left image carousel */}

@@ -66,9 +66,7 @@ export const EventDetailsContent = () => {
     const fetchEvent = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/event/${state}`
-        );
+        const res = await axios.get(`http://localhost:8000/event/${state}`);
         setEvent(res.data);
       } catch (err) {
         console.error("Failed to fetch event", err);

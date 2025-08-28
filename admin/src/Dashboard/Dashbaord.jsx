@@ -149,27 +149,21 @@ const Dashboard = () => {
   ]);
 
   const fetchEnquiries = async () => {
-    const response = await fetch(
-      "https://backend.aashayeinjudiciary.com/enroll/alldisplay"
-    );
+    const response = await fetch("http://localhost:8000/enroll/alldisplay");
     if (!response.ok) throw new Error("Failed to fetch enquiries");
     const data = await response.json();
     return Array.isArray(data) ? data : data.data || [];
   };
 
   const fetchContacts = async () => {
-    const response = await fetch(
-      "https://backend.aashayeinjudiciary.com/contact/allcontact"
-    );
+    const response = await fetch("http://localhost:8000/contact/allcontact");
     if (!response.ok) throw new Error("Failed to fetch contacts");
     const data = await response.json();
     return Array.isArray(data) ? data : data.data || [];
   };
 
   const fetchTodayContacts = async () => {
-    const response = await fetch(
-      "https://backend.aashayeinjudiciary.com/contact/allcontact"
-    );
+    const response = await fetch("http://localhost:8000/contact/allcontact");
     if (!response.ok) throw new Error("Failed to fetch contacts");
     const data = await response.json();
 
@@ -177,9 +171,7 @@ const Dashboard = () => {
   };
 
   const fetchContactsSyllabus = async () => {
-    const response = await fetch(
-      "https://backend.aashayeinjudiciary.com/register/allcontact"
-    );
+    const response = await fetch("http://localhost:8000/register/allcontact");
     if (!response.ok) throw new Error("Failed to fetch syllabus contacts");
     const data = await response.json();
 
@@ -954,7 +946,7 @@ export default Dashboard;
 //   /* ------------- fetch ------------- */
 //   const fetchEnquiries = async () => {
 //     const res = await fetch(
-//       "https://backend.aashayeinjudiciary.com/enroll/alldisplay"
+//       "http://localhost:8000/enroll/alldisplay"
 //     );
 //     if (!res.ok) throw new Error("Failed to fetch enquiries");
 //     const json = await res.json();
@@ -963,7 +955,7 @@ export default Dashboard;
 
 //   const fetchContacts = async () => {
 //     const res = await fetch(
-//       "https://backend.aashayeinjudiciary.com/contact/allcontact"
+//       "http://localhost:8000/contact/allcontact"
 //     );
 //     if (!res.ok) throw new Error("Failed to fetch contacts");
 //     const json = await res.json();

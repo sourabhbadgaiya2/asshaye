@@ -48,8 +48,8 @@ const WhatsNewDisplay = () => {
   const fetchWhatsNew = async () => {
     try {
       const response = await fetch(
-        // "https://backend.aashayeinjudiciary.com/whatsnew/alldisplay"
-        "https://backend.aashayeinjudiciary.com/whatsnew/alldisplay"
+        // "http://localhost:8000/whatsnew/alldisplay"
+        "http://localhost:8000/whatsnew/alldisplay"
       );
       if (!response.ok) throw new Error("Failed to fetch entries");
 
@@ -88,7 +88,7 @@ const WhatsNewDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/whatsnew/delete/${id}`,
+        `http://localhost:8000/whatsnew/delete/${id}`,
         {
           method: "DELETE",
         }
@@ -150,7 +150,7 @@ const WhatsNewDisplay = () => {
       }
 
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/whatsnew/editsave/${editingItem._id}`,
+        `http://localhost:8000/whatsnew/editsave/${editingItem._id}`,
         {
           method: "PUT",
           body: formData,

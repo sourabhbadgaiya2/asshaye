@@ -40,7 +40,7 @@
 //    useEffect(() => {
 //     const fetchStories = async () => {
 //       try {
-//         const response = await fetch("https://backend.aashayeinjudiciary.com/success/display");
+//         const response = await fetch("http://localhost:8000/success/display");
 //         if (!response.ok) {
 //           throw new Error("Failed to fetch success stories");
 //         }
@@ -153,9 +153,7 @@ export const SuccessStory = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch(
-          "https://backend.aashayeinjudiciary.com/success/display"
-        );
+        const response = await fetch("http://localhost:8000/success/display");
         if (!response.ok) {
           throw new Error("Failed to fetch success stories");
         }
@@ -174,14 +172,17 @@ export const SuccessStory = () => {
   const storiesToShow = stories.length > 0 ? stories : staticStories;
 
   return (
-    <section className="py-5 text-center bg-light mt-0 mt-md-5">
-      <div className="px-3 px-md-5">
-         <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>Student Success Stories
-</h4>
-<p className='td_section_title text-center td_fs_20 mb-4'>  Success stories of determination from Aashayein Judiciary alumni.
-    </p>
+    <section className='py-5 text-center bg-light mt-0 mt-md-5'>
+      <div className='px-3 px-md-5'>
+        <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>
+          Student Success Stories
+        </h4>
+        <p className='td_section_title text-center td_fs_20 mb-4'>
+          {" "}
+          Success stories of determination from Aashayein Judiciary alumni.
+        </p>
 
-        {error && <p className="text-danger">Error: {error}</p>}
+        {error && <p className='text-danger'>Error: {error}</p>}
 
         <Swiper
           slidesPerView={1}
@@ -196,35 +197,36 @@ export const SuccessStory = () => {
             992: { slidesPerView: 3 },
             1200: { slidesPerView: 4 },
           }}
-          className="mySwiper"
+          className='mySwiper'
         >
           {storiesToShow.map((story, index) => (
-
             <SwiperSlide key={index}>
-              <Link to="/success-stories">
-
-              <div className="card border-0 shadow-sm p-3 rounded-3 h-100">
-                <img
-                  src={story.images ? story.images[0] : story.image}
-                  alt={story.StudentName || story.name}
-                  className="card-img-top rounded-3 w-70"
-                  style={{ objectFit: "cover" }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title fw-bold text-dark">
-                    {story.StudentName || story.name}
-                  </h5>
-                  <p className="card-text text-muted">
-                    {story.Judicial || story.service}
-                  </p>
-                  {story.description && (
-                    <p className="card-text text-secondary mt-2" style={{ fontSize: '0.95em' }}>
-                      {story.description}
+              <Link to='/success-stories'>
+                <div className='card border-0 shadow-sm p-3 rounded-3 h-100'>
+                  <img
+                    src={story.images ? story.images[0] : story.image}
+                    alt={story.StudentName || story.name}
+                    className='card-img-top rounded-3 w-70'
+                    style={{ objectFit: "cover" }}
+                  />
+                  <div className='card-body'>
+                    <h5 className='card-title fw-bold text-dark'>
+                      {story.StudentName || story.name}
+                    </h5>
+                    <p className='card-text text-muted'>
+                      {story.Judicial || story.service}
                     </p>
-                  )}
+                    {story.description && (
+                      <p
+                        className='card-text text-secondary mt-2'
+                        style={{ fontSize: "0.95em" }}
+                      >
+                        {story.description}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-               </Link>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

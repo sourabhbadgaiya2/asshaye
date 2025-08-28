@@ -37,7 +37,7 @@ import {
 } from "react-icons/fa";
 
 const SocialMediaDisplay = () => {
-  const api = "https://backend.aashayeinjudiciary.com/social";
+  const api = "http://localhost:8000/social";
   const [socialLinks, setSocialLinks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -73,7 +73,11 @@ const SocialMediaDisplay = () => {
       ...prev,
       [name]: value,
       ...(name === "icon" && (!prev.altText || prev.altText.trim() === "")
-        ? { altText: `Follow us on ${value.charAt(0).toUpperCase()}${value.slice(1)}` }
+        ? {
+            altText: `Follow us on ${value
+              .charAt(0)
+              .toUpperCase()}${value.slice(1)}`,
+          }
         : {}),
     }));
   };
@@ -174,112 +178,115 @@ const SocialMediaDisplay = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <ToastContainer position="top-right" autoClose={3000} />
+    <div className='container mx-auto px-4 py-8'>
+      <ToastContainer position='top-right' autoClose={3000} />
 
-      <h1 className="text-3xl font-bold mb-6 flex items-center">
-        <FaLink className="mr-2" /> Social Media Links
+      <h1 className='text-3xl font-bold mb-6 flex items-center'>
+        <FaLink className='mr-2' /> Social Media Links
       </h1>
 
       {/* Form Section */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">
+      <div className='bg-white rounded-lg shadow-md p-6 mb-8'>
+        <h2 className='text-xl font-semibold mb-4'>
           {editId ? "Edit Social Link" : "Add New Social Link"}
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className='space-y-4'>
           <div>
-            <label className="block text-gray-700 mb-2">Social Platform</label>
+            <label className='block text-gray-700 mb-2'>Social Platform</label>
             <select
-              name="icon"
+              name='icon'
               value={formData.icon}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
               required
             >
-              <option value="">-- Select Platform --</option>
-              <option value="facebook">Facebook</option>
-              <option value="twitter">Twitter</option>
-              <option value="instagram">Instagram</option>
-              <option value="linkedin">LinkedIn</option>
-              <option value="youtube">YouTube</option>
-              <option value="pinterest">Pinterest</option>
-              <option value="tiktok">TikTok</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="telegram">Telegram</option>
-              <option value="github">GitHub</option>
-              <option value="reddit">Reddit</option>
-              <option value="discord">Discord</option>
-              <option value="twitch">Twitch</option>
-              <option value="snapchat">Snapchat</option>
-              <option value="medium">Medium</option>
-              <option value="quora">Quora</option>
-              <option value="dribbble">Dribbble</option>
-              <option value="behance">Behance</option>
-              <option value="stackoverflow">Stack Overflow</option>
-              <option value="vimeo">Vimeo</option>
-              <option value="skype">Skype</option>
-              <option value="slack">Slack</option>
-              <option value="google">Google</option>
-              <option value="apple">Apple</option>
-              <option value="spotify">Spotify</option>
-              <option value="soundcloud">SoundCloud</option>
-              <option value="weixin">WeChat</option>
-              <option value="weibo">Weibo</option>
-              <option value="vk">VK</option>
+              <option value=''>-- Select Platform --</option>
+              <option value='facebook'>Facebook</option>
+              <option value='twitter'>Twitter</option>
+              <option value='instagram'>Instagram</option>
+              <option value='linkedin'>LinkedIn</option>
+              <option value='youtube'>YouTube</option>
+              <option value='pinterest'>Pinterest</option>
+              <option value='tiktok'>TikTok</option>
+              <option value='whatsapp'>WhatsApp</option>
+              <option value='telegram'>Telegram</option>
+              <option value='github'>GitHub</option>
+              <option value='reddit'>Reddit</option>
+              <option value='discord'>Discord</option>
+              <option value='twitch'>Twitch</option>
+              <option value='snapchat'>Snapchat</option>
+              <option value='medium'>Medium</option>
+              <option value='quora'>Quora</option>
+              <option value='dribbble'>Dribbble</option>
+              <option value='behance'>Behance</option>
+              <option value='stackoverflow'>Stack Overflow</option>
+              <option value='vimeo'>Vimeo</option>
+              <option value='skype'>Skype</option>
+              <option value='slack'>Slack</option>
+              <option value='google'>Google</option>
+              <option value='apple'>Apple</option>
+              <option value='spotify'>Spotify</option>
+              <option value='soundcloud'>SoundCloud</option>
+              <option value='weixin'>WeChat</option>
+              <option value='weibo'>Weibo</option>
+              <option value='vk'>VK</option>
             </select>
-            <div className="mt-2 text-gray-600 flex items-center gap-2">
-              Preview: <span className="text-2xl">{getIconComponent(formData.icon)}</span>
+            <div className='mt-2 text-gray-600 flex items-center gap-2'>
+              Preview:{" "}
+              <span className='text-2xl'>
+                {getIconComponent(formData.icon)}
+              </span>
             </div>
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-2">URL</label>
+            <label className='block text-gray-700 mb-2'>URL</label>
             <input
-              type="url"
-              name="url"
+              type='url'
+              name='url'
               value={formData.url}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="https://example.com"
+              className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              placeholder='https://example.com'
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-2">Alt Text</label>
+            <label className='block text-gray-700 mb-2'>Alt Text</label>
             <input
-              type="text"
-              name="altText"
+              type='text'
+              name='altText'
               value={formData.altText}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Description for screen readers"
+              className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              placeholder='Description for screen readers'
               required
             />
           </div>
 
-          <div className="flex space-x-4 pt-2">
+          <div className='flex space-x-4 pt-2'>
             <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg flex items-center"
+              type='submit'
+              className='bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg flex items-center'
             >
               {editId ? (
                 <>
-                  <FaEdit className="mr-2" /> Update Link
+                  <FaEdit className='mr-2' /> Update Link
                 </>
               ) : (
                 <>
-                  <FaPlus className="mr-2" /> Add Link
+                  <FaPlus className='mr-2' /> Add Link
                 </>
               )}
             </button>
 
             {editId && (
               <button
-                type="button"
+                type='button'
                 onClick={resetForm}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg"
+                className='bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg'
               >
                 Cancel
               </button>
@@ -289,67 +296,67 @@ const SocialMediaDisplay = () => {
       </div>
 
       {/* Links Table */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-4 border-b">
-          <h2 className="text-xl font-semibold">Manage Links</h2>
+      <div className='bg-white rounded-lg shadow-md overflow-hidden'>
+        <div className='p-4 border-b'>
+          <h2 className='text-xl font-semibold'>Manage Links</h2>
         </div>
 
         {loading ? (
-          <div className="p-8 text-center text-gray-500">Loading...</div>
+          <div className='p-8 text-center text-gray-500'>Loading...</div>
         ) : socialLinks.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">
+          <div className='p-8 text-center text-gray-500'>
             No social links found
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className='overflow-x-auto'>
+            <table className='min-w-full divide-y divide-gray-200'>
+              <thead className='bg-gray-50'>
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Icon
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     URL
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Description
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className='bg-white divide-y divide-gray-200'>
                 {socialLinks.map((link) => (
-                  <tr key={link._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-2xl">
+                  <tr key={link._id} className='hover:bg-gray-50'>
+                    <td className='px-6 py-4 whitespace-nowrap'>
+                      <div className='text-2xl'>
                         {getIconComponent(link.icon)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className='px-6 py-4 whitespace-nowrap'>
                       <a
                         href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 flex items-center"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-blue-600 hover:text-blue-800 flex items-center'
                       >
-                        {link.url} <FiExternalLink className="ml-1" />
+                        {link.url} <FiExternalLink className='ml-1' />
                       </a>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className='px-6 py-4 whitespace-nowrap'>
                       {link.altText}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
                       <button
                         onClick={() => handleEdit(link)}
-                        className="text-indigo-600 hover:text-indigo-900 mr-4"
+                        className='text-indigo-600 hover:text-indigo-900 mr-4'
                       >
                         <FaEdit />
                       </button>
                       <button
                         onClick={() => handleDelete(link._id)}
-                        className="text-red-600 hover:text-red-900"
+                        className='text-red-600 hover:text-red-900'
                       >
                         <FaTrash />
                       </button>

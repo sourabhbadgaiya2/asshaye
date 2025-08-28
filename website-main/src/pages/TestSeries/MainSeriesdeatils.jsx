@@ -30,7 +30,7 @@
 // //         setError(null);
 
 // //         // Fetch the main test series data
-// //         const response = await axios.get(`https://backend.aashayeinjudiciary.com/main/maintestseries/${id}`);
+// //         const response = await axios.get(`http://localhost:8000/main/maintestseries/${id}`);
 // //         if (!response.data) {
 // //           throw new Error('Test series not found');
 // //         }
@@ -44,7 +44,7 @@
 // //             : response.data.category;
 
 // //           const relatedResponse = await axios.get(
-// //             `https://backend.aashayeinjudiciary.com/main/maintestseries?category=${categoryId}&limit=4&exclude=${id}`
+// //             `http://localhost:8000/main/maintestseries?category=${categoryId}&limit=4&exclude=${id}`
 // //           );
 // //           setRelatedTestSeries(relatedResponse.data);
 // //         }
@@ -336,7 +336,7 @@
 //         setError(null);
 
 //         // Fetch the main test series data
-//         const response = await axios.get(`https://backend.aashayeinjudiciary.com/main/maintestseries/${id}`);
+//         const response = await axios.get(`http://localhost:8000/main/maintestseries/${id}`);
 //         console.log(response,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 //         if (!response.data) {
 //           throw new Error('Test series not found');
@@ -351,7 +351,7 @@
 //             : response.data.category;
 
 //           // const relatedResponse = await axios.get(
-//           //   `https://backend.aashayeinjudiciary.com/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
+//           //   `http://localhost:8000/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
 //           // );
 //           // setRelatedTestSeries(relatedResponse.data);
 //         }
@@ -644,7 +644,7 @@ const MainSeriesdeatils = () => {
 
         // Fetch the main test series data
         const response = await axios.get(
-          `https://backend.aashayeinjudiciary.com/main/maintestseries/${id}`
+          `http://localhost:8000/main/maintestseries/${id}`
         );
         // console.log(response.data.data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (!response.data) {
@@ -661,7 +661,7 @@ const MainSeriesdeatils = () => {
               : response.data.category;
 
           // const relatedResponse = await axios.get(
-          //   `https://backend.aashayeinjudiciary.com/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
+          //   `http://localhost:8000/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
           // );
           // setRelatedTestSeries(relatedResponse.data);
         }
@@ -742,22 +742,22 @@ const MainSeriesdeatils = () => {
   if (loading) {
     return (
       <Container
-        className="d-flex justify-content-center align-items-center"
+        className='d-flex justify-content-center align-items-center'
         style={{ minHeight: "50vh" }}
       >
-        <Spinner animation="border" variant="primary" />
-        <span className="ms-3">Loading test series details...</span>
+        <Spinner animation='border' variant='primary' />
+        <span className='ms-3'>Loading test series details...</span>
       </Container>
     );
   }
 
   if (error) {
     return (
-      <Container className="my-5">
-        <Alert variant="danger" className="text-center">
+      <Container className='my-5'>
+        <Alert variant='danger' className='text-center'>
           <h4>Error Loading Test Series</h4>
           <p>{error}</p>
-          <Button variant="primary" onClick={() => window.location.reload()}>
+          <Button variant='primary' onClick={() => window.location.reload()}>
             Try Again
           </Button>
         </Alert>
@@ -767,11 +767,11 @@ const MainSeriesdeatils = () => {
 
   if (!testSeries) {
     return (
-      <Container className="my-5">
-        <Alert variant="warning" className="text-center">
+      <Container className='my-5'>
+        <Alert variant='warning' className='text-center'>
           <h4>Test Series Not Found</h4>
           <p>The requested test series could not be found.</p>
-          <Button variant="primary" onClick={() => navigate("/test-series")}>
+          <Button variant='primary' onClick={() => navigate("/test-series")}>
             Browse All Test Series
           </Button>
         </Alert>
@@ -781,46 +781,46 @@ const MainSeriesdeatils = () => {
 
   return (
     <>
-      <div className="col-md-12">
+      <div className='col-md-12'>
         <CoursesAllGrid />
       </div>
       <Layout header={9} footer={1}>
-        <Container className="my-5">
-          <Card className="mb-5 shadow rounded-4 border-0">
+        <Container className='my-5'>
+          <Card className='mb-5 shadow rounded-4 border-0'>
             <Card.Header
               style={{ backgroundColor: "rgb(190, 25, 29)" }}
-              className=" text-white d-flex justify-content-between align-items-center rounded-top-4 px-4 py-3"
+              className=' text-white d-flex justify-content-between align-items-center rounded-top-4 px-4 py-3'
             >
-              <h2 className="mb-0 fs-4  text-white ">
+              <h2 className='mb-0 fs-4  text-white '>
                 {testSeries.title || "Test Series Title"}
               </h2>
-              <Button variant="light" size="sm" onClick={() => navigate(-1)}>
+              <Button variant='light' size='sm' onClick={() => navigate(-1)}>
                 ⬅ Back
               </Button>
             </Card.Header>
 
-            <Card.Body className="px-0 py-0">
-              <div className="row g-0">
+            <Card.Body className='px-0 py-0'>
+              <div className='row g-0'>
                 {/* Left Column - Image and Description */}
-                <div className="col-md-7 p-4">
-                  <div className="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm bg-dark">
+                <div className='col-md-7 p-4'>
+                  <div className='ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm bg-dark'>
                     {testSeries.images && testSeries.images.length > 0 ? (
                       <img
                         src={testSeries.images[0]}
                         alt={`${testSeries.title} preview`}
-                        className="img-fluid w-100 h-100 object-fit-cover"
+                        className='img-fluid w-100 h-100 object-fit-cover'
                       />
                     ) : (
-                      <div className="d-flex justify-content-center align-items-center h-100 text-white">
-                        <div className="text-center">
-                          <div className="fs-1 mb-2">📝</div>
+                      <div className='d-flex justify-content-center align-items-center h-100 text-white'>
+                        <div className='text-center'>
+                          <div className='fs-1 mb-2'>📝</div>
                           <p>Test Series Preview</p>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="mt-4">
+                  <div className='mt-4'>
                     <h4>Description</h4>
                     <div
                       dangerouslySetInnerHTML={{
@@ -833,8 +833,8 @@ const MainSeriesdeatils = () => {
 
                     {testSeries.testmodule && (
                       <>
-                        <h5 className="mt-4">Test Modules</h5>
-                        <div className="bg-light p-3 rounded-3">
+                        <h5 className='mt-4'>Test Modules</h5>
+                        <div className='bg-light p-3 rounded-3'>
                           {testSeries.testmodule}
                         </div>
                       </>
@@ -843,33 +843,33 @@ const MainSeriesdeatils = () => {
                 </div>
 
                 {/* Right Column - Test Series Details */}
-                <div className="col-md-5 p-4 border-start">
-                  <h4 className="mb-3 text-secondary d-flex align-items-center gap-2">
+                <div className='col-md-5 p-4 border-start'>
+                  <h4 className='mb-3 text-secondary d-flex align-items-center gap-2'>
                     <span>🔹</span> Test Series Details
                   </h4>
 
-                  <div className="bg-light p-3 rounded-3 mb-4">
-                    <div className="mb-2">
+                  <div className='bg-light p-3 rounded-3 mb-4'>
+                    <div className='mb-2'>
                       <strong>💰 Price:</strong>
-                      <span className="text-success fw-bold ms-2">
+                      <span className='text-success fw-bold ms-2'>
                         {testSeries.Price ? `₹${testSeries.Price}` : "Free"}
                       </span>
                     </div>
-                    <div className="mb-2">
+                    <div className='mb-2'>
                       <strong>⏳ Duration:</strong>
-                      <span className="ms-2">
+                      <span className='ms-2'>
                         {testSeries.Durations || "Self-paced"}
                       </span>
                     </div>
-                    <div className="mb-2">
+                    <div className='mb-2'>
                       <strong>📅 Last Date:</strong>
-                      <span className="ms-2">
+                      <span className='ms-2'>
                         {formatDate(testSeries.LastDate)}
                       </span>
                     </div>
                     <div>
                       <strong>📝 Tests:</strong>
-                      <span className="ms-2">
+                      <span className='ms-2'>
                         {testSeries.testmodule
                           ? "Multiple tests"
                           : "Not specified"}
@@ -877,25 +877,25 @@ const MainSeriesdeatils = () => {
                     </div>
                   </div>
 
-                  <div className="d-flex gap-2">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="th-btn td_btn_in td_white_color td_accent_bg py-2 mb-2 border-0 rounded w-100 fw-semibold btn btn-primary btn-lg"
-                    onClick={() => handleEnrollClick(testSeries._id)}
-                  >
-                    🚀 Enroll Now
-                  </Button>
+                  <div className='d-flex gap-2'>
+                    <Button
+                      variant='primary'
+                      size='lg'
+                      className='th-btn td_btn_in td_white_color td_accent_bg py-2 mb-2 border-0 rounded w-100 fw-semibold btn btn-primary btn-lg'
+                      onClick={() => handleEnrollClick(testSeries._id)}
+                    >
+                      🚀 Enroll Now
+                    </Button>
 
                     <Button
-                                                        variant="primary"
-                                                        size="lg"
-                                                        className="th-btn td_btn_in td_white_color td_accent_bg py-2 mb-2 border-0 rounded w-100 fw-semibold"
-                                                        onClick={() => handleEnrollClick(testSeries._id)}
-                                                      >
-                                                        🚀 Pay Now
-                                                      </Button>
-                                                      </div>
+                      variant='primary'
+                      size='lg'
+                      className='th-btn td_btn_in td_white_color td_accent_bg py-2 mb-2 border-0 rounded w-100 fw-semibold'
+                      onClick={() => handleEnrollClick(testSeries._id)}
+                    >
+                      🚀 Pay Now
+                    </Button>
+                  </div>
 
                   {/* <Button
                     variant="primary"
@@ -906,23 +906,23 @@ const MainSeriesdeatils = () => {
                     🚀 Enroll Now
                   </Button> */}
 
-                  <div className="border p-3 rounded-3">
-                    <h5 className="mb-3">What's Included</h5>
-                    <ul className="list-unstyled">
-                      <li className="mb-2 d-flex align-items-start">
-                        <span className="text-success me-2">✔</span>
+                  <div className='border p-3 rounded-3'>
+                    <h5 className='mb-3'>What's Included</h5>
+                    <ul className='list-unstyled'>
+                      <li className='mb-2 d-flex align-items-start'>
+                        <span className='text-success me-2'>✔</span>
                         <span>Comprehensive test series</span>
                       </li>
-                      <li className="mb-2 d-flex align-items-start">
-                        <span className="text-success me-2">✔</span>
+                      <li className='mb-2 d-flex align-items-start'>
+                        <span className='text-success me-2'>✔</span>
                         <span>Detailed solutions</span>
                       </li>
-                      <li className="mb-2 d-flex align-items-start">
-                        <span className="text-success me-2">✔</span>
+                      <li className='mb-2 d-flex align-items-start'>
+                        <span className='text-success me-2'>✔</span>
                         <span>Performance analysis</span>
                       </li>
-                      <li className="d-flex align-items-start">
-                        <span className="text-success me-2">✔</span>
+                      <li className='d-flex align-items-start'>
+                        <span className='text-success me-2'>✔</span>
                         <span>Time-bound tests</span>
                       </li>
                     </ul>
@@ -933,44 +933,44 @@ const MainSeriesdeatils = () => {
           </Card>
 
           {relatedLoading ? (
-            <div className="text-center my-4">
-              <Spinner animation="border" variant="secondary" />
-              <p className="mt-2">Loading related test series...</p>
+            <div className='text-center my-4'>
+              <Spinner animation='border' variant='secondary' />
+              <p className='mt-2'>Loading related test series...</p>
             </div>
           ) : relatedTestSeries.length > 0 ? (
-            <div className="mt-5">
-              <h3 className="mb-4">You Might Also Like</h3>
+            <div className='mt-5'>
+              <h3 className='mb-4'>You Might Also Like</h3>
               <Slider {...sliderSettings}>
                 {relatedTestSeries.map((related) => (
-                  <div key={related._id} className="px-2">
+                  <div key={related._id} className='px-2'>
                     <Card
-                      className="h-100 cursor-pointer shadow-sm"
+                      className='h-100 cursor-pointer shadow-sm'
                       onClick={() => navigate(`/test-series/${related._id}`)}
                     >
                       {related.images && related.images.length > 0 ? (
                         <Card.Img
-                          variant="top"
+                          variant='top'
                           src={related.images[0]}
                           alt={related.title}
                           style={{ height: "160px", objectFit: "cover" }}
                         />
                       ) : (
                         <div
-                          className="bg-secondary d-flex justify-content-center align-items-center"
+                          className='bg-secondary d-flex justify-content-center align-items-center'
                           style={{ height: "160px" }}
                         >
-                          <span className="text-white">Test Series Image</span>
+                          <span className='text-white'>Test Series Image</span>
                         </div>
                       )}
                       <Card.Body>
-                        <Card.Title className="fs-6">
+                        <Card.Title className='fs-6'>
                           {related.title}
                         </Card.Title>
-                        <div className="d-flex justify-content-between align-items-center mt-3">
-                          <span className="badge bg-secondary">
+                        <div className='d-flex justify-content-between align-items-center mt-3'>
+                          <span className='badge bg-secondary'>
                             {related.Durations || "Flexible"}
                           </span>
-                          <strong className="text-primary">
+                          <strong className='text-primary'>
                             {related.Price ? `₹${related.Price}` : "Free"}
                           </strong>
                         </div>

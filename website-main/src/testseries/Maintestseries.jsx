@@ -30,7 +30,7 @@ export const Maintestseries = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/main/maintestseries/${id}`
+          `http://localhost:8000/main/maintestseries/${id}`
         );
         setProduct(res.data);
       } catch (err) {
@@ -50,21 +50,21 @@ export const Maintestseries = ({ courseId }) => {
       <Layout header={9}>
         <section>
           <div
-            className="td_height_10 td_height_lg_80"
+            className='td_height_10 td_height_lg_80'
             style={{ marginTop: "320px" }}
           />
-          <div className="container">
+          <div className='container'>
             {product.length === 0 ? (
-              <div className="row td_gap_y_50">
+              <div className='row td_gap_y_50'>
                 {/* Content Section */}
-                <div className="col-lg-8">
-                  <div className="td_course_details">
-                    <h2 className="td_fs_48 td_mb_30">
+                <div className='col-lg-8'>
+                  <div className='td_course_details'>
+                    <h2 className='td_fs_48 td_mb_30'>
                       Starting Reputed Education & Build your Skills
                     </h2>
 
                     <div
-                      className="td_card_btn mt-2 mb-3"
+                      className='td_card_btn mt-2 mb-3'
                       style={{
                         display: "flex",
                         flexDirection: "row",
@@ -73,7 +73,7 @@ export const Maintestseries = ({ courseId }) => {
                         marginTop: "10px",
                       }}
                     >
-                      <div className="flex gap-4">
+                      <div className='flex gap-4'>
                         <Link
                           to={`/pretestseries/${id}`}
                           className={baseClasses}
@@ -89,48 +89,48 @@ export const Maintestseries = ({ courseId }) => {
                       </div>
                       <Link
                         to={`/enroll/${courseId}`}
-                        className="td_btn td_style_1 td_radius_10 td_medium"
+                        className='td_btn td_style_1 td_radius_10 td_medium'
                       >
-                        <span className="td_btn_in td_white_color td_accent_bg">
+                        <span className='td_btn_in td_white_color td_accent_bg'>
                           <span>Enroll Now</span>
                         </span>
                       </Link>
                     </div>
-                    <div className="td_tabs td_style_1 td_mb_50">
-                      <div className="td_tab_body td_fs_18">
-                        <div className="td_tab active" id="td_tab_1">
-                          <p className="mb-0">No main test found</p>
+                    <div className='td_tabs td_style_1 td_mb_50'>
+                      <div className='td_tab_body td_fs_18'>
+                        <div className='td_tab active' id='td_tab_1'>
+                          <p className='mb-0'>No main test found</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 {/* Sidebar Section */}
-                <div className="col-lg-4 mt-5">
-                  <div className="td_card td_style_7">
-                    <div className="td_height_30 td_height_lg_30" />
+                <div className='col-lg-4 mt-5'>
+                  <div className='td_card td_style_7'>
+                    <div className='td_height_30 td_height_lg_30' />
                     <Link
-                      to="/cart"
-                      className="td_btn td_style_1 td_radius_10 td_medium w-100"
+                      to='/cart'
+                      className='td_btn td_style_1 td_radius_10 td_medium w-100'
                     >
-                      <span className="td_btn_in td_white_color td_accent_bg">
+                      <span className='td_btn_in td_white_color td_accent_bg'>
                         <span>Buy Now</span>
                       </span>
                     </Link>
-                    <div className="td_height_40 td_height_lg_30" />
-                    <h3 className="td_fs_20 td_semibold td_mb_15">Share On:</h3>
-                    <div className="td_footer_social_btns td_fs_18 td_accent_color">
-                      <Link to="#" className="td_center">
-                        <i className="fa-brands fa-facebook-f"></i>
+                    <div className='td_height_40 td_height_lg_30' />
+                    <h3 className='td_fs_20 td_semibold td_mb_15'>Share On:</h3>
+                    <div className='td_footer_social_btns td_fs_18 td_accent_color'>
+                      <Link to='#' className='td_center'>
+                        <i className='fa-brands fa-facebook-f'></i>
                       </Link>
-                      <Link to="#" className="td_center">
-                        <i className="fa-brands fa-x-twitter"></i>
+                      <Link to='#' className='td_center'>
+                        <i className='fa-brands fa-x-twitter'></i>
                       </Link>
-                      <Link to="#" className="td_center">
-                        <i className="fa-brands fa-instagram"></i>
+                      <Link to='#' className='td_center'>
+                        <i className='fa-brands fa-instagram'></i>
                       </Link>
-                      <Link to="#" className="td_center">
-                        <i className="fa-brands fa-pinterest-p"></i>
+                      <Link to='#' className='td_center'>
+                        <i className='fa-brands fa-pinterest-p'></i>
                       </Link>
                     </div>
                   </div>
@@ -138,13 +138,13 @@ export const Maintestseries = ({ courseId }) => {
               </div>
             ) : (
               product.map((item, idx) => (
-                <div className="row td_gap_y_50" key={idx}>
+                <div className='row td_gap_y_50' key={idx}>
                   {/* Content Section */}
-                  <div className="col-lg-8">
-                    <div className="td_course_details">
+                  <div className='col-lg-8'>
+                    <div className='td_course_details'>
                       {/* Image Carousel Section */}
                       {item.images && item.images.length > 0 && (
-                        <div className="mb-4">
+                        <div className='mb-4'>
                           <Carousel
                             indicators={item.images.length > 1}
                             controls={item.images.length > 1}
@@ -152,7 +152,7 @@ export const Maintestseries = ({ courseId }) => {
                             {item.images.map((image, index) => (
                               <Carousel.Item key={index}>
                                 <div
-                                  className="d-block w-100"
+                                  className='d-block w-100'
                                   style={{
                                     height: "400px",
                                     backgroundImage: `url(${image})`,
@@ -167,11 +167,11 @@ export const Maintestseries = ({ courseId }) => {
                         </div>
                       )}
 
-                      <h2 className="td_fs_48 td_mb_30">
+                      <h2 className='td_fs_48 td_mb_30'>
                         Starting Reputed Education & Build your Skills
                       </h2>
                       <div
-                        className="td_card_btn mt-2 mb-3"
+                        className='td_card_btn mt-2 mb-3'
                         style={{
                           display: "flex",
                           flexDirection: "row",
@@ -180,7 +180,7 @@ export const Maintestseries = ({ courseId }) => {
                           marginTop: "10px",
                         }}
                       >
-                        <div className="flex gap-4">
+                        <div className='flex gap-4'>
                           <Link
                             to={`/pretestseries/${id}`}
                             className={baseClasses}
@@ -198,16 +198,16 @@ export const Maintestseries = ({ courseId }) => {
                         </div>
                         <Link
                           to={`/enroll/${id}`}
-                          className="td_btn td_style_1 td_radius_10 td_medium"
+                          className='td_btn td_style_1 td_radius_10 td_medium'
                         >
-                          <span className="td_btn_in td_white_color td_accent_bg">
+                          <span className='td_btn_in td_white_color td_accent_bg'>
                             <span>Enroll Now</span>
                           </span>
                         </Link>
 
                         <Link
-                          to="/get-offer"
-                          className="td_btn td_radius_10 td_medium"
+                          to='/get-offer'
+                          className='td_btn td_radius_10 td_medium'
                           style={{
                             border: "2px solid #ff5722",
                             color: "#ff5722",
@@ -229,24 +229,24 @@ export const Maintestseries = ({ courseId }) => {
                           Pre Mentor
                         </Link>
                       </div>
-                      <div className="td_tabs td_style_1 td_mb_50">
-                        <ul className="td_tab_links td_style_2 td_type_2 td_mp_0 td_medium td_fs_20 td_heading_color">
-                          <li className="active">
-                            <a href="#td_tab_1">Overview</a>
+                      <div className='td_tabs td_style_1 td_mb_50'>
+                        <ul className='td_tab_links td_style_2 td_type_2 td_mp_0 td_medium td_fs_20 td_heading_color'>
+                          <li className='active'>
+                            <a href='#td_tab_1'>Overview</a>
                           </li>
                           <li>
-                            <a href="#td_tab_2">Curriculum</a>
+                            <a href='#td_tab_2'>Curriculum</a>
                           </li>
                           <li>
-                            <a href="#td_tab_3">Instructor</a>
+                            <a href='#td_tab_3'>Instructor</a>
                           </li>
                           <li>
-                            <a href="#td_tab_4">Reviews</a>
+                            <a href='#td_tab_4'>Reviews</a>
                           </li>
                         </ul>
-                        <div className="td_tab_body td_fs_18">
-                          <div className="td_tab active" id="td_tab_1">
-                            <h2 className="td_fs_48 td_mb_20">
+                        <div className='td_tab_body td_fs_18'>
+                          <div className='td_tab active' id='td_tab_1'>
+                            <h2 className='td_fs_48 td_mb_20'>
                               Main test series
                             </h2>
                             <div
@@ -259,10 +259,10 @@ export const Maintestseries = ({ courseId }) => {
                           </div>
                         </div>
                       </div>
-                      <h2 className="td_fs_48 td_mb_30">
+                      <h2 className='td_fs_48 td_mb_30'>
                         What you'll Learn it?
                       </h2>
-                      <ul className="td_list td_style_2 td_type_2 td_fs_18 td_medium td_heading_color td_mp_0">
+                      <ul className='td_list td_style_2 td_type_2 td_fs_18 td_medium td_heading_color td_mp_0'>
                         <li>100% Better results</li>
                         <li>Building a Bright Future Together</li>
                         <li>Budget Friendly Education Theme</li>
@@ -270,29 +270,29 @@ export const Maintestseries = ({ courseId }) => {
                         <li>Unlocking Potential Educations</li>
                         <li>Growing Genius Elementary School</li>
                       </ul>
-                      <div className="td_height_60 td_height_lg_40" />
-                      <h4 className="td_fs_24 td_semibold td_mb_20">
+                      <div className='td_height_60 td_height_lg_40' />
+                      <h4 className='td_fs_24 td_semibold td_mb_20'>
                         Requirements
                       </h4>
-                      <div className="td_requirements_list td_medium td_fs_18">
-                        <span className="td_requirement">
+                      <div className='td_requirements_list td_medium td_fs_18'>
+                        <span className='td_requirement'>
                           Computer/ Mobiles
                         </span>
-                        <span className="td_requirement">Paper/ Pencil</span>
-                        <span className="td_requirement">
+                        <span className='td_requirement'>Paper/ Pencil</span>
+                        <span className='td_requirement'>
                           Internets Connect
                         </span>
                       </div>
                     </div>
                   </div>
                   {/* Sidebar Section */}
-                  <div className="col-lg-4 mt-5">
-                    <div className="td_card td_style_7">
+                  <div className='col-lg-4 mt-5'>
+                    <div className='td_card td_style_7'>
                       {item.images && item.images.length > 0 ? (
                         <img
                           src={item.images[0]}
-                          alt="Course thumbnail"
-                          className="w-100"
+                          alt='Course thumbnail'
+                          className='w-100'
                           style={{
                             height: "200px",
                             objectFit: "cover",
@@ -303,12 +303,12 @@ export const Maintestseries = ({ courseId }) => {
                         <VideoPlayer
                           trigger={
                             <a
-                              href=""
-                              className="td_card_video_block td_video_open d-block"
+                              href=''
+                              className='td_card_video_block td_video_open d-block'
                             >
-                              <img src={videoThumb} alt="Video thumbnail" />
-                              <span className="td_player_btn_wrap_2">
-                                <span className="td_player_btn td_center">
+                              <img src={videoThumb} alt='Video thumbnail' />
+                              <span className='td_player_btn_wrap_2'>
+                                <span className='td_player_btn td_center'>
                                   <span></span>
                                 </span>
                               </span>
@@ -316,49 +316,49 @@ export const Maintestseries = ({ courseId }) => {
                           }
                         />
                       )}
-                      <div className="td_height_30 td_height_lg_30" />
-                      <h3 className="td_fs_20 td_semibold td_mb_15">
+                      <div className='td_height_30 td_height_lg_30' />
+                      <h3 className='td_fs_20 td_semibold td_mb_15'>
                         Courses Includes:
                       </h3>
-                      <ul className="td_card_list td_mp_0 td_fs_18 td_medium">
+                      <ul className='td_card_list td_mp_0 td_fs_18 td_medium'>
                         <li>
                           <span>Price:</span>
-                          <span className="td_semibold td_accent_color">
+                          <span className='td_semibold td_accent_color'>
                             {item.Price || "N/A"}
                           </span>
                         </li>
                         <li>
                           <span>Durations:</span>
-                          <span className="td_semibold td_accent_color">
+                          <span className='td_semibold td_accent_color'>
                             {item.Durations || "N/A"}
                           </span>
                         </li>
                       </ul>
-                      <div className="td_height_30 td_height_lg_30" />
+                      <div className='td_height_30 td_height_lg_30' />
                       <Link
-                        to="/cart"
-                        className="td_btn td_style_1 td_radius_10 td_medium w-100"
+                        to='/cart'
+                        className='td_btn td_style_1 td_radius_10 td_medium w-100'
                       >
-                        <span className="td_btn_in td_white_color td_accent_bg">
+                        <span className='td_btn_in td_white_color td_accent_bg'>
                           <span>Buy Now</span>
                         </span>
                       </Link>
-                      <div className="td_height_40 td_height_lg_30" />
-                      <h3 className="td_fs_20 td_semibold td_mb_15">
+                      <div className='td_height_40 td_height_lg_30' />
+                      <h3 className='td_fs_20 td_semibold td_mb_15'>
                         Share On:
                       </h3>
-                      <div className="td_footer_social_btns td_fs_18 td_accent_color">
-                        <Link to="#" className="td_center">
-                          <i className="fa-brands fa-facebook-f"></i>
+                      <div className='td_footer_social_btns td_fs_18 td_accent_color'>
+                        <Link to='#' className='td_center'>
+                          <i className='fa-brands fa-facebook-f'></i>
                         </Link>
-                        <Link to="#" className="td_center">
-                          <i className="fa-brands fa-x-twitter"></i>
+                        <Link to='#' className='td_center'>
+                          <i className='fa-brands fa-x-twitter'></i>
                         </Link>
-                        <Link to="#" className="td_center">
-                          <i className="fa-brands fa-instagram"></i>
+                        <Link to='#' className='td_center'>
+                          <i className='fa-brands fa-instagram'></i>
                         </Link>
-                        <Link to="#" className="td_center">
-                          <i className="fa-brands fa-pinterest-p"></i>
+                        <Link to='#' className='td_center'>
+                          <i className='fa-brands fa-pinterest-p'></i>
                         </Link>
                       </div>
                     </div>

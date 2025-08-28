@@ -50,7 +50,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "https://backend.aashayeinjudiciary.com/enquiry/add",
+//         "http://localhost:8000/enquiry/add",
 //         formData
 //       );
 //       console.log("API Response:", response.data);
@@ -231,7 +231,13 @@ export const Enquiry = () => {
     setSubmitStatus(null);
 
     // Basic field validation
-    if (!formData.name || !formData.email || !formData.city || !formData.phone || !formData.message) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.city ||
+      !formData.phone ||
+      !formData.message
+    ) {
       toast.error("Please fill out all required fields.");
       setIsSubmitting(false);
       return;
@@ -253,7 +259,7 @@ export const Enquiry = () => {
 
     try {
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/enquiry/add",
+        "http://localhost:8000/enquiry/add",
         formData
       );
       console.log("API Response:", response.data);
@@ -291,10 +297,9 @@ export const Enquiry = () => {
             {/* Left: Contact Form */}
             <div className='col-lg-6 d-flex'>
               <div className='contact-form p-4 shadow rounded bg-white w-100 h-100'>
-                  <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-              Enquiry Now
-          </h4>
-
+                <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+                  Enquiry Now
+                </h4>
 
                 <form onSubmit={handleSubmit}>
                   <div className='mb-3'>

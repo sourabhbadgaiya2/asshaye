@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -34,9 +33,7 @@ export const BlogOne = () => {
 
   const fetchJudgement = useCallback(async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/judement/display"
-      );
+      const response = await fetch("http://localhost:8000/judement/display");
       if (!response.ok) throw new Error("Failed to fetch judgements");
 
       const data = await response.json();
@@ -49,9 +46,7 @@ export const BlogOne = () => {
 
   const fetchBlogs = useCallback(async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/blog/display"
-      );
+      const response = await fetch("http://localhost:8000/blog/display");
       if (!response.ok) throw new Error("Failed to fetch blogs");
 
       const data = await response.json();
@@ -141,11 +136,13 @@ export const BlogOne = () => {
           data-wow-duration='1s'
           data-wow-delay='0.2s'
         >
-                    <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+          <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
             JUDICIARY Blogs & Judgements
           </h4>
-       <p className='td_section_title text-center td_fs_20 mb-4'>  Knowledge to Power Your Success
-    </p>
+          <p className='td_section_title text-center td_fs_20 mb-4'>
+            {" "}
+            Knowledge to Power Your Success
+          </p>
         </div>
 
         <div className='td_height_50 td_height_lg_50' />

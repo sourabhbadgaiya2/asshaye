@@ -80,7 +80,7 @@ export const JudgementDetails = ({ courseId }) => {
         setLoading(true);
         setError(false);
         const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/judement/course/${state?.blogId}`
+          `http://localhost:8000/judement/course/${state?.blogId}`
         );
         setProduct(res.data);
       } catch (err) {

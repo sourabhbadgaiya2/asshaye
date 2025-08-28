@@ -30,9 +30,7 @@ export const CourseDetailContent = ({ courseId }) => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/api/course/${id}`
-        );
+        const res = await axios.get(`http://localhost:8000/api/course/${id}`);
         console.log(res.data);
         setProduct(res.data);
       } catch (err) {
@@ -53,22 +51,22 @@ export const CourseDetailContent = ({ courseId }) => {
         keywords={product?.metaKeywords}
         canonical={product?.metaCanonical}
       />
-      <div className="td_height_140 td_height_lg_10" />
+      <div className='td_height_140 td_height_lg_10' />
 
-      <div className="container">
+      <div className='container'>
         <CoursesAllGrid />
-        <div className="row td_gap_y_50">
-          <div className="col-md-3 bg-light sidebar-wrapper">
+        <div className='row td_gap_y_50'>
+          <div className='col-md-3 bg-light sidebar-wrapper'>
             <MpSidebar />
           </div>
 
           {/* content */}
-          <div className="col-lg-9 col-md-9">
-            <div className="td_course_details">
-              <h2 className="td_fs_10 td_mb_10">Mp Judiciary Examination</h2>
+          <div className='col-lg-9 col-md-9'>
+            <div className='td_course_details'>
+              <h2 className='td_fs_10 td_mb_10'>Mp Judiciary Examination</h2>
 
               {/* tabs */}
-              <div className="td_tabs td_style_1 td_mb_50">
+              <div className='td_tabs td_style_1 td_mb_50'>
                 {/* <ul className="td_tab_links td_style_2 td_type_2 td_mp_0 td_medium td_fs_20 td_heading_color">
                   <li className="active">
                     <a href="#td_tab_1"> Courses</a>

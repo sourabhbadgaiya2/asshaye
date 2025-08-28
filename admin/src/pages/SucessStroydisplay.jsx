@@ -33,10 +33,10 @@ const SuccessStoryDisplay = () => {
   const fetchStories = async () => {
     try {
       setLoading(true);
-        // setLoading(true);
+      // setLoading(true);
       const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/success/display"
-        // "https://backend.aashayeinjudiciary.com/success/display"
+        "http://localhost:8000/success/display"
+        // "http://localhost:8000/success/display"
       );
       const storiesArray = Array.isArray(response.data) ? response.data : [];
       const formattedStories = storiesArray.map((story) => ({
@@ -44,11 +44,9 @@ const SuccessStoryDisplay = () => {
         images: story.images
           ? Array.isArray(story.images)
             ? story.images.map((img) =>
-                img.startsWith("http")
-                  ? img
-                  : `https://backend.aashayeinjudiciary.com/${img}`
+                img.startsWith("http") ? img : `http://localhost:8000/${img}`
               )
-            : [`https://backend.aashayeinjudiciary.com/${story.images}`]
+            : [`http://localhost:8000/${story.images}`]
           : [],
       }));
       setStories(formattedStories);
@@ -84,9 +82,7 @@ const SuccessStoryDisplay = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/success/${id}`
-      );
+      await axios.delete(`http://localhost:8000/success/${id}`);
       await fetchStories();
       toast.success("Success story deleted successfully");
     } catch (err) {
@@ -138,8 +134,8 @@ const SuccessStoryDisplay = () => {
       }
 
       const endpoint = editingStory
-        ? `https://backend.aashayeinjudiciary.com/success/editsave/${editingStory}`
-        : "https://backend.aashayeinjudiciary.com/success/create";
+        ? `http://localhost:8000/success/editsave/${editingStory}`
+        : "http://localhost:8000/success/create";
 
       await axios.put(endpoint, formData, {
         headers: {

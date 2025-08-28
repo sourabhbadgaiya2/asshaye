@@ -196,13 +196,9 @@ const getCourseBySlug = async (req, res) => {
   try {
     const { slug } = req.params; // frontend se aa raha hai :slug
 
-    console.log(slug, "asdasd");
-
     if (!slug) {
       return res.status(400).json({ message: "Slug is required" });
     }
-
-    // staticUrl ko slug ki tarah use karna
     const course = await Course.findOne({ staticUrl: slug }).populate(
       "category"
     );

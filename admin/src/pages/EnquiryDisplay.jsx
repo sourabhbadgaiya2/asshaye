@@ -24,9 +24,7 @@ const EnquiryDisplay = () => {
 
   const fetchEnquiries = async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/enquiry/allcourse"
-      );
+      const response = await fetch("http://localhost:8000/enquiry/allcourse");
       if (!response.ok) {
         throw new Error("Failed to fetch enquiries");
       }
@@ -183,7 +181,7 @@ const EnquiryDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/enquiry/coursedelte/${id}`,
+        `http://localhost:8000/enquiry/coursedelte/${id}`,
         {
           method: "DELETE",
         }
@@ -213,7 +211,7 @@ const EnquiryDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/enquiry/editsave/${editingEnquiry._id}`,
+        `http://localhost:8000/enquiry/editsave/${editingEnquiry._id}`,
         {
           method: "PUT",
           headers: {

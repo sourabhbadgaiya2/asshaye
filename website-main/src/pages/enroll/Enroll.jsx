@@ -1,5 +1,3 @@
-
-
 // import React, { useState, useEffect } from "react";
 // import { Layout } from "../../layouts/Layout";
 // import contactImg from "../../assets/alec-img/contact/enroll.avif";
@@ -27,7 +25,7 @@
 //     const loadProducts = async () => {
 //       try {
 //         const response = await axios.get(
-//           `https://backend.aashayeinjudiciary.com/enroll/getproducts/${id}`
+//           `http://localhost:8000/enroll/getproducts/${id}`
 //         );
 //         setProductData(response.data);
 //       } catch (error) {
@@ -73,7 +71,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         `https://backend.aashayeinjudiciary.com/enroll/${id}`,
+//         `http://localhost:8000/enroll/${id}`,
 //         formData
 //       );
 //       console.log("Form submitted successfully:", response.data);
@@ -250,7 +248,7 @@ export const Enroll = () => {
     const loadProducts = async () => {
       try {
         const response = await axios.get(
-          `https://backend.aashayeinjudiciary.com/enroll/getproducts/${id}`
+          `http://localhost:8000/enroll/getproducts/${id}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -295,7 +293,7 @@ export const Enroll = () => {
 
     try {
       const response = await axios.post(
-        `https://backend.aashayeinjudiciary.com/enroll/${id}`,
+        `http://localhost:8000/enroll/${id}`,
         formData
       );
       console.log("Form submitted successfully:", response.data);
@@ -320,98 +318,106 @@ export const Enroll = () => {
 
   return (
     <Layout header={9} footer={1}>
-      <section id="margin-top" className="contact-section py-5 bg-light">
-        <div className="container">
-          <div className="row g-4 d-flex align-items-stretch">
+      <section id='margin-top' className='contact-section py-5 bg-light'>
+        <div className='container'>
+          <div className='row g-4 d-flex align-items-stretch'>
             {/* Left Column: Form */}
-            <div className="col-lg-6 d-flex">
-              <div className="contact-form p-4 shadow rounded bg-white w-100 h-100">
-                <h3 className="mb-4 td_accent_color fw-bold">Enroll Now</h3>
+            <div className='col-lg-6 d-flex'>
+              <div className='contact-form p-4 shadow rounded bg-white w-100 h-100'>
+                <h3 className='mb-4 td_accent_color fw-bold'>Enroll Now</h3>
                 <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="form-label fw-semibold">Full Name</label>
+                  <div className='mb-3'>
+                    <label className='form-label fw-semibold'>Full Name</label>
                     <input
-                      type="text"
-                      className={`form-control ${errors.name ? "is-invalid" : ""}`}
-                      placeholder="Enter your name"
-                      name="name"
+                      type='text'
+                      className={`form-control ${
+                        errors.name ? "is-invalid" : ""
+                      }`}
+                      placeholder='Enter your name'
+                      name='name'
                       value={formData.name}
                       onChange={handleChange}
                     />
                     {errors.name && (
-                      <div className="invalid-feedback">{errors.name}</div>
+                      <div className='invalid-feedback'>{errors.name}</div>
                     )}
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label fw-semibold">Email</label>
+                  <div className='mb-3'>
+                    <label className='form-label fw-semibold'>Email</label>
                     <input
-                      type="email"
-                      className={`form-control ${errors.email ? "is-invalid" : ""}`}
-                      placeholder="Enter your email"
-                      name="email"
+                      type='email'
+                      className={`form-control ${
+                        errors.email ? "is-invalid" : ""
+                      }`}
+                      placeholder='Enter your email'
+                      name='email'
                       value={formData.email}
                       onChange={handleChange}
                     />
                     {errors.email && (
-                      <div className="invalid-feedback">{errors.email}</div>
+                      <div className='invalid-feedback'>{errors.email}</div>
                     )}
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label fw-semibold">Phone</label>
+                  <div className='mb-3'>
+                    <label className='form-label fw-semibold'>Phone</label>
                     <input
-                      type="tel"
-                      className={`form-control ${errors.phone ? "is-invalid" : ""}`}
-                      placeholder="Enter your phone number"
-                      name="phone"
+                      type='tel'
+                      className={`form-control ${
+                        errors.phone ? "is-invalid" : ""
+                      }`}
+                      placeholder='Enter your phone number'
+                      name='phone'
                       value={formData.phone}
                       onChange={handleChange}
                     />
                     {errors.phone && (
-                      <div className="invalid-feedback">{errors.phone}</div>
+                      <div className='invalid-feedback'>{errors.phone}</div>
                     )}
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label fw-semibold">City</label>
+                  <div className='mb-3'>
+                    <label className='form-label fw-semibold'>City</label>
                     <input
-                      type="text"
-                      className={`form-control ${errors.city ? "is-invalid" : ""}`}
-                      placeholder="Enter your city"
-                      name="city"
+                      type='text'
+                      className={`form-control ${
+                        errors.city ? "is-invalid" : ""
+                      }`}
+                      placeholder='Enter your city'
+                      name='city'
                       value={formData.city}
                       onChange={handleChange}
                     />
                     {errors.city && (
-                      <div className="invalid-feedback">{errors.city}</div>
+                      <div className='invalid-feedback'>{errors.city}</div>
                     )}
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label fw-semibold">Message</label>
+                  <div className='mb-3'>
+                    <label className='form-label fw-semibold'>Message</label>
                     <textarea
-                      className="form-control"
-                      rows="4"
-                      placeholder="Write your message"
-                      name="message"
+                      className='form-control'
+                      rows='4'
+                      placeholder='Write your message'
+                      name='message'
                       value={formData.message}
                       onChange={handleChange}
                     ></textarea>
                   </div>
 
-                  <div className="mb-4">
+                  <div className='mb-4'>
                     <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptcha} />
                     {errors.captchaToken && (
-                      <div className="text-danger small mt-2">
+                      <div className='text-danger small mt-2'>
                         {errors.captchaToken}
                       </div>
                     )}
                   </div>
 
                   <button
-                    type="submit"
-                    className="th-btn td_btn_in td_white_color td_accent_bg py-2 border-0 rounded w-100 fw-semibold"
+                    type='submit'
+                    className='th-btn td_btn_in td_white_color td_accent_bg py-2 border-0 rounded w-100 fw-semibold'
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Submitting..." : "Send Message"}
@@ -421,11 +427,11 @@ export const Enroll = () => {
             </div>
 
             {/* Right Column: Image */}
-            <div className="col-lg-6 d-flex">
-              <div className="contact-details p-4 shadow-lg rounded bg-white w-100 h-100">
+            <div className='col-lg-6 d-flex'>
+              <div className='contact-details p-4 shadow-lg rounded bg-white w-100 h-100'>
                 <img
                   src={contactImg}
-                  alt="Contact"
+                  alt='Contact'
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
                 />
               </div>

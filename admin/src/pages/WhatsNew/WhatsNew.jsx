@@ -189,7 +189,7 @@ const WhatsNewForm = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/whatsnew/create",
+        "http://localhost:8000/whatsnew/create",
         formData,
         {
           headers: {

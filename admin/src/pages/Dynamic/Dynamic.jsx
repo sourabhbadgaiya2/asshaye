@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const Dynamic = () => {
-  const api = "https://backend.aashayeinjudiciary.com/dynamics/";
+  const api = "http://localhost:8000/dynamics/";
 
   const [dynamics, setDynamics] = useState([]);
   const [formData, setFormData] = useState({

@@ -13,7 +13,7 @@
 //         city: ''
 //     });
 
-//     const api = "https://backend.aashayeinjudiciary.com/register/allcontact";
+//     const api = "http://localhost:8000/register/allcontact";
 
 //     useEffect(() => {
 //         fetchContacts();
@@ -32,7 +32,7 @@
 
 //     const handleDelete = async (id) => {
 //         try {
-//             await axios.delete(`https://backend.aashayeinjudiciary.com/register/alldelete/${id}`);
+//             await axios.delete(`http://localhost:8000/register/alldelete/${id}`);
 //             fetchContacts(); // Refresh the list after deletion
 //         } catch (error) {
 //             console.error('Error deleting contact:', error);
@@ -51,7 +51,7 @@
 
 //     const handleUpdate = async () => {
 //         try {
-//             await axios.put(`https://backend.aashayeinjudiciary.com/register/update/${editData._id}`, formData);
+//             await axios.put(`http://localhost:8000/register/update/${editData._id}`, formData);
 //             setEditData(null);
 //             fetchContacts(); // Refresh the list after update
 //         } catch (error) {
@@ -225,7 +225,7 @@ const SyllabusEnquiryDisplay = () => {
     city: "",
   });
 
-  const api = "https://backend.aashayeinjudiciary.com/register/allcontact";
+  const api = "http://localhost:8000/register/allcontact";
 
   useEffect(() => {
     fetchContacts();
@@ -244,9 +244,7 @@ const SyllabusEnquiryDisplay = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/register/alldelete/${id}`
-      );
+      await axios.delete(`http://localhost:8000/register/alldelete/${id}`);
       fetchContacts();
     } catch (error) {
       console.error("Error deleting contact:", error);
@@ -266,7 +264,7 @@ const SyllabusEnquiryDisplay = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `https://backend.aashayeinjudiciary.com/register/update/${editData._id}`,
+        `http://localhost:8000/register/update/${editData._id}`,
         formData
       );
       setEditData(null);

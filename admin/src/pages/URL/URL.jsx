@@ -39,7 +39,7 @@
 
 //     setLoading(true);
 //     try {
-//       // const response = await axios.post('https://backend.aashayeinjudiciary.com/url/create', formData);
+//       // const response = await axios.post('http://localhost:8000/url/create', formData);
 //       if (newItemTitle.trim() && newItemBody.trim()) {
 //       const newItem = {
 //         title: newItemTitle,
@@ -258,55 +258,55 @@ const URL = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className='min-h-screen bg-gray-50 py-8 px-4'>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-xl mx-auto p-8 bg-white rounded-lg shadow-md"
+        className='w-full max-w-xl mx-auto p-8 bg-white rounded-lg shadow-md'
       >
-        <ToastContainer position="top-center" autoClose={3000} />
+        <ToastContainer position='top-center' autoClose={3000} />
 
-        <div className="space-y-1 mb-6">
-          <label className="block text-sm font-medium text-gray-700">
-            Course URL <span className="text-red-500">*</span>
+        <div className='space-y-1 mb-6'>
+          <label className='block text-sm font-medium text-gray-700'>
+            Course URL <span className='text-red-500'>*</span>
           </label>
           <input
-            type="text"
-            name="URL"
+            type='text'
+            name='URL'
             value={formData.URL}
             onChange={handleInputChange}
-            placeholder="https://example.com"
+            placeholder='https://example.com'
             className={`w-full p-2 border ${
               errors.URL ? "border-red-500" : "border-gray-300"
             } rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
           />
           {errors.URL && (
-            <p className="text-red-500 text-xs mt-1">{errors.URL}</p>
+            <p className='text-red-500 text-xs mt-1'>{errors.URL}</p>
           )}
         </div>
 
-        <div className="space-y-1 mb-6">
-          <label className="block text-sm font-medium text-gray-700">
-            Alt Text <span className="text-red-500">*</span>
+        <div className='space-y-1 mb-6'>
+          <label className='block text-sm font-medium text-gray-700'>
+            Alt Text <span className='text-red-500'>*</span>
           </label>
           <input
-            type="text"
-            name="altText"
+            type='text'
+            name='altText'
             value={formData.altText}
             onChange={handleInputChange}
-            placeholder="Enter descriptive text for the video"
+            placeholder='Enter descriptive text for the video'
             className={`w-full p-2 border ${
               errors.altText ? "border-red-500" : "border-gray-300"
             } rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
           />
           {errors.altText && (
-            <p className="text-red-500 text-xs mt-1">{errors.altText}</p>
+            <p className='text-red-500 text-xs mt-1'>{errors.altText}</p>
           )}
         </div>
 
         <button
-          type="submit"
+          type='submit'
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
+          className='w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed'
         >
           {loading ? "Submitting..." : "Submit Course URL"}
         </button>

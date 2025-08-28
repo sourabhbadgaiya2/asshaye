@@ -83,15 +83,11 @@ const CreateCourse = () => {
         formData.append("images", file);
       });
 
-      await axios.post(
-        "https://backend.aashayeinjudiciary.com/othercourse",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      await axios.post("http://localhost:8000/othercourse", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       setSuccess(true);
       // Reset form after successful submission

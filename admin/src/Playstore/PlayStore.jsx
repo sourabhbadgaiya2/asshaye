@@ -17,7 +17,7 @@
 //     try {
 //       setLoading(true);
 //       const response = await axios.get(
-//         "https://backend.aashayeinjudiciary.com/playstore/alldisplay"
+//         "http://localhost:8000/playstore/alldisplay"
 //       );
 //       setBanners(response.data);
 //       setLoading(false);
@@ -92,7 +92,7 @@
 //     try {
 //       setLoading(true);
 //       const response = await axios.get(
-//         `https://backend.aashayeinjudiciary.com/playstore/editdisplay?id=${id}`
+//         `http://localhost:8000/playstore/editdisplay?id=${id}`
 //       );
 //       setCurrentBanner(response.data.data);
 //       setIsEditing(true);
@@ -114,7 +114,7 @@
 //           onClick: async () => {
 //             try {
 //               await axios.delete(
-//                 `https://backend.aashayeinjudiciary.com/playstore/deleted/${id}`
+//                 `http://localhost:8000/playstore/deleted/${id}`
 //               );
 //               toast.success("Banner deleted successfully");
 //               fetchBanners();
@@ -219,7 +219,7 @@
 //           });
 //         } else {
 //           response = await axios.post(
-//             "https://backend.aashayeinjudiciary.com/playstore/create",
+//             "http://localhost:8000/playstore/create",
 //             formDataToSend,
 //             {
 //               headers: {
@@ -366,8 +366,6 @@
 
 // export default PlayStore;
 
-
-
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -386,7 +384,9 @@ const PlayStore = () => {
   const fetchBanners = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://backend.aashayeinjudiciary.com/playstore/alldisplay");
+      const response = await axios.get(
+        "http://localhost:8000/playstore/alldisplay"
+      );
       setBanners(response.data);
       setLoading(false);
     } catch (error) {
@@ -407,7 +407,7 @@ const PlayStore = () => {
         <img
           src={row.images[0]}
           alt={row.altText}
-          className="w-16 h-16 object-cover rounded"
+          className='w-16 h-16 object-cover rounded'
         />
       ),
       sortable: false,
@@ -423,9 +423,9 @@ const PlayStore = () => {
       cell: (row) => (
         <a
           href={row.URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-blue-500 hover:underline'
         >
           {row.URL}
         </a>
@@ -435,16 +435,16 @@ const PlayStore = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex space-x-2">
+        <div className='flex space-x-2'>
           <button
             onClick={() => handleEdit(row._id)}
-            className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+            className='px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600'
           >
             Edit
           </button>
           <button
             onClick={() => handleDelete(row._id)}
-            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+            className='px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600'
           >
             Delete
           </button>
@@ -460,7 +460,7 @@ const PlayStore = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://backend.aashayeinjudiciary.com/playstore/editdisplay?id=${id}`
+        `http://localhost:8000/playstore/editdisplay?id=${id}`
       );
       setCurrentBanner(response.data);
       setIsEditing(true);
@@ -482,7 +482,7 @@ const PlayStore = () => {
           onClick: async () => {
             try {
               await axios.delete(
-                `https://backend.aashayeinjudiciary.com/playstore/deleted/${id}`
+                `http://localhost:8000/playstore/deleted/${id}`
               );
               toast.success("Banner deleted successfully");
               fetchBanners();
@@ -572,7 +572,7 @@ const PlayStore = () => {
 
         // Append all images
         if (formData.images.length > 0) {
-          if (typeof formData.images[0] === 'string') {
+          if (typeof formData.images[0] === "string") {
             // If images are URLs (existing images), send them as is
             formDataToSend.append("images", formData.images[0]);
           } else {
@@ -587,7 +587,7 @@ const PlayStore = () => {
         if (isEditing) {
           formDataToSend.append("id", currentBanner._id);
           response = await axios.post(
-            "https://backend.aashayeinjudiciary.com/playstore/editsave",
+            "http://localhost:8000/playstore/editsave",
             formDataToSend,
             {
               headers: {
@@ -597,7 +597,7 @@ const PlayStore = () => {
           );
         } else {
           response = await axios.post(
-            "https://backend.aashayeinjudiciary.com/playstore/create",
+            "http://localhost:8000/playstore/create",
             formDataToSend,
             {
               headers: {
@@ -607,7 +607,11 @@ const PlayStore = () => {
           );
         }
 
-        toast.success(isEditing ? "Banner updated successfully" : "Banner created successfully");
+        toast.success(
+          isEditing
+            ? "Banner updated successfully"
+            : "Banner created successfully"
+        );
         onSuccess();
       } catch (error) {
         toast.error(error.response?.data?.message || "Something went wrong");
@@ -617,68 +621,68 @@ const PlayStore = () => {
     };
 
     return (
-      <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-        <h2 className="text-xl font-semibold mb-4">
+      <div className='bg-white p-6 rounded-lg shadow-md mb-6'>
+        <h2 className='text-xl font-semibold mb-4'>
           {isEditing ? "Edit Banner" : "Add New Banner"}
         </h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Images</label>
+          <div className='mb-4'>
+            <label className='block text-gray-700 mb-2'>Images</label>
             <input
-              type="file"
+              type='file'
               onChange={handleImageChange}
-              className="w-full p-2 border rounded"
-              accept="image/*"
+              className='w-full p-2 border rounded'
+              accept='image/*'
             />
-            <div className="flex flex-wrap mt-2 gap-2">
+            <div className='flex flex-wrap mt-2 gap-2'>
               {imagePreviews.map((preview, index) => (
                 <img
                   key={index}
                   src={preview}
                   alt={`Preview ${index}`}
-                  className="w-16 h-16 object-cover rounded"
+                  className='w-16 h-16 object-cover rounded'
                 />
               ))}
             </div>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Alt Text</label>
+          <div className='mb-4'>
+            <label className='block text-gray-700 mb-2'>Alt Text</label>
             <input
-              type="text"
-              name="altText"
+              type='text'
+              name='altText'
               value={formData.altText}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className='w-full p-2 border rounded'
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">URL</label>
+          <div className='mb-4'>
+            <label className='block text-gray-700 mb-2'>URL</label>
             <input
-              type="url"
-              name="URL"
+              type='url'
+              name='URL'
               value={formData.URL}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className='w-full p-2 border rounded'
               required
             />
           </div>
 
-          <div className="flex justify-end space-x-3">
+          <div className='flex justify-end space-x-3'>
             <button
-              type="button"
+              type='button'
               onClick={onCancel}
-              className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              className='px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400'
               disabled={loading}
             >
               Cancel
             </button>
             <button
-              type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              type='submit'
+              className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
               disabled={loading}
             >
               {loading ? "Processing..." : isEditing ? "Update" : "Save"}
@@ -690,11 +694,11 @@ const PlayStore = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <ToastContainer position="top-right" autoClose={3000} />
+    <div className='container mx-auto p-4'>
+      <ToastContainer position='top-right' autoClose={3000} />
 
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">
+      <div className='flex justify-between items-center mb-6'>
+        <h1 className='text-2xl font-bold text-gray-800'>
           PlayStore Banner Management
         </h1>
         <button
@@ -703,7 +707,7 @@ const PlayStore = () => {
             setIsEditing(false);
             setCurrentBanner(null);
           }}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
         >
           Add New Banner
         </button>
@@ -722,7 +726,7 @@ const PlayStore = () => {
         />
       )}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className='bg-white rounded-lg shadow overflow-hidden'>
         <DataTable
           columns={columns}
           data={banners}
@@ -733,7 +737,7 @@ const PlayStore = () => {
           highlightOnHover
           responsive
           noDataComponent={
-            <div className="py-8 text-gray-500">No banners found</div>
+            <div className='py-8 text-gray-500'>No banners found</div>
           }
         />
       </div>

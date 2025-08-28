@@ -42,8 +42,8 @@ export const Contact = () => {
 
     try {
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/contact/add",
-        // "https://backend.aashayeinjudiciary.com/contact/add",
+        "http://localhost:8000/contact/add",
+        // "http://localhost:8000/contact/add",
         formData
       );
 
@@ -82,9 +82,9 @@ export const Contact = () => {
             {/* Left: Contact Form */}
             <div className='col-lg-6 d-flex'>
               <div className='contact-form p-4 shadow rounded bg-white w-100 h-100'>
-                    <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-           Contact Us
-          </h4>
+                <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+                  Contact Us
+                </h4>
 
                 <form onSubmit={handleSubmit}>
                   <div className='mb-3'>
@@ -166,10 +166,10 @@ export const Contact = () => {
             {/* Right: Contact Details */}
             <div className='col-lg-6 d-flex'>
               <div className='contact-details p-4 shadow-lg rounded bg-white w-100 h-100'>
-                         <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-           Get in Touch
-          </h4>
-               
+                <h4 className=' d-none d-sm-block td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+                  Get in Touch
+                </h4>
+
                 <p className='text-muted'>
                   Have questions? We'd love to hear from you. Reach out to us
                   using the details below.
