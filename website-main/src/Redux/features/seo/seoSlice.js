@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchSeo = createAsyncThunk("seo/fetchSeo", async () => {
-  const res = await axios.get("https://backend.aashayeinjudiciary.com/api/seo");
+  const res = await axios.get("http://localhost:8000/api/seo");
   return res.data || [];
 });
 

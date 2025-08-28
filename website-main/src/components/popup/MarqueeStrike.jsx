@@ -30,7 +30,7 @@ export const MarqueeStrike = () => {
     const fetchDiscounts = async () => {
       try {
         const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/discount/display"
+          "http://localhost:8000/discount/display"
         );
         setDiscounts(response.data.data || []);
         setLoading(false);
@@ -48,10 +48,10 @@ export const MarqueeStrike = () => {
   if (!discounts.length) return <div>No discounts available</div>;
 
   return (
-    <div className="marquee-container">
-      <marquee className="marquee-text" scrollamount="8">
+    <div className='marquee-container'>
+      <marquee className='marquee-text' scrollamount='8'>
         {discounts.map((discount, index) => (
-          <span key={index} className="strike-text" alt={discount.altText}>
+          <span key={index} className='strike-text' alt={discount.altText}>
             🔥 {discount.title} 🔥
           </span>
         ))}

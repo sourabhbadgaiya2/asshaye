@@ -44,9 +44,7 @@ const OtherCourseManager = () => {
   const fetchCourses = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/othercourse"
-      );
+      const response = await axios.get("http://localhost:8000/othercourse");
       setCourses(response.data);
     } catch (error) {
       console.error("Error fetching courses:", error);
@@ -63,9 +61,7 @@ const OtherCourseManager = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/othercourse/${id}`
-      );
+      await axios.delete(`http://localhost:8000/othercourse/${id}`);
       toast.success("Course deleted successfully");
       fetchCourses();
     } catch (error) {
@@ -180,7 +176,7 @@ const OtherCourseManager = () => {
       try {
         // First try PUT request to standard endpoint
         await axios.put(
-          `https://backend.aashayeinjudiciary.com/othercourse/${editingCourse._id}`,
+          `http://localhost:8000/othercourse/${editingCourse._id}`,
           formData,
           {
             headers: {
@@ -192,7 +188,7 @@ const OtherCourseManager = () => {
         // If PUT fails, try POST to update endpoint
         console.log("PUT failed, trying POST...");
         await axios.post(
-          `https://backend.aashayeinjudiciary.com/othercourse/update/${editingCourse._id}`,
+          `http://localhost:8000/othercourse/update/${editingCourse._id}`,
           formData,
           {
             headers: {

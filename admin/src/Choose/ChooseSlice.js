@@ -6,7 +6,7 @@
 //   'choose/createChoose',
 //   async (formData, { rejectWithValue }) => {
 //     try {
-//       const response = await axios.post('https://backend.aashayeinjudiciary.com/choose/create', formData, {
+//       const response = await axios.post('http://localhost:8000/choose/create', formData, {
 //         headers: {
 //           'Content-Type': 'multipart/form-data',
 //         },
@@ -25,7 +25,7 @@
 //   'choose/fetchChooseItems',
 //   async (_, { rejectWithValue }) => {
 //     try {
-//       const res = await axios.get(`https://backend.aashayeinjudiciary.com/choose/display`);
+//       const res = await axios.get(`http://localhost:8000/choose/display`);
 //       return res.data;
 //     } catch (err) {
 //       return rejectWithValue(err.response?.data?.message || err.message);
@@ -38,7 +38,7 @@
 //   'choose/deleteChooseItem',
 //   async (id, { rejectWithValue }) => {
 //     try {
-//       await axios.delete(`https://backend.aashayeinjudiciary.com/choose/${id}`);
+//       await axios.delete(`http://localhost:8000/choose/${id}`);
 //       return id;
 //     } catch (err) {
 //       return rejectWithValue(err.response?.data?.message || err.message);
@@ -115,7 +115,7 @@ export const createChoose = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/choose/create",
+        "http://localhost:8000/choose/create",
         formData,
         {
           headers: {
@@ -137,7 +137,7 @@ export const fetchChooseItems = createAsyncThunk(
   "choose/fetchChooseItems",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("https://backend.aashayeinjudiciary.com/choose/display");
+      const res = await axios.get("http://localhost:8000/choose/display");
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
@@ -151,7 +151,7 @@ export const updateChooseItem = createAsyncThunk(
   async ({ id, formData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/choose/editsave/${id}`,
+        `http://localhost:8000/choose/editsave/${id}`,
         formData,
         {
           headers: {
@@ -173,7 +173,7 @@ export const deleteChooseItem = createAsyncThunk(
   "choose/deleteChooseItem",
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`https://backend.aashayeinjudiciary.com/choose/${id}`);
+      await axios.delete(`http://localhost:8000/choose/${id}`);
       return id;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);

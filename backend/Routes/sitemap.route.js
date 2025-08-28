@@ -8,6 +8,8 @@ const WhatsNew = require("../Module/WhatsModule.js");
 
 const router = express.Router();
 
+// console.log(process.env.PUBLIC_SITE_URL)
+
 router.get("/sitemap.xml", async (req, res) => {
   try {
     const BASE = process.env.PUBLIC_SITE_URL || "http://localhost:5173";

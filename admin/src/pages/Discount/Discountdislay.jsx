@@ -19,7 +19,7 @@
 //   useEffect(() => {
 //     const fetchDiscounts = async () => {
 //       try {
-//         const response = await axios.get('https://backend.aashayeinjudiciary.com/discount/display');
+//         const response = await axios.get('http://localhost:8000/discount/display');
 //         setDiscounts(response.data.data || []);
 //         setLoading(false);
 //       } catch (err) {
@@ -35,7 +35,7 @@
 //   const handleDelete = async (id) => {
 //     if (window.confirm('Are you sure you want to delete this discount?')) {
 //       try {
-//         await axios.delete(`https://backend.aashayeinjudiciary.com/discount/deleted/${id}`);
+//         await axios.delete(`http://localhost:8000/discount/deleted/${id}`);
 //         setDiscounts(discounts.filter(discount => discount._id !== id));
 //         alert('Discount deleted successfully!');
 //       } catch (err) {
@@ -66,7 +66,7 @@
 //   const handleEditSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       const response = await axios.put(`https://backend.aashayeinjudiciary.com/discount/display/${editId}`, editData);
+//       const response = await axios.put(`http://localhost:8000/discount/display/${editId}`, editData);
 //       setDiscounts(discounts.map(discount =>
 //         discount._id === editId ? response.data.data : discount
 //       ));
@@ -227,7 +227,7 @@ const Discountdisplay = () => {
     const fetchDiscounts = async () => {
       try {
         const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/discount/display"
+          "http://localhost:8000/discount/display"
         );
         setDiscounts(response.data.data || []);
         setLoading(false);
@@ -243,7 +243,7 @@ const Discountdisplay = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this discount?")) {
       try {
-        await axios.delete(`https://backend.aashayeinjudiciary.com/discount/deleted/${id}`);
+        await axios.delete(`http://localhost:8000/discount/deleted/${id}`);
         setDiscounts(discounts.filter((discount) => discount._id !== id));
         alert("Discount deleted successfully!");
       } catch (err) {
@@ -274,7 +274,7 @@ const Discountdisplay = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/discount/display/${editId}`,
+        `http://localhost:8000/discount/display/${editId}`,
         editData
       );
       setDiscounts(
@@ -317,16 +317,16 @@ const Discountdisplay = () => {
       cell: (row) => (
         <>
           {editId === row._id ? null : (
-            <div className="flex gap-2">
+            <div className='flex gap-2'>
               <button
                 onClick={() => handleEdit(row)}
-                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-sm"
+                className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-sm'
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(row._id)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
+                className='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm'
               >
                 Delete
               </button>
@@ -352,85 +352,85 @@ const Discountdisplay = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Discount Offers</h1>
+    <div className='container mx-auto p-4'>
+      <h1 className='text-2xl font-bold mb-6'>Discount Offers</h1>
 
       <button
         onClick={() => navigate("/discount/create")}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
+        className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4'
       >
         Create New Discount
       </button>
 
-      {error && <div className="text-red-500 mb-4">{error}</div>}
+      {error && <div className='text-red-500 mb-4'>{error}</div>}
 
       {editId && (
         <form
           onSubmit={handleEditSubmit}
-          className="mb-6 border p-4 rounded shadow bg-gray-50"
+          className='mb-6 border p-4 rounded shadow bg-gray-50'
         >
-          <h2 className="text-lg font-semibold mb-4">Edit Discount</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <h2 className='text-lg font-semibold mb-4'>Edit Discount</h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-4'>
             <div>
-              <label className="block text-sm font-bold mb-1">Title</label>
+              <label className='block text-sm font-bold mb-1'>Title</label>
               <input
-                type="text"
-                name="title"
+                type='text'
+                name='title'
                 value={editData.title}
                 onChange={handleEditChange}
-                className="w-full p-2 border rounded"
+                className='w-full p-2 border rounded'
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-bold mb-1">Limited</label>
+              <label className='block text-sm font-bold mb-1'>Limited</label>
               <input
-                type="text"
-                name="limited"
+                type='text'
+                name='limited'
                 value={editData.limited}
                 onChange={handleEditChange}
-                className="w-full p-2 border rounded"
+                className='w-full p-2 border rounded'
                 required
               />
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-bold mb-1">
+            <div className='md:col-span-2'>
+              <label className='block text-sm font-bold mb-1'>
                 Description
               </label>
               <textarea
-                name="desciption"
+                name='desciption'
                 value={editData.desciption}
                 onChange={handleEditChange}
-                className="w-full p-2 border rounded"
-                rows="3"
+                className='w-full p-2 border rounded'
+                rows='3'
                 required
               />
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-bold mb-1">
+            <div className='md:col-span-2'>
+              <label className='block text-sm font-bold mb-1'>
                 Limited Offer
               </label>
               <input
-                type="text"
-                name="limitedoffer"
+                type='text'
+                name='limitedoffer'
                 value={editData.limitedoffer}
                 onChange={handleEditChange}
-                className="w-full p-2 border rounded"
+                className='w-full p-2 border rounded'
                 required
               />
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+              type='submit'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded'
             >
               Save
             </button>
             <button
-              type="button"
+              type='button'
               onClick={handleCancelEdit}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded"
+              className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded'
             >
               Cancel
             </button>
@@ -447,7 +447,7 @@ const Discountdisplay = () => {
         striped
         customStyles={customStyles}
         noDataComponent={
-          <div className="text-center py-4">No discounts available</div>
+          <div className='text-center py-4'>No discounts available</div>
         }
       />
     </div>

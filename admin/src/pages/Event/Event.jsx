@@ -82,7 +82,7 @@ const Event = () => {
       });
 
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/event/",
+        "http://localhost:8000/event/",
         formDataToSend,
         {
           headers: {

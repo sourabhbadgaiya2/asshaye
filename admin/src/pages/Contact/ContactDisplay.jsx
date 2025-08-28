@@ -20,7 +20,7 @@
 
 //   const fetchContacts = async () => {
 //     try {
-//       const response = await fetch("https://backend.aashayeinjudiciary.com/contact/allcontact");
+//       const response = await fetch("http://localhost:8000/contact/allcontact");
 //       if (!response.ok) throw new Error("Failed to fetch contacts");
 
 //       const data = await response.json();
@@ -43,7 +43,7 @@
 
 //     try {
 //       const response = await fetch(
-//         `https://backend.aashayeinjudiciary.com/contact/alldelete/${id}`,
+//         `http://localhost:8000/contact/alldelete/${id}`,
 //         {
 //           method: "DELETE",
 //         }
@@ -70,7 +70,7 @@
 
 //     try {
 //       const response = await fetch(
-//         `https://backend.aashayeinjudiciary.com/contact/editsave/${editingContact._id}`,
+//         `http://localhost:8000/contact/editsave/${editingContact._id}`,
 //         {
 //           method: "PUT",
 //           headers: {
@@ -349,8 +349,6 @@
 
 // export default ContactDisplay;
 
-
-
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { FaTrash, FaEdit, FaFilePdf, FaFileExcel } from "react-icons/fa";
@@ -376,7 +374,7 @@ const ContactDisplay = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch("https://backend.aashayeinjudiciary.com/contact/allcontact");
+      const response = await fetch("http://localhost:8000/contact/allcontact");
       if (!response.ok) throw new Error("Failed to fetch contacts");
 
       const data = await response.json();
@@ -399,7 +397,7 @@ const ContactDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/contact/alldelete/${id}`,
+        `http://localhost:8000/contact/alldelete/${id}`,
         {
           method: "DELETE",
         }
@@ -426,7 +424,7 @@ const ContactDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/contact/editsave/${editingContact._id}`,
+        `http://localhost:8000/contact/editsave/${editingContact._id}`,
         {
           method: "PUT",
           headers: {
@@ -467,7 +465,7 @@ const ContactDisplay = () => {
       contact.name || "-",
       contact.email || "-",
       contact.phone || "-",
-      contact.message || "-"
+      contact.message || "-",
     ]);
 
     doc.text(title, 14, 15);
@@ -478,30 +476,30 @@ const ContactDisplay = () => {
       styles: {
         cellPadding: 3,
         fontSize: 10,
-        valign: 'middle',
-        halign: 'left',
+        valign: "middle",
+        halign: "left",
       },
       headStyles: {
         fillColor: [41, 128, 185],
         textColor: 255,
-        fontStyle: 'bold'
+        fontStyle: "bold",
       },
       alternateRowStyles: {
-        fillColor: [245, 245, 245]
-      }
+        fillColor: [245, 245, 245],
+      },
     });
 
-    doc.save('contact_messages.pdf');
+    doc.save("contact_messages.pdf");
   };
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(
       filteredContacts.map((contact, index) => ({
         "S.No": index + 1,
-        "Name": contact.name || "-",
-        "Email": contact.email || "-",
-        "Phone": contact.phone || "-",
-        "Message": contact.message || "-"
+        Name: contact.name || "-",
+        Email: contact.email || "-",
+        Phone: contact.phone || "-",
+        Message: contact.message || "-",
       }))
     );
     const workbook = XLSX.utils.book_new();
@@ -519,7 +517,7 @@ const ContactDisplay = () => {
       name: "Name",
       selector: (row) => row.name || "-",
       sortable: true,
-      cell: (row) => <span className="font-medium">{row.name || "-"}</span>,
+      cell: (row) => <span className='font-medium'>{row.name || "-"}</span>,
     },
     {
       name: "Email",
@@ -528,7 +526,7 @@ const ContactDisplay = () => {
       cell: (row) => (
         <a
           href={`mailto:${row.email}`}
-          className="text-blue-600 hover:underline"
+          className='text-blue-600 hover:underline'
         >
           {row.email || "-"}
         </a>
@@ -538,7 +536,7 @@ const ContactDisplay = () => {
       name: "Phone",
       selector: (row) => row.phone || "-",
       cell: (row) => (
-        <a href={`tel:${row.phone}`} className="text-blue-600 hover:underline">
+        <a href={`tel:${row.phone}`} className='text-blue-600 hover:underline'>
           {row.phone || "-"}
         </a>
       ),
@@ -547,7 +545,7 @@ const ContactDisplay = () => {
       name: "Message",
       selector: (row) => row.message || "-",
       cell: (row) => (
-        <div className="max-w-xs truncate hover:max-w-none hover:whitespace-normal">
+        <div className='max-w-xs truncate hover:max-w-none hover:whitespace-normal'>
           {row.message || "-"}
         </div>
       ),
@@ -555,18 +553,18 @@ const ContactDisplay = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex space-x-2">
+        <div className='flex space-x-2'>
           <button
             onClick={() => handleEditClick(row)}
-            className="text-blue-500 hover:text-blue-700"
-            title="Edit"
+            className='text-blue-500 hover:text-blue-700'
+            title='Edit'
           >
             <FaEdit />
           </button>
           <button
             onClick={() => handleDelete(row._id)}
-            className="text-red-500 hover:text-red-700"
-            title="Delete"
+            className='text-red-500 hover:text-red-700'
+            title='Delete'
           >
             <FaTrash />
           </button>
@@ -586,46 +584,46 @@ const ContactDisplay = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <p className="text-gray-700">Loading contacts...</p>
+      <div className='min-h-screen flex justify-center items-center bg-gray-50'>
+        <p className='text-gray-700'>Loading contacts...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <p className="text-red-500">Error: {error}</p>
+      <div className='min-h-screen flex justify-center items-center bg-gray-50'>
+        <p className='text-red-500'>Error: {error}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <ToastContainer position="top-right" autoClose={3000} />
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">
+    <div className='min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
+      <ToastContainer position='top-right' autoClose={3000} />
+      <div className='max-w-7xl mx-auto'>
+        <h1 className='text-3xl font-bold text-gray-900 mb-6'>
           Contact Messages
         </h1>
 
-        <div className="flex flex-col sm:flex-row justify-between gap-4 mb-4">
+        <div className='flex flex-col sm:flex-row justify-between gap-4 mb-4'>
           <input
-            type="text"
-            placeholder="Search by Name, Email, Phone or Message..."
-            className="w-full sm:w-2/3 p-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200"
+            type='text'
+            placeholder='Search by Name, Email, Phone or Message...'
+            className='w-full sm:w-2/3 p-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200'
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
           />
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <button
               onClick={exportToExcel}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+              className='flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors'
             >
               <FaFileExcel /> Export to Excel
             </button>
             <button
               onClick={exportToPDF}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+              className='flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors'
             >
               <FaFilePdf /> Export to PDF
             </button>
@@ -635,120 +633,120 @@ const ContactDisplay = () => {
         <DataTable
           columns={columns}
           data={filteredContacts}
-          keyField="_id"
+          keyField='_id'
           pagination
           highlightOnHover
           striped
           responsive
-          noDataComponent="No contacts found."
+          noDataComponent='No contacts found.'
         />
 
         {/* Edit Form */}
         {isEditFormOpen && (
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mt-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">
+          <div className='bg-white rounded-lg shadow-md border border-gray-200 p-6 mt-6'>
+            <div className='flex justify-between items-center mb-4'>
+              <h2 className='text-xl font-semibold text-gray-800'>
                 Edit Contact Message
               </h2>
               <button
                 onClick={() => setIsEditFormOpen(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className='text-gray-400 hover:text-gray-600 transition-colors'
               >
                 <FiX size={24} />
               </button>
             </div>
 
-            <form onSubmit={handleSaveEdit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSaveEdit} className='space-y-4'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Name
                   </label>
                   <input
-                    type="text"
-                    name="name"
+                    type='text'
+                    name='name'
                     value={editingContact?.name || ""}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Email
                   </label>
                   <input
-                    type="email"
-                    name="email"
+                    type='email'
+                    name='email'
                     value={editingContact?.email || ""}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Phone
                   </label>
                   <input
-                    type="tel"
-                    name="phone"
+                    type='tel'
+                    name='phone'
                     value={editingContact?.phone || ""}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Message
                 </label>
                 <textarea
-                  name="message"
+                  name='message'
                   value={editingContact?.message || ""}
                   onChange={handleInputChange}
-                  rows="4"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows='4'
+                  className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-4">
+              <div className='flex justify-end gap-3 pt-4'>
                 <button
-                  type="button"
+                  type='button'
                   onClick={() => setIsEditFormOpen(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
+                  className='px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors'
                   disabled={isSubmitting}
                 >
                   Cancel
                 </button>
                 <button
-                  type="submit"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-70"
+                  type='submit'
+                  className='flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-70'
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <>
                       <svg
-                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
+                        className='animate-spin -ml-1 mr-2 h-4 w-4 text-white'
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
                       >
                         <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
+                          className='opacity-25'
+                          cx='12'
+                          cy='12'
+                          r='10'
+                          stroke='currentColor'
+                          strokeWidth='4'
                         ></circle>
                         <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          className='opacity-75'
+                          fill='currentColor'
+                          d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
                         ></path>
                       </svg>
                       Saving...

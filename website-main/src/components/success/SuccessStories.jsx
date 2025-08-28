@@ -24,9 +24,7 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch(
-          "https://backend.aashayeinjudiciary.com/success/display"
-        );
+        const response = await fetch("http://localhost:8000/success/display");
         if (!response.ok) {
           throw new Error("Failed to fetch success stories");
         }
@@ -50,13 +48,13 @@ const SuccessStories = () => {
       </div>
       <section className=' p-0 text-center bg-light mt-5 py-5'>
         <div className='container'>
-             <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color mt-4'>
-          Student Success Stories
+          <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color mt-4'>
+            Student Success Stories
           </h4>
-          <p className='td_section_title td_fs_20 mb-3'> Success stories of determination from Aashayein Judiciary alumni.
-</p>
-
-
+          <p className='td_section_title td_fs_20 mb-3'>
+            {" "}
+            Success stories of determination from Aashayein Judiciary alumni.
+          </p>
 
           {loading ? (
             <div>Loading...</div>

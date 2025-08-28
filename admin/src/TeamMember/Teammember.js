@@ -7,7 +7,7 @@ export const addMember = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/member/create",
+        "http://localhost:8000/member/create",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -25,9 +25,7 @@ export const fetchMembers = createAsyncThunk(
   "member/fetchMembers",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/member/display"
-      );
+      const response = await axios.get("http://localhost:8000/member/display");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -40,7 +38,7 @@ export const deleteMember = createAsyncThunk(
   "member/deleteMember",
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`https://backend.aashayeinjudiciary.com/member/${id}`);
+      await axios.delete(`http://localhost:8000/member/${id}`);
       return id;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -54,7 +52,7 @@ export const updateMember = createAsyncThunk(
   async ({ id, formData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/member/${id}`,
+        `http://localhost:8000/member/${id}`,
         formData,
         {
           headers: {

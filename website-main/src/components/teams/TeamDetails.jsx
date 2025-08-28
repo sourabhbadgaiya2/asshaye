@@ -89,9 +89,7 @@ export const TeamDetails = () => {
     const fetchMember = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/member/${state}`
-        );
+        const res = await axios.get(`http://localhost:8000/member/${state}`);
         setMember(res.data);
       } catch (err) {
         console.error("Failed to fetch member", err);

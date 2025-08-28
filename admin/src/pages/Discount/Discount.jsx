@@ -22,7 +22,7 @@ const Discount = () => {
     const fetchDiscounts = async () => {
       try {
         const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/discount/display"
+          "http://localhost:8000/discount/display"
         );
         setDiscounts(response.data.data || []);
         setLoading(false);
@@ -50,7 +50,7 @@ const Discount = () => {
 
     try {
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/discount/add",
+        "http://localhost:8000/discount/add",
         formData
       );
       console.log("Discount created:", response.data);
@@ -58,7 +58,7 @@ const Discount = () => {
       setFormData({ title: "" });
       // Refresh the list
       const updatedResponse = await axios.get(
-        "https://backend.aashayeinjudiciary.com/discount/display"
+        "http://localhost:8000/discount/display"
       );
       setDiscounts(updatedResponse.data.data || []);
     } catch (err) {
@@ -71,7 +71,7 @@ const Discount = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this discount?")) {
       try {
-        await axios.delete(`https://backend.aashayeinjudiciary.com/discount/deleted/${id}`);
+        await axios.delete(`http://localhost:8000/discount/deleted/${id}`);
         setDiscounts(discounts.filter((discount) => discount._id !== id));
         toast.success("Discount deleted successfully!");
       } catch (err) {
@@ -100,7 +100,7 @@ const Discount = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/discount/display/${editId}`,
+        `http://localhost:8000/discount/display/${editId}`,
         editData
       );
       setDiscounts(
@@ -121,9 +121,9 @@ const Discount = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className='container mx-auto p-4'>
       <ToastContainer
-        position="top-right"
+        position='top-right'
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -133,59 +133,59 @@ const Discount = () => {
         draggable
         pauseOnHover
       />
-      <h1 className="text-2xl font-bold mb-6">Discount Management</h1>
+      <h1 className='text-2xl font-bold mb-6'>Discount Management</h1>
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4'>
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         {/* Create Discount Form */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Create New Discount</h2>
-          <form onSubmit={handleSubmit} className="max-w-md">
-            <div className="mb-4">
+          <h2 className='text-xl font-semibold mb-4'>Create New Discount</h2>
+          <form onSubmit={handleSubmit} className='max-w-md'>
+            <div className='mb-4'>
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="title"
+                className='block text-gray-700 text-sm font-bold mb-2'
+                htmlFor='title'
               >
                 Title
               </label>
               <input
-                type="text"
-                id="title"
-                name="title"
+                type='text'
+                id='title'
+                name='title'
                 value={formData.title}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                 required
               />
             </div>
 
-            <div className="mb-4">
+            <div className='mb-4'>
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="title"
+                className='block text-gray-700 text-sm font-bold mb-2'
+                htmlFor='title'
               >
                 altText
               </label>
               <input
-                type="text"
-                id="altText"
-                name="altText"
+                type='text'
+                id='altText'
+                name='altText'
                 value={formData.altText}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                 required
               />
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className='flex items-center justify-between'>
               <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type='submit'
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               >
                 Create Discount
               </button>
@@ -195,72 +195,72 @@ const Discount = () => {
 
         {/* Discount List */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Discount List</h2>
+          <h2 className='text-xl font-semibold mb-4'>Discount List</h2>
 
           {loading ? (
             <p>Loading discounts...</p>
           ) : (
-            <div className="space-y-4">
+            <div className='space-y-4'>
               {discounts.length === 0 ? (
                 <p>No discounts found</p>
               ) : (
-                <ul className="divide-y divide-gray-200">
+                <ul className='divide-y divide-gray-200'>
                   {discounts.map((discount) => (
-                    <li key={discount._id} className="py-4">
+                    <li key={discount._id} className='py-4'>
                       {editId === discount._id ? (
                         <form
                           onSubmit={handleEditSubmit}
-                          className="flex items-center space-x-2"
+                          className='flex items-center space-x-2'
                         >
                           <input
-                            type="text"
-                            name="title"
+                            type='text'
+                            name='title'
                             value={editData.title}
                             onChange={handleEditChange}
-                            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-1"
+                            className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-1'
                             required
                           />
 
                           <input
-                            type="text"
-                            name="altText"
+                            type='text'
+                            name='altText'
                             value={editData.altText}
                             onChange={handleEditChange}
-                            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-1"
+                            className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-1'
                             required
                           />
 
                           <button
-                            type="submit"
-                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm"
+                            type='submit'
+                            className='bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm'
                           >
                             Save
                           </button>
                           <button
-                            type="button"
+                            type='button'
                             onClick={handleCancelEdit}
-                            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-sm"
+                            className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-sm'
                           >
                             Cancel
                           </button>
                         </form>
                       ) : (
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">{discount.title}</span>
-                          <span className="font-medium">
+                        <div className='flex justify-between items-center'>
+                          <span className='font-medium'>{discount.title}</span>
+                          <span className='font-medium'>
                             {discount.altText}
                           </span>
 
-                          <div className="space-x-2">
+                          <div className='space-x-2'>
                             <button
                               onClick={() => handleEdit(discount)}
-                              className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-sm"
+                              className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-sm'
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => handleDelete(discount._id)}
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
+                              className='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm'
                             >
                               Delete
                             </button>

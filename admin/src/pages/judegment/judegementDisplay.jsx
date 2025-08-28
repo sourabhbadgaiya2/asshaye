@@ -56,18 +56,16 @@ const JudgementDisplay = () => {
   const fetchJudgements = async () => {
     try {
       const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/judement/display"
+        "http://localhost:8000/judement/display"
       );
       const formattedJudgements = response.data.map((judgement) => ({
         ...judgement,
         images: judgement.images
           ? Array.isArray(judgement.images)
             ? judgement.images.map((img) =>
-                img.startsWith("http")
-                  ? img
-                  : `https://backend.aashayeinjudiciary.com/${img}`
+                img.startsWith("http") ? img : `http://localhost:8000/${img}`
               )
-            : [`https://backend.aashayeinjudiciary.com/${judgement.images}`]
+            : [`http://localhost:8000/${judgement.images}`]
           : [],
       }));
       setJudgements(formattedJudgements);
@@ -82,7 +80,7 @@ const JudgementDisplay = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/judementcategory"
+        "http://localhost:8000/judementcategory"
       );
       if (response.data && Array.isArray(response.data)) {
         setCategories(response.data);
@@ -100,9 +98,7 @@ const JudgementDisplay = () => {
     if (!window.confirm("Are you sure you want to delete this judgement?"))
       return;
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/judement/${id}`
-      );
+      await axios.delete(`http://localhost:8000/judement/${id}`);
       fetchJudgements(); // Refresh the list after deletion
       toast.success("Judgement deleted successfully");
     } catch (err) {
@@ -190,8 +186,8 @@ const JudgementDisplay = () => {
       if (editingJudgement) {
         formData.append("id", editingJudgement);
         response = await axios.put(
-          // `https://backend.aashayeinjudiciary.com/judement/editsave/${editingJudgement}`,
-          `https://backend.aashayeinjudiciary.com/judement/editsave/${editingJudgement}`,
+          // `http://localhost:8000/judement/editsave/${editingJudgement}`,
+          `http://localhost:8000/judement/editsave/${editingJudgement}`,
           formData,
           {
             headers: {
@@ -201,7 +197,7 @@ const JudgementDisplay = () => {
         );
       } else {
         response = await axios.post(
-          "https://backend.aashayeinjudiciary.com/judement/create",
+          "http://localhost:8000/judement/create",
           formData,
           {
             headers: {

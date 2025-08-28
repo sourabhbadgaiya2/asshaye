@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE = "https://backend.aashayeinjudiciary.com/api/blog-seo";
+const API_BASE = "http://localhost:8000/api/blog-seo";
 
 // ✅ Create Blog SEO
 export const createBlogSEO = createAsyncThunk(
@@ -17,14 +17,13 @@ export const createBlogSEO = createAsyncThunk(
   }
 );
 
-
 export const getAllBlogSEOs = createAsyncThunk(
   "blogSeo/getAll",
   async (modelName = "Blog", { rejectWithValue }) => {
     console.log(modelName, "thunks");
     try {
       const response = axios.get(
-        "https://backend.aashayeinjudiciary.com/api/seo?modelName=Blog"
+        "http://localhost:8000/api/seo?modelName=Blog"
       );
 
       return response.data;
@@ -59,7 +58,6 @@ export const updateBlogSEO = createAsyncThunk(
     }
   }
 );
-
 
 export const deleteBlogSEO = createAsyncThunk(
   "blogSeo/delete",

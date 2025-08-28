@@ -90,10 +90,7 @@ export const SyllabusDownload = () => {
 
     try {
       setSubmitting(true);
-      await axios.post(
-        "https://backend.aashayeinjudiciary.com/register/add",
-        formData
-      );
+      await axios.post("http://localhost:8000/register/add", formData);
       if (selectedSyllabus?.pdfUrl) {
         handleDownloadPdf(selectedSyllabus.pdfUrl, selectedSyllabus.Coursename);
       }

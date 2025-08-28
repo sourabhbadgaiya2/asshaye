@@ -17,7 +17,7 @@
 //   useEffect(() => {
 //     const fetchFAQs = async () => {
 //       try {
-//         const response = await axios.get('https://backend.aashayeinjudiciary.com/faq/');
+//         const response = await axios.get('http://localhost:8000/faq/');
 //         setFaqs(response.data.data);
 //       } catch (err) {
 //         setError(err.response?.data?.message || 'Failed to fetch FAQs');
@@ -30,7 +30,7 @@
 
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`https://backend.aashayeinjudiciary.com/faq/${id}`);
+//       await axios.delete(`http://localhost:8000/faq/${id}`);
 //       setFaqs(faqs.filter(faq => faq._id !== id));
 //     } catch (err) {
 //       setError(err.response?.data?.message || 'Failed to delete FAQ');
@@ -52,7 +52,7 @@
 
 //   const handleEditSubmit = async (id) => {
 //     try {
-//       const response = await axios.put(`https://backend.aashayeinjudiciary.com/faq/${id}`, editFormData);
+//       const response = await axios.put(`http://localhost:8000/faq/${id}`, editFormData);
 //       setFaqs(faqs.map(faq => faq._id === id ? response.data.data : faq));
 //       setEditingId(null);
 //     } catch (err) {
@@ -242,7 +242,7 @@ const FAQDisplay = () => {
   useEffect(() => {
     const fetchFAQs = async () => {
       try {
-        const response = await axios.get("https://backend.aashayeinjudiciary.com/faq/");
+        const response = await axios.get("http://localhost:8000/faq/");
         setFaqs(response.data.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch FAQs");
@@ -256,7 +256,7 @@ const FAQDisplay = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://backend.aashayeinjudiciary.com/faq/${id}`);
+      await axios.delete(`http://localhost:8000/faq/${id}`);
       setFaqs(faqs.filter((faq) => faq._id !== id));
       toast.success("FAQ deleted successfully!");
     } catch (err) {
@@ -282,7 +282,7 @@ const FAQDisplay = () => {
   const handleEditSubmit = async (id) => {
     try {
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/faq/${id}`,
+        `http://localhost:8000/faq/${id}`,
         editFormData
       );
       setFaqs(faqs.map((faq) => (faq._id === id ? response.data.data : faq)));
@@ -324,31 +324,31 @@ const FAQDisplay = () => {
       name: "Actions",
       cell: (row) =>
         editingId === row._id ? (
-          <div className="space-x-2">
+          <div className='space-x-2'>
             <button
               onClick={() => handleEditSubmit(row._id)}
-              className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+              className='px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700'
             >
               Save
             </button>
             <button
               onClick={handleCancelEdit}
-              className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+              className='px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600'
             >
               Cancel
             </button>
           </div>
         ) : (
-          <div className="space-x-2">
+          <div className='space-x-2'>
             <button
               onClick={() => handleEdit(row)}
-              className="px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+              className='px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600'
             >
               Edit
             </button>
             <button
               onClick={() => handleDelete(row._id)}
-              className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+              className='px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700'
             >
               Delete
             </button>
@@ -388,9 +388,9 @@ const FAQDisplay = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 p-6">
+    <div className='w-full min-h-screen bg-gray-100 p-6'>
       <ToastContainer
-        position="top-right"
+        position='top-right'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -401,20 +401,20 @@ const FAQDisplay = () => {
         pauseOnHover
       />
 
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center">FAQs Management</h1>
-        <div className="flex justify-end mb-4">
+      <div className='max-w-6xl mx-auto'>
+        <h1 className='text-3xl font-bold mb-6 text-center'>FAQs Management</h1>
+        <div className='flex justify-end mb-4'>
           <button
             onClick={() => navigate("/faq/create")}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors'
           >
             Create New FAQ
           </button>
         </div>
 
-        {error && <div className="text-red-500 mb-4">{error}</div>}
+        {error && <div className='text-red-500 mb-4'>{error}</div>}
 
-        <div className="bg-white p-4 rounded shadow-md">
+        <div className='bg-white p-4 rounded shadow-md'>
           <DataTable
             columns={columns}
             data={faqs}
@@ -425,65 +425,65 @@ const FAQDisplay = () => {
             highlightOnHover
             striped
             fixedHeader
-            fixedHeaderScrollHeight="500px"
-            noDataComponent={<div className="py-4">No FAQs found</div>}
+            fixedHeaderScrollHeight='500px'
+            noDataComponent={<div className='py-4'>No FAQs found</div>}
           />
         </div>
 
         {editingId && (
-          <div className="mt-6 p-6 bg-white rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-4">Edit FAQ</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+          <div className='mt-6 p-6 bg-white rounded shadow-md'>
+            <h2 className='text-xl font-semibold mb-4'>Edit FAQ</h2>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+              <div className='mb-4'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Question
                 </label>
                 <input
-                  type="text"
-                  name="title"
+                  type='text'
+                  name='title'
                   value={editFormData.title}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className='mb-4'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Alt Text
                 </label>
                 <input
-                  type="text"
-                  name="altText"
+                  type='text'
+                  name='altText'
                   value={editFormData.altText}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                   required
                 />
               </div>
-              <div className="mb-4 md:col-span-3">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className='mb-4 md:col-span-3'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Answer
                 </label>
                 <textarea
-                  name="response"
+                  name='response'
                   rows={4}
                   value={editFormData.response}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className='w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                   required
                 ></textarea>
               </div>
             </div>
-            <div className="flex justify-end space-x-2 mt-4">
+            <div className='flex justify-end space-x-2 mt-4'>
               <button
                 onClick={handleCancelEdit}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+                className='px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors'
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleEditSubmit(editingId)}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                className='px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'
               >
                 Save Changes
               </button>

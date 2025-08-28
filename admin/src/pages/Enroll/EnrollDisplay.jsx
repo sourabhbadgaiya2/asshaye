@@ -27,7 +27,7 @@ const EnrollDisplay = () => {
 
   const fetchEnquiries = async () => {
     try {
-      const response = await fetch("https://backend.aashayeinjudiciary.com/enroll/alldisplay");
+      const response = await fetch("http://localhost:8000/enroll/alldisplay");
       if (!response.ok) {
         throw new Error("Failed to fetch enquiries");
       }
@@ -37,8 +37,10 @@ const EnrollDisplay = () => {
 
       const enquiriesArray = Array.isArray(data) ? data : data.data || [];
 
-      // to see the new enquiries on top 
-      enquiriesArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      // to see the new enquiries on top
+      enquiriesArray.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
       setEnquiries(enquiriesArray);
       setLoading(false);
     } catch (err) {
@@ -57,7 +59,7 @@ const EnrollDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/enroll/alldelete/${id}`,
+        `http://localhost:8000/enroll/alldelete/${id}`,
         {
           method: "DELETE",
         }
@@ -100,7 +102,7 @@ const EnrollDisplay = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/enroll/editsave/${editingEnquiry}`,
+        `http://localhost:8000/enroll/editsave/${editingEnquiry}`,
         {
           method: "POST",
           headers: {
@@ -267,11 +269,11 @@ const EnrollDisplay = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex space-x-2">
+        <div className='flex space-x-2'>
           <button
             onClick={() => handleDelete(row.id || row._id)}
-            className="text-red-500 hover:text-red-700"
-            title="Delete"
+            className='text-red-500 hover:text-red-700'
+            title='Delete'
           >
             <FaTrash />
           </button>
@@ -284,49 +286,50 @@ const EnrollDisplay = () => {
   ];
 
   const filteredEnquiries = Array.isArray(enquiries)
-    ? enquiries.filter(
-        (item) =>
-          item.name?.toLowerCase().includes(filterText.toLowerCase()) ||
-          item.email?.toLowerCase().includes(filterText.toLowerCase()) ||
-          item.city?.toLowerCase().includes(filterText.toLowerCase()) ||
-          item.CourseName?.toLowerCase().includes(filterText.toLowerCase())
-      )
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt in descending order
+    ? enquiries
+        .filter(
+          (item) =>
+            item.name?.toLowerCase().includes(filterText.toLowerCase()) ||
+            item.email?.toLowerCase().includes(filterText.toLowerCase()) ||
+            item.city?.toLowerCase().includes(filterText.toLowerCase()) ||
+            item.CourseName?.toLowerCase().includes(filterText.toLowerCase())
+        )
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt in descending order
     : [];
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <p className="text-gray-700">Loading enquiries...</p>
+      <div className='min-h-screen flex justify-center items-center bg-gray-50'>
+        <p className='text-gray-700'>Loading enquiries...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <p className="text-red-500">Error: {error}</p>
+      <div className='min-h-screen flex justify-center items-center bg-gray-50'>
+        <p className='text-red-500'>Error: {error}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <ToastContainer position="top-right" autoClose={3000} />
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Enroll display</h1>
-          <div className="flex space-x-2">
+    <div className='min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
+      <ToastContainer position='top-right' autoClose={3000} />
+      <div className='max-w-7xl mx-auto'>
+        <div className='flex justify-between items-center mb-6'>
+          <h1 className='text-3xl font-bold text-gray-900'>Enroll display</h1>
+          <div className='flex space-x-2'>
             <button
               onClick={exportToExcel}
-              className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors"
+              className='flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors'
             >
               <FaFileExcel />
               <span>Excel</span>
             </button>
             <button
               onClick={exportToPDF}
-              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors"
+              className='flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors'
             >
               <FaFilePdf />
               <span>PDF</span>
@@ -335,89 +338,89 @@ const EnrollDisplay = () => {
         </div>
 
         {editingEnquiry && (
-          <div className="mb-6 bg-white p-6 rounded-lg shadow-md transition-all duration-300">
-            <h2 className="text-xl font-semibold mb-4">Edit Enquiry</h2>
+          <div className='mb-6 bg-white p-6 rounded-lg shadow-md transition-all duration-300'>
+            <h2 className='text-xl font-semibold mb-4'>Edit Enquiry</h2>
             <form onSubmit={handleEditSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-4'>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Name
                   </label>
                   <input
-                    type="text"
-                    name="name"
+                    type='text'
+                    name='name'
                     value={editFormData.name}
                     onChange={handleEditFormChange}
-                    className="w-full p-2 border rounded-md shadow-sm"
+                    className='w-full p-2 border rounded-md shadow-sm'
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Email
                   </label>
                   <input
-                    type="email"
-                    name="email"
+                    type='email'
+                    name='email'
                     value={editFormData.email}
                     onChange={handleEditFormChange}
-                    className="w-full p-2 border rounded-md shadow-sm"
+                    className='w-full p-2 border rounded-md shadow-sm'
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Phone
                   </label>
                   <input
-                    type="tel"
-                    name="phone"
+                    type='tel'
+                    name='phone'
                     value={editFormData.phone}
                     onChange={handleEditFormChange}
-                    className="w-full p-2 border rounded-md shadow-sm"
+                    className='w-full p-2 border rounded-md shadow-sm'
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     City
                   </label>
                   <input
-                    type="text"
-                    name="city"
+                    type='text'
+                    name='city'
                     value={editFormData.city}
                     onChange={handleEditFormChange}
-                    className="w-full p-2 border rounded-md shadow-sm"
+                    className='w-full p-2 border rounded-md shadow-sm'
                     required
                   />
                 </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                <div className='md:col-span-2'>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
                     Status
                   </label>
                   <select
-                    name="status"
+                    name='status'
                     value={editFormData.status}
                     onChange={handleEditFormChange}
-                    className="w-full p-2 border rounded-md shadow-sm"
+                    className='w-full p-2 border rounded-md shadow-sm'
                   >
-                    <option value="new">New</option>
-                    <option value="in_progress">In Progress</option>
-                    <option value="completed">Completed</option>
+                    <option value='new'>New</option>
+                    <option value='in_progress'>In Progress</option>
+                    <option value='completed'>Completed</option>
                   </select>
                 </div>
               </div>
-              <div className="flex justify-end space-x-3">
+              <div className='flex justify-end space-x-3'>
                 <button
-                  type="button"
+                  type='button'
                   onClick={cancelEdit}
-                  className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+                  className='px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400'
                 >
                   Cancel
                 </button>
                 <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  type='submit'
+                  className='px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700'
                 >
                   Save Changes
                 </button>
@@ -426,11 +429,11 @@ const EnrollDisplay = () => {
           </div>
         )}
 
-        <div className="mb-4">
+        <div className='mb-4'>
           <input
-            type="text"
-            placeholder="Search by Name, Email, city or Product..."
-            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200"
+            type='text'
+            placeholder='Search by Name, Email, city or Product...'
+            className='w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200'
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
           />
@@ -443,7 +446,7 @@ const EnrollDisplay = () => {
           highlightOnHover
           striped
           responsive
-          noDataComponent="No enquiries found."
+          noDataComponent='No enquiries found.'
         />
       </div>
     </div>

@@ -43,7 +43,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await axios.get(
-//         "https://backend.aashayeinjudiciary.com/member/display"
+//         "http://localhost:8000/member/display"
 //       );
 //       setMembers(response.data);
 //       setError(null);
@@ -90,7 +90,7 @@
 //     if (window.confirm("Are you sure you want to delete this team member?")) {
 //       try {
 //         await axios.delete(
-//           `https://backend.aashayeinjudiciary.com/member/${id}`
+//           `http://localhost:8000/member/${id}`
 //         );
 //         setMembers((prev) => prev.filter((member) => member._id !== id));
 //         toast.success("Team member deleted successfully");
@@ -115,7 +115,7 @@
 //       setLoading(true);
 //       // Fetch the specific member data using the getMemberById endpoint
 //       const response = await axios.get(
-//         `https://backend.aashayeinjudiciary.com/member/${member._id}`
+//         `http://localhost:8000/member/${member._id}`
 //       );
 //       setCurrentMember(response.data);
 //       setIsEditing(true);
@@ -218,7 +218,7 @@
 //     try {
 //       setLoading(true);
 //       const response = await axios.put(
-//         `https://backend.aashayeinjudiciary.com/member/editsave/${currentMember._id}`,
+//         `http://localhost:8000/member/editsave/${currentMember._id}`,
 //         formData,
 //         {
 //           headers: {
@@ -696,7 +696,7 @@ import {
   FiMail,
   FiPhone,
   FiMapPin,
-  FiBriefcase
+  FiBriefcase,
 } from "react-icons/fi";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -706,7 +706,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 const TeamMemberDisplay = () => {
   const [members, setMembers] = useState([]);
@@ -735,34 +735,33 @@ const TeamMemberDisplay = () => {
   // Modal styles
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '80%',
-      maxWidth: '900px',
-      maxHeight: '90vh',
-      overflow: 'auto',
-      borderRadius: '0.5rem',
-      border: '1px solid #e5e7eb',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      padding: '0'
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width: "80%",
+      maxWidth: "900px",
+      maxHeight: "90vh",
+      overflow: "auto",
+      borderRadius: "0.5rem",
+      border: "1px solid #e5e7eb",
+      boxShadow:
+        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      padding: "0",
     },
     overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1000
-    }
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      zIndex: 1000,
+    },
   };
 
   // Fetch all members
   const fetchMembers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        "https://backend.aashayeinjudiciary.com/member/display"
-      );
+      const response = await axios.get("http://localhost:8000/member/display");
       setMembers(response.data);
       setError(null);
     } catch (err) {
@@ -811,9 +810,7 @@ const TeamMemberDisplay = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this team member?")) {
       try {
-        await axios.delete(
-          `https://backend.aashayeinjudiciary.com/member/${id}`
-        );
+        await axios.delete(`http://localhost:8000/member/${id}`);
         setMembers((prev) => prev.filter((member) => member._id !== id));
         toast.success("Team member deleted successfully");
       } catch (err) {
@@ -842,7 +839,7 @@ const TeamMemberDisplay = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://backend.aashayeinjudiciary.com/member/${member._id}`
+        `http://localhost:8000/member/${member._id}`
       );
       setCurrentMember(response.data);
       setIsEditing(true);
@@ -954,7 +951,7 @@ const TeamMemberDisplay = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        `https://backend.aashayeinjudiciary.com/member/editsave/${currentMember._id}`,
+        `http://localhost:8000/member/editsave/${currentMember._id}`,
         formData,
         {
           headers: {
@@ -1189,7 +1186,9 @@ const TeamMemberDisplay = () => {
                 No team members found
               </h3>
               <p className='text-gray-500 mt-1'>
-                {filterText ? 'Try a different search term' : 'Add your first team member to get started'}
+                {filterText
+                  ? "Try a different search term"
+                  : "Add your first team member to get started"}
               </p>
             </div>
           }
@@ -1201,44 +1200,47 @@ const TeamMemberDisplay = () => {
         isOpen={isViewing}
         onRequestClose={handleCloseView}
         style={customStyles}
-        contentLabel="View Team Member"
+        contentLabel='View Team Member'
       >
         {currentMember && (
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-4 border-b pb-4">
-              <h2 className="text-2xl font-bold text-gray-800">{currentMember.Membername}</h2>
+          <div className='p-6'>
+            <div className='flex justify-between items-center mb-4 border-b pb-4'>
+              <h2 className='text-2xl font-bold text-gray-800'>
+                {currentMember.Membername}
+              </h2>
               <button
                 onClick={handleCloseView}
-                className="text-gray-500 hover:text-gray-700"
+                className='text-gray-500 hover:text-gray-700'
               >
                 <FiX size={24} />
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-1">
-                <div className="space-y-4">
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+              <div className='md:col-span-1'>
+                <div className='space-y-4'>
                   {currentMember.images && currentMember.images.length > 0 ? (
-                    <div className="space-y-2">
-                      <div className="relative">
+                    <div className='space-y-2'>
+                      <div className='relative'>
                         <img
                           src={currentMember.images[0]}
                           alt={currentMember.Membername}
-                          className="w-full h-64 object-cover rounded-lg border border-gray-200"
+                          className='w-full h-64 object-cover rounded-lg border border-gray-200'
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = "https://via.placeholder.com/400x300";
+                            e.target.src =
+                              "https://via.placeholder.com/400x300";
                           }}
                         />
                       </div>
                       {currentMember.images.length > 1 && (
-                        <div className="grid grid-cols-3 gap-2">
+                        <div className='grid grid-cols-3 gap-2'>
                           {currentMember.images.slice(1).map((img, index) => (
-                            <div key={index} className="relative">
+                            <div key={index} className='relative'>
                               <img
                                 src={img}
                                 alt={`${currentMember.Membername}-${index + 1}`}
-                                className="w-full h-20 object-cover rounded border border-gray-200"
+                                className='w-full h-20 object-cover rounded border border-gray-200'
                               />
                             </div>
                           ))}
@@ -1246,36 +1248,41 @@ const TeamMemberDisplay = () => {
                       )}
                     </div>
                   ) : (
-                    <div className="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400">
+                    <div className='w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400'>
                       <FiImage size={48} />
                     </div>
                   )}
 
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <FiBriefcase className="text-gray-500" />
-                      <span className="font-medium">{currentMember.Teamposition}</span>
+                  <div className='space-y-2'>
+                    <div className='flex items-center space-x-2'>
+                      <FiBriefcase className='text-gray-500' />
+                      <span className='font-medium'>
+                        {currentMember.Teamposition}
+                      </span>
                     </div>
 
                     {currentMember.email && (
-                      <div className="flex items-center space-x-2">
-                        <FiMail className="text-gray-500" />
-                        <a href={`mailto:${currentMember.email}`} className="text-blue-600 hover:underline">
+                      <div className='flex items-center space-x-2'>
+                        <FiMail className='text-gray-500' />
+                        <a
+                          href={`mailto:${currentMember.email}`}
+                          className='text-blue-600 hover:underline'
+                        >
                           {currentMember.email}
                         </a>
                       </div>
                     )}
 
                     {currentMember.phone && (
-                      <div className="flex items-center space-x-2">
-                        <FiPhone className="text-gray-500" />
+                      <div className='flex items-center space-x-2'>
+                        <FiPhone className='text-gray-500' />
                         <span>{currentMember.phone}</span>
                       </div>
                     )}
 
                     {currentMember.address && (
-                      <div className="flex items-center space-x-2">
-                        <FiMapPin className="text-gray-500" />
+                      <div className='flex items-center space-x-2'>
+                        <FiMapPin className='text-gray-500' />
                         <span>{currentMember.address}</span>
                       </div>
                     )}
@@ -1283,28 +1290,40 @@ const TeamMemberDisplay = () => {
                 </div>
               </div>
 
-              <div className="md:col-span-2">
-                <div className="space-y-4">
+              <div className='md:col-span-2'>
+                <div className='space-y-4'>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">About</h3>
+                    <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+                      About
+                    </h3>
                     <div
-                      className="prose max-w-none text-gray-700"
+                      className='prose max-w-none text-gray-700'
                       dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(currentMember.desciption || "No description available"),
+                        __html: DOMPurify.sanitize(
+                          currentMember.desciption || "No description available"
+                        ),
                       }}
                     />
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Additional Information</h3>
-                    <div className="space-y-2">
+                    <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+                      Additional Information
+                    </h3>
+                    <div className='space-y-2'>
                       <div>
-                        <span className="font-medium text-gray-700">Alt Text: </span>
+                        <span className='font-medium text-gray-700'>
+                          Alt Text:{" "}
+                        </span>
                         <span>{currentMember.altText || "Not specified"}</span>
                       </div>
                       <div>
-                        <span className="font-medium text-gray-700">Static URL: </span>
-                        <span>{currentMember.staticUrl || "Not specified"}</span>
+                        <span className='font-medium text-gray-700'>
+                          Static URL:{" "}
+                        </span>
+                        <span>
+                          {currentMember.staticUrl || "Not specified"}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -1312,10 +1331,10 @@ const TeamMemberDisplay = () => {
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t flex justify-end">
+            <div className='mt-6 pt-4 border-t flex justify-end'>
               <button
                 onClick={handleCloseView}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                className='px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors'
               >
                 Close
               </button>
@@ -1329,119 +1348,121 @@ const TeamMemberDisplay = () => {
         isOpen={isEditing}
         onRequestClose={handleCancelEdit}
         style={customStyles}
-        contentLabel="Edit Team Member"
+        contentLabel='Edit Team Member'
       >
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-4 border-b pb-4">
-            <h2 className="text-2xl font-bold text-gray-800">Edit Team Member</h2>
+        <div className='p-6'>
+          <div className='flex justify-between items-center mb-4 border-b pb-4'>
+            <h2 className='text-2xl font-bold text-gray-800'>
+              Edit Team Member
+            </h2>
             <button
               onClick={handleCancelEdit}
-              className="text-gray-500 hover:text-gray-700"
+              className='text-gray-500 hover:text-gray-700'
             >
               <FiX size={24} />
             </button>
           </div>
 
           <form onSubmit={handleUpdate}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-6'>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Member Name*
                 </label>
                 <input
-                  type="text"
-                  name="Membername"
+                  type='text'
+                  name='Membername'
                   value={editFormData.Membername}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Position*
                 </label>
                 <input
-                  type="text"
-                  name="Teamposition"
+                  type='text'
+                  name='Teamposition'
                   value={editFormData.Teamposition}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Alt Text
                 </label>
                 <input
-                  type="text"
-                  name="altText"
+                  type='text'
+                  name='altText'
                   value={editFormData.altText}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Static URL
                 </label>
                 <input
-                  type="text"
-                  name="staticUrl"
+                  type='text'
+                  name='staticUrl'
                   value={editFormData.staticUrl}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Email
                 </label>
                 <input
-                  type="email"
-                  name="email"
+                  type='email'
+                  name='email'
                   value={editFormData.email}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Phone
                 </label>
                 <input
-                  type="tel"
-                  name="phone"
+                  type='tel'
+                  name='phone'
                   value={editFormData.phone}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Address
                 </label>
                 <input
-                  type="text"
-                  name="address"
+                  type='text'
+                  name='address'
                   value={editFormData.address}
                   onChange={handleEditChange}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className='w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition-all'
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Description
                 </label>
-                <div className="border border-gray-300 rounded-md overflow-hidden">
+                <div className='border border-gray-300 rounded-md overflow-hidden'>
                   <CKEditor
                     editor={ClassicEditor}
                     data={editFormData.desciption}
@@ -1520,22 +1541,22 @@ const TeamMemberDisplay = () => {
                 </div>
               </div> */}
 
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
                   Images
                 </label>
-                <div className="flex flex-wrap gap-3 mb-3">
+                <div className='flex flex-wrap gap-3 mb-3'>
                   {imagePreviews.map((img, index) => (
-                    <div key={index} className="relative group">
+                    <div key={index} className='relative group'>
                       <img
                         src={img}
                         alt={`preview-${index}`}
-                        className="w-20 h-20 object-cover rounded border border-gray-200"
+                        className='w-20 h-20 object-cover rounded border border-gray-200'
                       />
                       <button
-                        type="button"
+                        type='button'
                         onClick={() => removeImage(index)}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                        className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors'
                       >
                         <FiX size={12} />
                       </button>
@@ -1543,41 +1564,57 @@ const TeamMemberDisplay = () => {
                   ))}
                 </div>
 
-                <label className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-colors">
-                  <FiUpload className="mr-2" />
+                <label className='inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-colors'>
+                  <FiUpload className='mr-2' />
                   Upload Images
                   <input
-                    type="file"
+                    type='file'
                     multiple
-                    accept="image/*"
+                    accept='image/*'
                     onChange={handleImageChange}
-                    className="sr-only"
+                    className='sr-only'
                   />
                 </label>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className='mt-1 text-sm text-gray-500'>
                   Upload new images to add to existing ones
                 </p>
               </div>
             </div>
 
-            <div className="flex justify-end space-x-3 pt-4 border-t">
+            <div className='flex justify-end space-x-3 pt-4 border-t'>
               <button
-                type="button"
+                type='button'
                 onClick={handleCancelEdit}
-                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                className='px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors'
               >
                 Cancel
               </button>
               <button
-                type="submit"
-                className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50"
+                type='submit'
+                className='px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50'
                 disabled={loading}
               >
                 {loading ? (
-                  <span className="flex items-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <span className='flex items-center'>
+                    <svg
+                      className='animate-spin -ml-1 mr-2 h-4 w-4 text-white'
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                    >
+                      <circle
+                        className='opacity-25'
+                        cx='12'
+                        cy='12'
+                        r='10'
+                        stroke='currentColor'
+                        strokeWidth='4'
+                      ></circle>
+                      <path
+                        className='opacity-75'
+                        fill='currentColor'
+                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                      ></path>
                     </svg>
                     Saving...
                   </span>

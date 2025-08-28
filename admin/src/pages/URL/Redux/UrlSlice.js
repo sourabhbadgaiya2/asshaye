@@ -4,7 +4,7 @@
 
 // // // Add new URL
 // // export const addUrl = createAsyncThunk('urls/addUrl', async (urlData) => {
-// //   const response = await axios.post('https://backend.aashayeinjudiciary.com/url/create', urlData);
+// //   const response = await axios.post('http://localhost:8000/url/create', urlData);
 // //   return response.data;
 // // });
 
@@ -13,7 +13,7 @@
 // //   'urls/fetchAll',
 // //   async (_, { rejectWithValue }) => {
 // //     try {
-// //       const response = await axios.get('https://backend.aashayeinjudiciary.com/url/display');
+// //       const response = await axios.get('http://localhost:8000/url/display');
 // //       return response.data.data;
 // //     } catch (error) {
 // //       return rejectWithValue(error.response?.data || error.message);
@@ -25,7 +25,7 @@
 // //   'urls/fetchById',
 // //   async (id, { rejectWithValue }) => {
 // //     try {
-// //       const response = await axios.get(`https://backend.aashayeinjudiciary.com/url/${id}`);
+// //       const response = await axios.get(`http://localhost:8000/url/${id}`);
 // //       return response.data.data;
 // //     } catch (error) {
 // //       return rejectWithValue(error.response?.data || error.message);
@@ -38,7 +38,7 @@
 // //   'urls/delete',
 // //   async (id, { rejectWithValue }) => {
 // //     try {
-// //       await axios.delete(`https://backend.aashayeinjudiciary.com/url/${id}`);
+// //       await axios.delete(`http://localhost:8000/url/${id}`);
 // //       return id;
 // //     } catch (error) {
 // //       return rejectWithValue(error.response?.data || error.message);
@@ -130,7 +130,7 @@
 // // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // // import axios from 'axios';
 
-// // const API_BASE_URL = 'https://backend.aashayeinjudiciary.com/url';
+// // const API_BASE_URL = 'http://localhost:8000/url';
 
 // // // Add new URL
 // // export const addUrl = createAsyncThunk(
@@ -283,7 +283,7 @@
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
 
-// const API_BASE_URL = 'https://backend.aashayeinjudiciary.com/url';
+// const API_BASE_URL = 'http://localhost:8000/url';
 
 // // Add new URL
 // export const addUrl = createAsyncThunk(
@@ -470,7 +470,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "https://backend.aashayeinjudiciary.com/url";
+const API_BASE_URL = "http://localhost:8000/url";
 
 export const addUrl = createAsyncThunk(
   "urls/addUrl",

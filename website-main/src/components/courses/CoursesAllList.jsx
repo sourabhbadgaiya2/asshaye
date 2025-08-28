@@ -25,9 +25,7 @@ export const CoursesAllList = ({ selectedCategoryId }) => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/judement/display"
-      );
+      const response = await fetch("http://localhost:8000/judement/display");
       if (!response.ok) throw new Error("Failed to fetch judgments");
 
       const data = await response.json();
@@ -93,8 +91,11 @@ export const CoursesAllList = ({ selectedCategoryId }) => {
   );
 
   const renderCourseCard = (course) => (
-    <div key={course._id} id="radiolog" className='col-lg-10 col-sm-12 mb-4'>
-      <div style={{ justifyContent:"space-between" }} className='td_card td_style_5  td_type_3 hover-effect'>
+    <div key={course._id} id='radiolog' className='col-lg-10 col-sm-12 mb-4'>
+      <div
+        style={{ justifyContent: "space-between" }}
+        className='td_card td_style_5  td_type_3 hover-effect'
+      >
         <div
           className='td_card_thumb clickable'
           onClick={() => handleCourseClick(course._id)}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -168,7 +167,7 @@ const MainForm = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://backend.aashayeinjudiciary.com/main/create",
+        "http://localhost:8000/main/create",
         data,
         {
           headers: {
@@ -212,28 +211,28 @@ const MainForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white shadow rounded-lg p-6 sm:p-8">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800">Main test</h2>
-            <p className="text-gray-600 mt-2">
+    <div className='min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-3xl mx-auto'>
+        <div className='bg-white shadow rounded-lg p-6 sm:p-8'>
+          <div className='mb-8'>
+            <h2 className='text-2xl font-bold text-gray-800'>Main test</h2>
+            <p className='text-gray-600 mt-2'>
               Fill in the details below to create a new main test
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-               <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <form onSubmit={handleSubmit} className='space-y-6'>
+            <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
               <div>
                 <label
-                  htmlFor="category"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='category'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Category
                 </label>
                 <select
-                  id="category"
-                  name="category"
+                  id='category'
+                  name='category'
                   value={formData.category}
                   onChange={handleChange}
                   className={`w-full px-4 py-2 border ${
@@ -241,7 +240,7 @@ const MainForm = () => {
                   } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   required
                 >
-                  <option value="">Select a category</option>
+                  <option value=''>Select a category</option>
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
@@ -249,20 +248,20 @@ const MainForm = () => {
                   ))}
                 </select>
                 {errors.category && (
-                  <p className="mt-1 text-sm text-red-600">{errors.category}</p>
+                  <p className='mt-1 text-sm text-red-600'>{errors.category}</p>
                 )}
               </div>
 
               <div>
                 <label
-                  htmlFor="subcategory"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='subcategory'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Subcategory
                 </label>
                 <select
-                  id="subcategory"
-                  name="subcategory"
+                  id='subcategory'
+                  name='subcategory'
                   value={formData.subcategory}
                   onChange={handleChange}
                   disabled={!formData.category}
@@ -271,7 +270,7 @@ const MainForm = () => {
                   } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   required
                 >
-                  <option value="">Select a subcategory</option>
+                  <option value=''>Select a subcategory</option>
                   {filteredSubCategories.map((subcategory) => (
                     <option key={subcategory._id} value={subcategory._id}>
                       {subcategory.name}
@@ -279,7 +278,7 @@ const MainForm = () => {
                   ))}
                 </select>
                 {errors.subcategory && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className='mt-1 text-sm text-red-600'>
                     {errors.subcategory}
                   </p>
                 )}
@@ -287,21 +286,21 @@ const MainForm = () => {
 
               <div>
                 <label
-                  htmlFor="subsubcategory"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='subsubcategory'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Sub-subcategory
                 </label>
                 <select
-                  id="subsubcategory"
-                  name="subsubcategory"
+                  id='subsubcategory'
+                  name='subsubcategory'
                   value={formData.subsubcategory}
                   onChange={handleChange}
                   className={`w-full px-4 py-2 border ${
                     errors.subsubcategory ? "border-red-500" : "border-gray-300"
                   } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 >
-                  <option value="">Select a sub-subcategory (optional)</option>
+                  <option value=''>Select a sub-subcategory (optional)</option>
                   {subsubCategories.map((subsubcategory) => (
                     <option key={subsubcategory._id} value={subsubcategory._id}>
                       {subsubcategory.name}
@@ -309,26 +308,24 @@ const MainForm = () => {
                   ))}
                 </select>
                 {errors.subsubcategory && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className='mt-1 text-sm text-red-600'>
                     {errors.subsubcategory}
                   </p>
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-
-
+            <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
               <div>
                 <label
-                  htmlFor="testmodule"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='testmodule'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Test type
                 </label>
                 <input
-                  type="text"
-                  id="testmodule"
-                  name="testmodule"
+                  type='text'
+                  id='testmodule'
+                  name='testmodule'
                   value={formData.testmodule}
                   onChange={handleChange}
                   className={`w-full px-4 py-2 border ${
@@ -337,22 +334,22 @@ const MainForm = () => {
                   required
                 />
                 {errors.testmodule && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className='mt-1 text-sm text-red-600'>
                     {errors.testmodule}
                   </p>
                 )}
               </div>
- <div>
+              <div>
                 <label
-                  htmlFor="Price"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='Price'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Price
                 </label>
                 <input
-                  type="number"
-                  id="Price"
-                  name="Price"
+                  type='number'
+                  id='Price'
+                  name='Price'
                   value={formData.Price}
                   onChange={handleChange}
                   className={`w-full px-4 py-2 border ${
@@ -361,20 +358,20 @@ const MainForm = () => {
                   required
                 />
                 {errors.Price && (
-                  <p className="mt-1 text-sm text-red-600">{errors.Price}</p>
+                  <p className='mt-1 text-sm text-red-600'>{errors.Price}</p>
                 )}
               </div>
               <div>
                 <label
-                  htmlFor="altText"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='altText'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Alt Tag
                 </label>
                 <input
-                  type="text"
-                  id="altText"
-                  name="altText"
+                  type='text'
+                  id='altText'
+                  name='altText'
                   value={formData.altText}
                   onChange={handleChange}
                   className={`w-full px-4 py-2 border ${
@@ -382,42 +379,42 @@ const MainForm = () => {
                   } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
                 {errors.altText && (
-                  <p className="mt-1 text-sm text-red-600">{errors.altText}</p>
+                  <p className='mt-1 text-sm text-red-600'>{errors.altText}</p>
                 )}
               </div>
 
               <div>
                 <label
-                  htmlFor="Durations"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='Durations'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Duration
                 </label>
                 <input
-                  type="text"
-                  id="Durations"
-                  name="Durations"
+                  type='text'
+                  id='Durations'
+                  name='Durations'
                   value={formData.Durations}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                   required
                 />
               </div>
 
               <div>
                 <label
-                  htmlFor="LastDate"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor='LastDate'
+                  className='block text-sm font-medium text-gray-700 mb-1'
                 >
                   Last Date
                 </label>
                 <input
-                  type="date"
-                  id="LastDate"
-                  name="LastDate"
+                  type='date'
+                  id='LastDate'
+                  name='LastDate'
                   value={formData.LastDate}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
                   required
                 />
               </div>
@@ -426,16 +423,16 @@ const MainForm = () => {
             {/* Image Upload Field */}
             <div>
               <label
-                htmlFor="images"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                htmlFor='images'
+                className='block text-sm font-medium text-gray-700 mb-1'
               >
                 Main Image<span>(Recommended: Width 1200px, Height 650px)</span>
               </label>
               <input
-                type="file"
-                id="images"
-                name="images"
-                accept="image/*"
+                type='file'
+                id='images'
+                name='images'
+                accept='image/*'
                 onChange={handleFileChange}
                 className={`w-full px-4 py-2 border ${
                   errors.images ? "border-red-500" : "border-gray-300"
@@ -443,25 +440,23 @@ const MainForm = () => {
                 required
               />
               {errors.images && (
-                <p className="mt-1 text-sm text-red-600">{errors.images}</p>
+                <p className='mt-1 text-sm text-red-600'>{errors.images}</p>
               )}
               {imagePreview && (
-                <div className="mt-2">
+                <div className='mt-2'>
                   <img
                     src={imagePreview}
-                    alt="Preview"
-                    className="h-32 object-cover rounded"
+                    alt='Preview'
+                    className='h-32 object-cover rounded'
                   />
                 </div>
               )}
             </div>
 
-
-
             <div>
               <label
-                htmlFor="CourseDescription"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                htmlFor='CourseDescription'
+                className='block text-sm font-medium text-gray-700 mb-1'
               >
                 Description
               </label>
@@ -486,15 +481,15 @@ const MainForm = () => {
                 }}
               />
               {errors.CourseDescription && (
-                <p className="mt-1 text-sm text-red-600">
+                <p className='mt-1 text-sm text-red-600'>
                   {errors.CourseDescription}
                 </p>
               )}
             </div>
 
-            <div className="pt-4">
+            <div className='pt-4'>
               <button
-                type="submit"
+                type='submit'
                 disabled={loading}
                 className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                   loading ? "opacity-70 cursor-not-allowed" : ""
@@ -503,23 +498,23 @@ const MainForm = () => {
                 {loading ? (
                   <>
                     <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
+                      className='animate-spin -ml-1 mr-3 h-5 w-5 text-white'
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
                     >
                       <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
+                        className='opacity-25'
+                        cx='12'
+                        cy='12'
+                        r='10'
+                        stroke='currentColor'
+                        strokeWidth='4'
                       ></circle>
                       <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        className='opacity-75'
+                        fill='currentColor'
+                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
                       ></path>
                     </svg>
                     Creating...

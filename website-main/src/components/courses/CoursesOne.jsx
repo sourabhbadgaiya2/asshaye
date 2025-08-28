@@ -30,9 +30,7 @@ export const CoursesOne = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(
-          "https://backend.aashayeinjudiciary.com/api/allcourse"
-        );
+        const response = await fetch("http://localhost:8000/api/allcourse");
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -83,9 +81,10 @@ export const CoursesOne = () => {
           <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
             Popular Judiciary Courses
           </h4>
-          <p className='td_section_title td_fs_20 mb-0'>Top-rated courses designed to prepare you for Civil Judge & Judiciary Exams with confidence.
-</p>
-
+          <p className='td_section_title td_fs_20 mb-0'>
+            Top-rated courses designed to prepare you for Civil Judge &
+            Judiciary Exams with confidence.
+          </p>
         </div>
         <div className='td_height_30 td_height_lg_30' />
 

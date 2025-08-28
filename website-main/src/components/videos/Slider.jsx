@@ -114,9 +114,7 @@ export const Slider = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/url/display"
-        );
+        const response = await axios.get("http://localhost:8000/url/display");
         setStories(response.data.data);
         // console.log(stories, "aaaaaaaaaaaaaaaaaaaaaaaaaa");
       } catch (err) {
@@ -129,18 +127,18 @@ export const Slider = () => {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#f8f9fa" }} className="py-5">
-        <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>Important courses available on YouTube
-</h4>
+    <div style={{ backgroundColor: "#f8f9fa" }} className='py-5'>
+      <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_10 text-uppercase td_accent_color text-center'>
+        Important courses available on YouTube
+      </h4>
 
-
-      <div className="mx-auto px-3 px-md-5">
+      <div className='mx-auto px-3 px-md-5'>
         {loading ? (
-          <p className="text-center text-gray-500">Loading videos...</p>
+          <p className='text-center text-gray-500'>Loading videos...</p>
         ) : error ? (
-          <p className="text-center text-red-500">{error}</p>
+          <p className='text-center text-red-500'>{error}</p>
         ) : stories.length === 0 ? (
-          <p className="text-center text-gray-500">No videos available.</p>
+          <p className='text-center text-gray-500'>No videos available.</p>
         ) : (
           <>
             <Swiper
@@ -157,26 +155,26 @@ export const Slider = () => {
               autoplay={{ delay: 3000 }}
               pagination={{ clickable: true, el: ".swiper-pagination" }}
               navigation={true}
-              className="custom-swiper"
+              className='custom-swiper'
             >
               {stories.map((story, idx) => (
                 <SwiperSlide key={idx}>
-                  <div className="video-container w-full h-64 sm:h-96">
+                  <div className='video-container w-full h-64 sm:h-96'>
                     <iframe
-                      width="100%"
-                      height="100%"
-                      className="w-full h-full rounded-lg"
+                      width='100%'
+                      height='100%'
+                      className='w-full h-full rounded-lg'
                       src={story.URL}
                       title={`Course Video ${idx + 1}`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      frameBorder='0'
+                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                       allowFullScreen
                     ></iframe>
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="swiper-pagination"></div>
+            <div className='swiper-pagination'></div>
           </>
         )}
       </div>

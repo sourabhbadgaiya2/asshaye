@@ -86,7 +86,7 @@ const SuccessStory = () => {
     imageFiles.forEach((file) => formData.append("images", file));
 
     try {
-      const api = "https://backend.aashayeinjudiciary.com/success/create";
+      const api = "http://localhost:8000/success/create";
       const response = await axios.post(api, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });

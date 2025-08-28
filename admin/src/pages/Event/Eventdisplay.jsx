@@ -45,9 +45,7 @@ const Eventdisplay = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/event"
-      );
+      const response = await fetch("http://localhost:8000/event");
       if (!response.ok) {
         throw new Error("Failed to fetch events");
       }
@@ -68,12 +66,9 @@ const Eventdisplay = () => {
     if (!confirm) return;
 
     try {
-      const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/event/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`http://localhost:8000/event/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) {
         throw new Error("Failed to delete event");
@@ -146,7 +141,7 @@ const Eventdisplay = () => {
       }
 
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/event/editsave/${editingEvent._id}`,
+        `http://localhost:8000/event/editsave/${editingEvent._id}`,
         {
           method: "PUT",
           body: formData,

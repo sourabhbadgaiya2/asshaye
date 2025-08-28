@@ -121,8 +121,8 @@ const Blog = () => {
     imageFiles.forEach((file) => formData.append("images", file));
 
     try {
-      // const api = "https://backend.aashayeinjudiciary.com/blog/create";
-      const api = "https://backend.aashayeinjudiciary.com/blog/create";
+      // const api = "http://localhost:8000/blog/create";
+      const api = "http://localhost:8000/blog/create";
       const response = await axios.post(api, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -254,7 +254,6 @@ const Blog = () => {
             ))}
           </select>
         </div>
-      
       </div>
 
       {/* <div className="mb-4">

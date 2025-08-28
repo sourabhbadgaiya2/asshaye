@@ -37,7 +37,6 @@ export const BlogDetails = ({ courseId }) => {
     }
   }, [product]);
 
-
   useEffect(() => {
     if (courseId) {
       axios
@@ -57,7 +56,7 @@ export const BlogDetails = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://backend.aashayeinjudiciary.com/blog/${state.blogId}`
+          `http://localhost:8000/blog/${state.blogId}`
         );
         setProduct(res.data);
       } catch (err) {
@@ -243,8 +242,6 @@ export const BlogDetails = ({ courseId }) => {
                 {dayjs(product.LastDate).format("DD MMM YYYY") ||
                   "Unknown date"}
               </li>
-
-            
             </ul>
           </div>
         </div>

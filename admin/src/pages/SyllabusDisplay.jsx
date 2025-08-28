@@ -31,9 +31,7 @@ const SyllabusDisplay = () => {
   // const fetchSyllabus = async () => {
   const fetchSyllabus = async () => {
     try {
-      const response = await fetch(
-        "https://backend.aashayeinjudiciary.com/syllabus/alldisplay"
-      );
+      const response = await fetch("http://localhost:8000/syllabus/alldisplay");
       if (!response.ok) throw new Error("Failed to fetch syllabus data");
       const data = await response.json();
       setSyllabusData(Array.isArray(data.data) ? data.data : []);
@@ -66,7 +64,7 @@ const SyllabusDisplay = () => {
   const handleEdit = async (id) => {
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/syllabus/editdisplay?id=${id}`
+        `http://localhost:8000/syllabus/editdisplay?id=${id}`
       );
       if (!response.ok) throw new Error("Failed to fetch syllabus details");
 
@@ -119,7 +117,7 @@ const SyllabusDisplay = () => {
 
     try {
       const response = await fetch(
-        `https://backend.aashayeinjudiciary.com/syllabus/delete/${id}`,
+        `http://localhost:8000/syllabus/delete/${id}`,
         {
           method: "DELETE",
         }
@@ -157,8 +155,8 @@ const SyllabusDisplay = () => {
       }
 
       const response = await fetch(
-        // `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
-        `https://backend.aashayeinjudiciary.com/syllabus/editsave/${editingId}`,
+        // `http://localhost:8000/syllabus/editsave/${editingId}`,
+        `http://localhost:8000/syllabus/editsave/${editingId}`,
         {
           method: "PUT",
           body: formData,

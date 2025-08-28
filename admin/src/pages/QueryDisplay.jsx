@@ -14,7 +14,7 @@ const QueryDisplay = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const api = "https://backend.aashayeinjudiciary.com/query/display";
+  const api = "http://localhost:8000/query/display";
 
   // Load queries
   const loadData = async () => {
@@ -41,9 +41,7 @@ const QueryDisplay = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/query/allquerydelete/${id}`
-      );
+      await axios.delete(`http://localhost:8000/query/allquerydelete/${id}`);
       toast.success("Query deleted successfully");
       loadData();
     } catch (error) {
@@ -54,7 +52,7 @@ const QueryDisplay = () => {
   const handleEditClick = async (query) => {
     try {
       const response = await axios.get(
-        `https://backend.aashayeinjudiciary.com/query/editdisplay?id=${query._id}`
+        `http://localhost:8000/query/editdisplay?id=${query._id}`
       );
       setEditingQuery(response.data);
       setIsEditFormOpen(true);
@@ -68,7 +66,7 @@ const QueryDisplay = () => {
     setIsSubmitting(true);
 
     try {
-      const endpoint = `https://backend.aashayeinjudiciary.com/query/editsave/${editingQuery._id}`;
+      const endpoint = `http://localhost:8000/query/editsave/${editingQuery._id}`;
       await axios.put(endpoint, editingQuery);
 
       toast.success("Query updated successfully");

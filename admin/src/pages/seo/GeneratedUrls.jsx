@@ -12,7 +12,7 @@ const GeneratedUrls = () => {
     const fetchUrls = async () => {
       try {
         const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/api/blog-seo/generated-urls"
+          "http://localhost:8000/api/blog-seo/generated-urls"
         );
         setAllUrls(response.data);
       } catch (err) {

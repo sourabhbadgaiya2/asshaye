@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://backend.aashayeinjudiciary.com/subsubcategory"; // अपने API endpoint के हिसाब से बदलें
+const API_URL = "http://localhost:8000/subsubcategory"; // अपने API endpoint के हिसाब से बदलें
 
 // 1. Get All Sub-Subcategories
 export const fetchSubSubcategories = createAsyncThunk(
@@ -88,7 +88,7 @@ export const fetchSubSubcategoriesByParent = createAsyncThunk(
   async (subCategoryId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://backend.aashayeinjudiciary.com/subsubcategory/by-sub/${subCategoryId}`
+        `http://localhost:8000/subsubcategory/by-sub/${subCategoryId}`
       );
       return response.data;
     } catch (error) {

@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchCategories = createAsyncThunk(
   "category/fetchCategories",
   async () => {
-    const response = await axios.get("https://backend.aashayeinjudiciary.com/api/category");
+    const response = await axios.get("http://localhost:8000/api/category");
     return response.data;
   }
 );

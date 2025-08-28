@@ -19,7 +19,7 @@ export const TeamOne = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const apiUrl = "https://backend.aashayeinjudiciary.com/member/display";
+  const apiUrl = "http://localhost:8000/member/display";
 
   useHobble();
 
@@ -76,14 +76,13 @@ export const TeamOne = () => {
           data-wow-duration='1s'
           data-wow-delay='0.2s'
         >
-
-             <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+          <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
             Our Judiciary Mentors
           </h4>
-       <p className='td_section_title text-center td_fs_20 mb-4'>Meet the dedicated mentors shaping future judges through quality training.
-
-    </p>
-
+          <p className='td_section_title text-center td_fs_20 mb-4'>
+            Meet the dedicated mentors shaping future judges through quality
+            training.
+          </p>
         </div>
         <div className='td_height_50 td_height_lg_50' />
 

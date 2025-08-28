@@ -294,9 +294,7 @@ export const FaqOne = () => {
   useEffect(() => {
     const fetchFAQs = async () => {
       try {
-        const response = await axios.get(
-          "https://backend.aashayeinjudiciary.com/faq/"
-        );
+        const response = await axios.get("http://localhost:8000/faq/");
         setFaqs(response.data.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch FAQs");
@@ -318,35 +316,34 @@ export const FaqOne = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="td_gray_bg_8 td_shape_section_4 td_hobble">
-      <div className="td_shape td_shape_position_1 td_hover_layer_5">
-        <img src={faqShape5} alt="FAQ Shape 5" />
+    <div className='td_gray_bg_8 td_shape_section_4 td_hobble'>
+      <div className='td_shape td_shape_position_1 td_hover_layer_5'>
+        <img src={faqShape5} alt='FAQ Shape 5' />
       </div>
-      <div className="td_shape td_shape_position_2">
-        <img src={faqShape6} alt="FAQ Shape 6" />
+      <div className='td_shape td_shape_position_2'>
+        <img src={faqShape6} alt='FAQ Shape 6' />
       </div>
-      <div className="td_shape td_shape_position_3 td_hover_layer_3">
-        <img src={faqShape7} alt="FAQ Shape 7" />
+      <div className='td_shape td_shape_position_3 td_hover_layer_3'>
+        <img src={faqShape7} alt='FAQ Shape 7' />
       </div>
-      <div className="td_shape td_shape_position_4">
-        <img src={faqShape5} alt="FAQ Shape 5" />
+      <div className='td_shape td_shape_position_4'>
+        <img src={faqShape5} alt='FAQ Shape 5' />
       </div>
-      <div className="td_height_112 td_height_lg_75" />
-      <div className="container">
-        <div className="row align-items-center td_gap_y_40">
+      <div className='td_height_112 td_height_lg_75' />
+      <div className='container'>
+        <div className='row align-items-center td_gap_y_40'>
           <div
-            className="col-xl-12 wow fadeInLeft"
-            data-wow-duration="1s"
-            data-wow-delay="0.3s"
+            className='col-xl-12 wow fadeInLeft'
+            data-wow-duration='1s'
+            data-wow-delay='0.3s'
           >
-            <div className="td_section_heading td_style_1">
-                      <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
-         FREQUENTLY ASKED QUESTIONS
-          </h4>
-            
+            <div className='td_section_heading td_style_1'>
+              <h4 className='td_section_subtitle_up td_fs_24 td_semibold td_spacing_1 td_mb_5 text-uppercase td_accent_color'>
+                FREQUENTLY ASKED QUESTIONS
+              </h4>
             </div>
-            <div className="td_height_50 td_height_lg_50" />
-            <div className="td_accordians td_style_1 td_type_1">
+            <div className='td_height_50 td_height_lg_50' />
+            <div className='td_accordians td_style_1 td_type_1'>
               {faqs.map((faq, index) => (
                 <div
                   className={`td_accordian ${
@@ -355,32 +352,32 @@ export const FaqOne = () => {
                   key={faq.id || index}
                 >
                   <div
-                    className="td_accordian_head"
+                    className='td_accordian_head'
                     onClick={() => toggleAccordion(index)}
                   >
-                    <h2 className="td_accordian_title td_fs_20 td_medium">
+                    <h2 className='td_accordian_title td_fs_20 td_medium'>
                       {faq.title}
                     </h2>
-                    <span className="td_accordian_toggle">
+                    <span className='td_accordian_toggle'>
                       <svg
-                        width="14"
-                        height="9"
-                        viewBox="0 0 14 9"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        role="presentation"
+                        width='14'
+                        height='9'
+                        viewBox='0 0 14 9'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        aria-hidden='true'
+                        role='presentation'
                         className={activeIndex === index ? "rotate-180" : ""}
                       >
                         <path
-                          d="M12.355 9L7 3.43725L1.645 9L0 7.28745L7 -9.53674e-07L14 7.28745L12.355 9Z"
-                          fill="white"
+                          d='M12.355 9L7 3.43725L1.645 9L0 7.28745L7 -9.53674e-07L14 7.28745L12.355 9Z'
+                          fill='white'
                         />
                       </svg>
                     </span>
                   </div>
                   <div
-                    className="td_accordian_body"
+                    className='td_accordian_body'
                     style={{
                       display: activeIndex === index ? "block" : "none",
                     }}
@@ -393,7 +390,7 @@ export const FaqOne = () => {
           </div>
         </div>
       </div>
-      <div className="td_height_120 td_height_lg_80" />
+      <div className='td_height_120 td_height_lg_80' />
     </div>
   );
 };

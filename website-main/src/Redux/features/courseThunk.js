@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://backend.aashayeinjudiciary.com/api";
+const API_URL = "http://localhost:8000/api";
 
 // 1. All Courses (full list)
 export const fetchCourses = createAsyncThunk(

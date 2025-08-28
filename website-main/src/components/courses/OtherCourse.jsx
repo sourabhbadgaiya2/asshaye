@@ -131,7 +131,7 @@ const OtherCourse = () => {
 
         // Fetch the main course data
         const courseResponse = await axios.get(
-          `https://backend.aashayeinjudiciary.com/othercourse/deatail/${id}`
+          `http://localhost:8000/othercourse/deatail/${id}`
         );
         if (!courseResponse.data) {
           throw new Error("Course not found");

@@ -23,9 +23,7 @@ const AddSEO = () => {
   const fetchSeoData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        "https://backend.aashayeinjudiciary.com/api/seo"
-      );
+      const res = await axios.get("http://localhost:8000/api/seo");
 
       console.log(res, "seo data");
       setSeoData(res.data);
@@ -40,9 +38,7 @@ const AddSEO = () => {
   const fetchRoute = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        "https://backend.aashayeinjudiciary.com/dynamics/"
-      );
+      const res = await axios.get("http://localhost:8000/dynamics/");
 
       console.log(res, "seo data");
       setRoutes(res.data);
@@ -71,16 +67,10 @@ const AddSEO = () => {
     setLoading(true);
     try {
       if (isEditMode) {
-        await axios.put(
-          `https://backend.aashayeinjudiciary.com/api/seo/${editId}`,
-          formData
-        );
+        await axios.put(`http://localhost:8000/api/seo/${editId}`, formData);
         toast.success("SEO data updated!");
       } else {
-        await axios.post(
-          "https://backend.aashayeinjudiciary.com/api/seo",
-          formData
-        );
+        await axios.post("http://localhost:8000/api/seo", formData);
         toast.success("SEO data added!");
       }
 
@@ -107,9 +97,7 @@ const AddSEO = () => {
     if (!window.confirm("Are you sure you want to delete this entry?")) return;
     setLoading(true);
     try {
-      await axios.delete(
-        `https://backend.aashayeinjudiciary.com/api/seo/${id}`
-      );
+      await axios.delete(`http://localhost:8000/api/seo/${id}`);
       toast.success("Deleted successfully!");
       fetchSeoData();
     } catch (error) {
@@ -138,7 +126,13 @@ const AddSEO = () => {
     if (!id) {
       setEditId(null);
       setIsEditMode(false);
-      setFormData({ path: "", element: "", title: "", description: "", keywords: "" });
+      setFormData({
+        path: "",
+        element: "",
+        title: "",
+        description: "",
+        keywords: "",
+      });
       return;
     }
     const item = seoData.find((s) => s._id === id);
@@ -297,7 +291,7 @@ const AddSEO = () => {
             <thead className='bg-gray-100'>
               <tr>
                 <th className='px-4 py-2 text-left'>Path</th>
-                                <th className='px-4 py-2 text-left'>Title</th>
+                <th className='px-4 py-2 text-left'>Title</th>
                 <th className='px-4 py-2 text-left'>Description</th>
                 <th className='px-4 py-2 text-left'>Keywords</th>
                 <th className='px-4 py-2 text-left'>Actions</th>
@@ -308,7 +302,7 @@ const AddSEO = () => {
                 seoData.map((item) => (
                   <tr key={item._id} className='border-t'>
                     <td className='px-4 py-2'>{item.path}</td>
-                                        <td className='px-4 py-2'>{item.title}</td>
+                    <td className='px-4 py-2'>{item.title}</td>
                     <td className='px-4 py-2'>{item.description}</td>
                     <td className='px-4 py-2'>{item.keywords}</td>
                     <td className='px-4 py-2 flex space-x-2 text-lg'>
