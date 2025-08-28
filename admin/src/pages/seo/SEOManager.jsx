@@ -25,9 +25,7 @@ const models = [
   "Judgment",
   "Event",
   "TeamMember",
-  // "WhatsNew",
   "Othercourse",
-  // "SuccessStory",
 ];
 
 const SEOManager = () => {
