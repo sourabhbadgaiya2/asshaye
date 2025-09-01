@@ -78,7 +78,6 @@ const CourseCardSimple = ({ course, currentFilter }) => {
         </div>
         <Link
           to={`${path}`}
-          // to={`/courses/${course.staticUrl}`}
           state={{ id: course._id, filter: currentFilter }}
           className='btn btn-sm w-100 fw-semibold mt-2'
           style={{ backgroundColor: "#C81A1E", color: "white" }}
