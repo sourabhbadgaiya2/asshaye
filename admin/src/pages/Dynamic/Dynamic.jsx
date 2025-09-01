@@ -26,7 +26,7 @@ const Dynamic = () => {
       setDynamics(response.data);
       setError(null);
     } catch (err) {
-      setError("Failed to fetch dynamics");
+      setError("Failed to fetch dynamics data");
       console.error(err);
     } finally {
       setIsLoading(false);
