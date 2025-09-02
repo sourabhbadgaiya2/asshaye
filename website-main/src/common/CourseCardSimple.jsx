@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const CourseCardSimple = ({ course, currentFilter }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedDemoUrl, setSelectedDemoUrl] = useState("");
+  //
   const [selectedDemoTitle, setSelectedDemoTitle] = useState("");
 
   const handleOpenDemo = (url, title) => {
