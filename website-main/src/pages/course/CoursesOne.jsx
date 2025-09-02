@@ -16,8 +16,6 @@ const CoursesPage = () => {
   const location = useLocation();
   const state = location.state;
 
-  // console.log("state :", state?.categoryTitle, " Activetab : ", activeTab);
-
   const titleToTabMap = {
     "Recorded Course": "target",
     "Prelims Test Series": "prelims", // or "mains" if needed
