@@ -1,4 +1,4 @@
-const Course = require("../../Module/OtherCourse/CourseModule"); // Adjust the path as needed
+const Course = require("../../Module/OtherCourse/CourseModule"); 
 const imagekit = require("../../Utils/imageKit");
 
 exports.createCourse = async (req, res) => {
