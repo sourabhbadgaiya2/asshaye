@@ -294,7 +294,7 @@ export const FaqOne = () => {
   useEffect(() => {
     const fetchFAQs = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/faq/");
+        const response = await axios.get("https://asshaye.onrender.com/faq/");
         setFaqs(response.data.data);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch FAQs");

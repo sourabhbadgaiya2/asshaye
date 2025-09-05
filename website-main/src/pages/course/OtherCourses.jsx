@@ -23,7 +23,9 @@ const OtherCoursesSlider = () => {
   const fetchCourses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8000/othercourse");
+      const response = await axios.get(
+        "https://asshaye.onrender.com/othercourse"
+      );
       if (response.data) {
         setCourses(response.data);
         // Filter out the current course and get other courses from the same subcategory

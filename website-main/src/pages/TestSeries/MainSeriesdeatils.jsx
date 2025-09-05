@@ -30,7 +30,7 @@
 // //         setError(null);
 
 // //         // Fetch the main test series data
-// //         const response = await axios.get(`http://localhost:8000/main/maintestseries/${id}`);
+// //         const response = await axios.get(`https://asshaye.onrender.com/main/maintestseries/${id}`);
 // //         if (!response.data) {
 // //           throw new Error('Test series not found');
 // //         }
@@ -44,7 +44,7 @@
 // //             : response.data.category;
 
 // //           const relatedResponse = await axios.get(
-// //             `http://localhost:8000/main/maintestseries?category=${categoryId}&limit=4&exclude=${id}`
+// //             `https://asshaye.onrender.com/main/maintestseries?category=${categoryId}&limit=4&exclude=${id}`
 // //           );
 // //           setRelatedTestSeries(relatedResponse.data);
 // //         }
@@ -336,7 +336,7 @@
 //         setError(null);
 
 //         // Fetch the main test series data
-//         const response = await axios.get(`http://localhost:8000/main/maintestseries/${id}`);
+//         const response = await axios.get(`https://asshaye.onrender.com/main/maintestseries/${id}`);
 //         console.log(response,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 //         if (!response.data) {
 //           throw new Error('Test series not found');
@@ -351,7 +351,7 @@
 //             : response.data.category;
 
 //           // const relatedResponse = await axios.get(
-//           //   `http://localhost:8000/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
+//           //   `https://asshaye.onrender.com/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
 //           // );
 //           // setRelatedTestSeries(relatedResponse.data);
 //         }
@@ -644,7 +644,7 @@ const MainSeriesdeatils = () => {
 
         // Fetch the main test series data
         const response = await axios.get(
-          `http://localhost:8000/main/maintestseries/${id}`
+          `https://asshaye.onrender.com/main/maintestseries/${id}`
         );
         // console.log(response.data.data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (!response.data) {
@@ -661,7 +661,7 @@ const MainSeriesdeatils = () => {
               : response.data.category;
 
           // const relatedResponse = await axios.get(
-          //   `http://localhost:8000/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
+          //   `https://asshaye.onrender.com/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
           // );
           // setRelatedTestSeries(relatedResponse.data);
         }

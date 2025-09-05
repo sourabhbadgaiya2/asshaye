@@ -62,7 +62,9 @@ const DetailSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/whatsnew/${state}`);
+        const response = await fetch(
+          `https://asshaye.onrender.com/whatsnew/${state}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

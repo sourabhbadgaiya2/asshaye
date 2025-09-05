@@ -19,12 +19,12 @@
 //   const fetchCourseAndRelated = async () => {
 //     try {
 //       setLoading(true);
-//       const res = await axios.get(`http://localhost:8000/api/coursess/${id}`);
+//       const res = await axios.get(`https://asshaye.onrender.com/api/coursess/${id}`);
 //       const mainCourse = res.data;
 //       setProduct(mainCourse);
 
 //       const relatedRes = await axios.get(
-//         `http://localhost:8000/api/courses?category=${mainCourse.category._id}`
+//         `https://asshaye.onrender.com/api/courses?category=${mainCourse.category._id}`
 //       );
 //       const filtered = relatedRes.data.filter((p) => p._id !== mainCourse._id);
 //       setRelatedProducts(filtered);
@@ -185,14 +185,16 @@ export const CouresesNine = () => {
       try {
         setLoading(true);
         // Fetch main course by ID
-        const res = await axios.get(`http://localhost:8000/api/courses/${id}`);
+        const res = await axios.get(
+          `https://asshaye.onrender.com/api/courses/${id}`
+        );
         const main = res.data;
         console.log(main);
         setMainCourse(main);
 
         // Now fetch all courses with the same category ID
         const sameCategoryRes = await axios.get(
-          `http://localhost:8000/api/courses/category/${main.category._id}`
+          `https://asshaye.onrender.com/api/courses/category/${main.category._id}`
         );
         // Filter out the main course from the list
         const filtered = sameCategoryRes.data.filter(

@@ -67,13 +67,15 @@ const Card = ({ date, content, images, PDFbrochure, id }) => {
     (route) => route.element === "DetailSection"
   );
 
+  console.log(path, "known");
+
   return (
     <div
       className='border-bottom py-3 d-flex justify-content-between align-items-center'
       // onClick={handleWhatsnew}
       style={{ cursor: "pointer" }}
     >
-      <Link to={`/whats-new-detail/${id}`} state={id}>
+      <Link to={`${path}`} state={id}>
         <div>
           <div className='d-flex align-items-center text-muted small fw-semibold mb-1'>
             <span className='material-icons me-2' style={{ fontSize: "16px" }}>
@@ -85,7 +87,15 @@ const Card = ({ date, content, images, PDFbrochure, id }) => {
             <span className='text-decoration-none text-dark'>{content}</span>
           </p>
         </div>
+
+        {/* Download Icon */}
       </Link>
+      {/* <FiDownload
+          size={20}
+          className='text-danger fw-bolder ms-2'
+          title='Download'
+          onClick={handleDownload}
+        /> */}
 
       <FiDownload
         size={20}
@@ -108,7 +118,7 @@ export default function RecentUpdates() {
     const fetchWhatsNew = async () => {
       try {
         const response = await fetch(
-          "https://sb-eayo.onrender.com/whatsnew/alldisplay"
+          "https://asshaye.onrender.com/whatsnew/alldisplay"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch WhatsNew entries");
@@ -208,7 +218,7 @@ export default function RecentUpdates() {
               whatsNew.map((item, idx) => (
                 <Card
                   key={idx}
-                  id={item.staticUrl} // Pass the ID to the
+                  id={item._id} // Pass the ID to the
                   date={
                     item.createdAt
                       ? new Date(item.createdAt).toLocaleDateString()

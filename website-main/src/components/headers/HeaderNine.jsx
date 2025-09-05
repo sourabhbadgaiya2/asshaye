@@ -32,7 +32,7 @@ export const HeaderNine = () => {
   const [syllabusCategories, setSyllabusCategories] = useState([]);
   const navigate = useNavigate();
 
-  const api = "http://localhost:8000/social";
+  const api = "https://asshaye.onrender.com/social";
   const [socialLinks, setSocialLinks] = useState([]);
 
   const { routesData, loading: routesLoading } = useSelector(
@@ -94,7 +94,7 @@ export const HeaderNine = () => {
   };
 
   const fetchSyllabusCategories = async () => {
-    const api = "http://localhost:8000/syllabuscategory";
+    const api = "https://asshaye.onrender.com/syllabuscategory";
 
     try {
       const response = await axios.get(api);

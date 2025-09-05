@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchSeo = createAsyncThunk("seo/fetchSeo", async () => {
-  const res = await axios.get("http://localhost:8000/api/seo");
+  const res = await axios.get("https://asshaye.onrender.com/api/seo");
   return res.data || [];
 });
 

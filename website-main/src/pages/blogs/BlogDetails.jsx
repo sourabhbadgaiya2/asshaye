@@ -56,7 +56,7 @@ export const BlogDetails = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8000/blog/${state.blogId}`
+          `https://asshaye.onrender.com/blog/${state.blogId}`
         );
         setProduct(res.data);
       } catch (err) {

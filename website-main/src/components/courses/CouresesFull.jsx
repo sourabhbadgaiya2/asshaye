@@ -64,7 +64,7 @@
 
 //         // Fetch the main course data
 //         const courseResponse = await axios.get(
-//           `http://localhost:8000/api/courses/${id}`
+//           `https://asshaye.onrender.com/api/courses/${id}`
 //         );
 //         if (!courseResponse.data) {
 //           throw new Error("Course not found");
@@ -618,8 +618,8 @@ const CouresesFull = () => {
 
         // Fetch the main course data
         const courseResponse = await axios.get(
-          // `http://localhost:8000/api/courses/${id}`
-          `http://localhost:8000/api/courses/${id}`
+          // `https://asshaye.onrender.com/api/courses/${id}`
+          `https://asshaye.onrender.com/api/courses/${id}`
         );
         if (!courseResponse.data) {
           throw new Error("Course not found");

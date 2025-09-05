@@ -25,7 +25,9 @@ export const CoursesAllList = ({ selectedCategoryId }) => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("http://localhost:8000/judement/display");
+      const response = await fetch(
+        "https://asshaye.onrender.com/judement/display"
+      );
       if (!response.ok) throw new Error("Failed to fetch judgments");
 
       const data = await response.json();

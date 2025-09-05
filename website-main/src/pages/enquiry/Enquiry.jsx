@@ -50,7 +50,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:8000/enquiry/add",
+//         "https://asshaye.onrender.com/enquiry/add",
 //         formData
 //       );
 //       console.log("API Response:", response.data);
@@ -259,7 +259,7 @@ export const Enquiry = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/enquiry/add",
+        "https://asshaye.onrender.com/enquiry/add",
         formData
       );
       console.log("API Response:", response.data);

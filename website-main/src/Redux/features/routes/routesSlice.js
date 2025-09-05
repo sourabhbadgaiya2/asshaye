@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async () => {
-  const res = await axios.get("http://localhost:8000/dynamics");
+  const res = await axios.get("https://asshaye.onrender.com/dynamics");
   return res.data || [];
 });
 

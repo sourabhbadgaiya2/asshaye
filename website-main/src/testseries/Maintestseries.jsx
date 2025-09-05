@@ -30,7 +30,7 @@ export const Maintestseries = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8000/main/maintestseries/${id}`
+          `https://asshaye.onrender.com/main/maintestseries/${id}`
         );
         setProduct(res.data);
       } catch (err) {

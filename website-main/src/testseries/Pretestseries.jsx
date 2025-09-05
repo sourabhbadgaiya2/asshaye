@@ -28,7 +28,7 @@ export const Pretestseries = ({ courseId }) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8000/test/preseries/${id}`
+          `https://asshaye.onrender.com/test/preseries/${id}`
         );
         setProduct(res.data);
       } catch (err) {

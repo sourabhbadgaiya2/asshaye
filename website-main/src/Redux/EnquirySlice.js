@@ -6,7 +6,7 @@ export const submitEnquiry = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/enquiry/add",
+        "https://asshaye.onrender.com/enquiry/add",
         formData
       );
       return response.data;

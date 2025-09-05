@@ -18,7 +18,7 @@
 // //   const fetchContacts = async () => {
 // //     try {
 // //       const response = await axios.get(
-// //         "https://sb-eayo.onrender.com/event"
+// //         "https://asshaye.onrender.com/event"
 // //       );
 // //       setContacts(response.data);
 // //       setIsLoading(false);
@@ -311,7 +311,7 @@
 //   const fetchContacts = async () => {
 //     try {
 //       const response = await axios.get(
-//         "https://sb-eayo.onrender.com/event"
+//         "https://asshaye.onrender.com/event"
 //       );
 //       setContacts(response.data);
 //       setIsLoading(false);
@@ -506,7 +506,7 @@
 //   const fetchEvents = async () => {
 //     try {
 //       const response = await axios.get(
-//         "https://sb-eayo.onrender.com/event"
+//         "https://asshaye.onrender.com/event"
 //       );
 //       setEvents(response.data);
 //       setIsLoading(false);
@@ -793,7 +793,7 @@ export const EventOne = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("https://sb-eayo.onrender.com/event");
+      const response = await axios.get("https://asshaye.onrender.com/event");
       setEvents(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -859,10 +859,7 @@ export const EventOne = () => {
                   className='position-relative overflow-hidden'
                   style={{ height: "200px" }}
                 >
-                  <Link
-                    to={`/event-details/${event.staticUrl}`}
-                    state={event._id}
-                  >
+                  <Link to={`${path}`} state={event._id}>
                     <img
                       src={
                         event.images
@@ -913,7 +910,7 @@ export const EventOne = () => {
 
                   <h3 className='h5 fw-bold mb-3'>
                     <Link
-                      to={`/event-details/${event.staticUrl}`}
+                      to={`${path}`}
                       state={event._id}
                       className='text-decoration-none text-dark hover-td_accent_color'
                     >
@@ -937,7 +934,7 @@ export const EventOne = () => {
 
                   <div className='mt-3'>
                     <Link
-                      to={`/event-details/${event.staticUrl}`}
+                      to={`${path}`}
                       state={event._id}
                       className='btn btn-link td_accent_color p-0 text-decoration-none'
                     >

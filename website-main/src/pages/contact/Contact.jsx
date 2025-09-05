@@ -42,8 +42,8 @@ export const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/contact/add",
-        // "http://localhost:8000/contact/add",
+        "https://asshaye.onrender.com/contact/add",
+        // "https://asshaye.onrender.com/contact/add",
         formData
       );
 

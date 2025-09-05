@@ -30,7 +30,7 @@ export const MarqueeStrike = () => {
     const fetchDiscounts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/discount/display"
+          "https://asshaye.onrender.com/discount/display"
         );
         setDiscounts(response.data.data || []);
         setLoading(false);

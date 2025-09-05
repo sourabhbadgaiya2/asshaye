@@ -48,11 +48,13 @@ export const FooterOne = () => {
           setCategories(categoriesResponse.data);
         }
 
-        const socialResponse = await axios.get("http://localhost:8000/social");
+        const socialResponse = await axios.get(
+          "https://asshaye.onrender.com/social"
+        );
         setSocialLinks(socialResponse.data.data);
 
         const playstoreResponse = await axios.get(
-          "http://localhost:8000/playstore/alldisplay"
+          "https://asshaye.onrender.com/playstore/alldisplay"
         );
         setPlaystoreLinks(playstoreResponse.data);
       } catch (error) {

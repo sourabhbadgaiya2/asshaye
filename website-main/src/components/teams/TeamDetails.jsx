@@ -10,10 +10,13 @@ export const TeamDetails = () => {
   const [member, setMember] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { id, slug } = useParams();
+  const { id } = useParams();
   const { state } = useLocation();
 
+  // console.log(state, "team details ");
+
   const { currentSEO } = useSelector((state) => state.blogSeo);
+  // console.log(currentSEO, "SBSBSBSBSB");
 
   const dispatch = useDispatch();
 
@@ -55,39 +58,39 @@ export const TeamDetails = () => {
   }, [currentSEO]);
 
   // ! url
-  // useEffect(() => {
-  //   if (member && member.staticUrl) {
-  //     const slug = member.staticUrl
-  //       .toLowerCase()
-  //       .replace(/"/g, "")
-  //       .replace(/[^a-z0-9]+/g, "-")
-  //       .replace(/(^-|-$)+/g, "");
+  useEffect(() => {
+    if (member && member.staticUrl) {
+      const slug = member.staticUrl
+        .toLowerCase()
+        .replace(/"/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)+/g, "");
 
-  //     const newUrl = `/team-member/${slug}`;
-  //     const currentPath = window.location.pathname;
+      const newUrl = `/team-member/${slug}`;
+      const currentPath = window.location.pathname;
 
-  //     if (!currentPath.includes(slug)) {
-  //       window.history.replaceState(null, "", newUrl);
-  //     }
+      if (!currentPath.includes(slug)) {
+        window.history.replaceState(null, "", newUrl);
+      }
 
-  //     // Set or update meta keywords
-  //     const canonicalUrl = window.location.origin + newUrl;
-  //     let link = document.querySelector("link[rel='canonical']");
-  //     if (!link) {
-  //       link = document.createElement("link");
-  //       link.setAttribute("rel", "canonical");
-  //       document.head.appendChild(link);
-  //     }
-  //     link.setAttribute("href", canonicalUrl);
-  //   }
-  // }, [member]);
+      // Set or update meta keywords
+      const canonicalUrl = window.location.origin + newUrl;
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalUrl);
+    }
+  }, [member]);
 
   useEffect(() => {
     const fetchMember = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://sb-eayo.onrender.com/member/slug/${slug}`
+          `https://asshaye.onrender.com/member/${state}`
         );
         setMember(res.data);
       } catch (err) {

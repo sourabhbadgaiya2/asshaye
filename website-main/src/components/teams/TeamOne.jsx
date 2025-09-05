@@ -19,7 +19,7 @@ export const TeamOne = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const apiUrl = "https://sb-eayo.onrender.com/member/display";
+  const apiUrl = "https://asshaye.onrender.com/member/display";
 
   useHobble();
 
@@ -109,10 +109,7 @@ export const TeamOne = () => {
           >
             {members.map((member, idx) => (
               <SwiperSlide key={member._id || idx}>
-                <Link
-                  to={`/team-member/${member.staticUrl}`}
-                  state={member._id}
-                >
+                <Link to={`${path}`} state={member._id}>
                   <div
                     className='td_team td_style_1 text-center position-relative cursor:pointer'
                     // onClick={handleMember(member._id)}

@@ -31,7 +31,7 @@ const TestSeriesDetail = () => {
 
         // Fetch the main test series data
         const response = await axios.get(
-          `http://localhost:8000/test/preseries/${id}`
+          `https://asshaye.onrender.com/test/preseries/${id}`
         );
         // console.log(response, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (!response.data) {
@@ -48,7 +48,7 @@ const TestSeriesDetail = () => {
               : response.data.category;
 
           // const relatedResponse = await axios.get(
-          //   `http://localhost:8000/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
+          //   `https://asshaye.onrender.com/test/preseries?category=${categoryId}&limit=4&exclude=${id}`
           // );
           // setRelatedTestSeries(relatedResponse.data);
         }

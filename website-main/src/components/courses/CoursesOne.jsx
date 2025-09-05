@@ -30,7 +30,9 @@ export const CoursesOne = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/allcourse");
+        const response = await fetch(
+          "https://asshaye.onrender.com/api/allcourse"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }

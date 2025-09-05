@@ -33,7 +33,9 @@ export const BlogOne = () => {
 
   const fetchJudgement = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:8000/judement/display");
+      const response = await fetch(
+        "https://asshaye.onrender.com/judement/display"
+      );
       if (!response.ok) throw new Error("Failed to fetch judgements");
 
       const data = await response.json();
@@ -46,7 +48,7 @@ export const BlogOne = () => {
 
   const fetchBlogs = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:8000/blog/display");
+      const response = await fetch("https://asshaye.onrender.com/blog/display");
       if (!response.ok) throw new Error("Failed to fetch blogs");
 
       const data = await response.json();

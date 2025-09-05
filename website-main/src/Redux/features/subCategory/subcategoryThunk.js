@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/subcategory"; // अपने API endpoint के हिसाब से बदलें
+const API_URL = "https://asshaye.onrender.com/subcategory"; // अपने API endpoint के हिसाब से बदलें
 
 // 1. Get All Subcategories
 export const fetchSubcategories = createAsyncThunk(

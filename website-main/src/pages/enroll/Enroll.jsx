@@ -25,7 +25,7 @@
 //     const loadProducts = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:8000/enroll/getproducts/${id}`
+//           `https://asshaye.onrender.com/enroll/getproducts/${id}`
 //         );
 //         setProductData(response.data);
 //       } catch (error) {
@@ -71,7 +71,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         `http://localhost:8000/enroll/${id}`,
+//         `https://asshaye.onrender.com/enroll/${id}`,
 //         formData
 //       );
 //       console.log("Form submitted successfully:", response.data);
@@ -248,7 +248,7 @@ export const Enroll = () => {
     const loadProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/enroll/getproducts/${id}`
+          `https://asshaye.onrender.com/enroll/getproducts/${id}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -293,7 +293,7 @@ export const Enroll = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/enroll/${id}`,
+        `https://asshaye.onrender.com/enroll/${id}`,
         formData
       );
       console.log("Form submitted successfully:", response.data);

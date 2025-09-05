@@ -33,7 +33,7 @@ export const SyllabusDownload = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/syllabus/category/${state?.id}`
+          `https://asshaye.onrender.com/syllabus/category/${state?.id}`
         );
         setSyllabusData(res.data); // 👈 ensure array
         // Assuming category info is inside each syllabus item, we take the first one
@@ -90,7 +90,7 @@ export const SyllabusDownload = () => {
 
     try {
       setSubmitting(true);
-      await axios.post("http://localhost:8000/register/add", formData);
+      await axios.post("https://asshaye.onrender.com/register/add", formData);
       if (selectedSyllabus?.pdfUrl) {
         handleDownloadPdf(selectedSyllabus.pdfUrl, selectedSyllabus.Coursename);
       }

@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE = "http://localhost:8000/api/blog-seo";
+const API_BASE = "https://asshaye.onrender.com/api/blog-seo";
 
 // ✅ Create Blog SEO
 export const createBlogSEO = createAsyncThunk(
@@ -23,7 +23,7 @@ export const getAllBlogSEOs = createAsyncThunk(
     console.log(modelName, "thunks");
     try {
       const response = axios.get(
-        "http://localhost:8000/api/seo?modelName=Blog"
+        "https://asshaye.onrender.com/api/seo?modelName=Blog"
       );
 
       return response.data;

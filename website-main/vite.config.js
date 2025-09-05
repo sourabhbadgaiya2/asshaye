@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // sitemap.xml ko backend ki taraf forward karo
       "/sitemap.xml": {
-        target: "http://localhost:8000",
+        target: "https://asshaye.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path, // path ko same hi rakho
       },

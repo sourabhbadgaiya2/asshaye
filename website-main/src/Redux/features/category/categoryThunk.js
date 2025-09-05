@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/category"; // Change if needed
+const API_URL = "https://asshaye.onrender.com/category"; // Change if needed
 
 // 1. Get All Categories
 export const fetchCategories = createAsyncThunk(
