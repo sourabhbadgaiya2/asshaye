@@ -24,7 +24,7 @@ export const BlogItem = ({
 
   return (
     <div className='td_post td_style_1'>
-      {/* <Link to={`${link}/${blogId}`}> */}
+    
       <Link to={`${blogRoute?.path}`} state={{ blogId: blogId }}>
         <div id='block-section' className='td_post_thumb d-block'>
           <img src={image} alt={title} />
