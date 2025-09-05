@@ -20,8 +20,6 @@ export const BlogOne = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // console.log(blogs, "blogs");
-
   const { routesData, loading: routesLoading } = useSelector(
     (state) => state.routes
   );
