@@ -14,7 +14,13 @@ const fileUpload = require("express-fileupload");
 app.use(morgan("tiny"));
 
 require("dotenv").config();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 // app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

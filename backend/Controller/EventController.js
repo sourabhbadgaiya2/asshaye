@@ -260,6 +260,31 @@ const editDataSave = async (req, res) => {
   }
 };
 
+const getCourseBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    if (!slug) {
+      return res.status(400).json({ message: "Slug is required" });
+    }
+
+    const course = await Contact.findOne({ staticUrl: slug });
+
+    if (!course) {
+      return res
+        .status(404)
+        .json({ message: "Course not found with this slug" });
+    }
+
+    res.status(200).json(course);
+  } catch (error) {
+    console.error("Error fetching course by slug:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
 module.exports = {
   ContactSave,
   getAllContacts,
@@ -269,4 +294,5 @@ module.exports = {
   getCourseById,
   editDataSave,
   editDisplay,
+  getCourseBySlug,
 };

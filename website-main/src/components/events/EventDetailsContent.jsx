@@ -12,8 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBlogSEOById } from "../../Redux/features/blogSeo/blogSeoThunk";
 
 export const EventDetailsContent = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, slug } = useParams();
   const [event, setEvent] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -66,7 +65,9 @@ export const EventDetailsContent = () => {
     const fetchEvent = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:8000/event/${state}`);
+        const res = await axios.get(
+          `https://sb-eayo.onrender.com/event/slug/${slug}`
+        );
         setEvent(res.data);
       } catch (err) {
         console.error("Failed to fetch event", err);
@@ -78,32 +79,32 @@ export const EventDetailsContent = () => {
     fetchEvent();
   }, [state]);
 
-  // ! url
-  useEffect(() => {
-    if (event && event.staticUrl) {
-      const slug = event.staticUrl
-        .toLowerCase()
-        .replace(/"/g, "")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)+/g, "");
+  // // ! url
+  // useEffect(() => {
+  //   if (event && event.staticUrl) {
+  //     const slug = event.staticUrl
+  //       .toLowerCase()
+  //       .replace(/"/g, "")
+  //       .replace(/[^a-z0-9]+/g, "-")
+  //       .replace(/(^-|-$)+/g, "");
 
-      const newUrl = `/event-details/${slug}`;
-      const currentPath = window.location.pathname;
+  //     const newUrl = `/event-details/${slug}`;
+  //     const currentPath = window.location.pathname;
 
-      if (!currentPath.includes(slug)) {
-        window.history.replaceState(null, "", newUrl);
-      }
+  //     if (!currentPath.includes(slug)) {
+  //       window.history.replaceState(null, "", newUrl);
+  //     }
 
-      const canonicalUrl = window.location.origin + newUrl;
-      let link = document.querySelector("link[rel='canonical']");
-      if (!link) {
-        link = document.createElement("link");
-        link.setAttribute("rel", "canonical");
-        document.head.appendChild(link);
-      }
-      link.setAttribute("href", canonicalUrl);
-    }
-  }, [event]);
+  //     const canonicalUrl = window.location.origin + newUrl;
+  //     let link = document.querySelector("link[rel='canonical']");
+  //     if (!link) {
+  //       link = document.createElement("link");
+  //       link.setAttribute("rel", "canonical");
+  //       document.head.appendChild(link);
+  //     }
+  //     link.setAttribute("href", canonicalUrl);
+  //   }
+  // }, [event]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

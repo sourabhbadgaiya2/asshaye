@@ -313,7 +313,12 @@ const getrecorededcourse = async (req, res) => {
   try {
     const id = req.params.id;
 
+    // Validate MongoDB ObjectId
+    // if (!mongoose.Types.ObjectId.isValid(id)) {
+    //   return res.status(400).json({ message: "Invalid ID format" });
+    // }
 
+    // console.log("Fetching courses for subsubCategory ID:", id);
 
     const courses = await Course.find({ subsubCategory: id })
       .populate("category")
@@ -414,7 +419,7 @@ const getCourseBySlug = async (req, res) => {
       return res.status(400).json({ message: "Slug is required" });
     }
 
-    const course = await Course.findOne({ slug })
+    const course = await Course.findOne({ staticUrl: slug })
       .populate("category")
       .populate("subCategory")
       .populate("subsubCategory");

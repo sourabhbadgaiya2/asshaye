@@ -5,6 +5,7 @@ const Event = require("../Module/EventModule.js");
 const Judgment = require("../Module/JudementModule.js");
 const TeamMember = require("../Module/MemberModule.js");
 const WhatsNew = require("../Module/WhatsModule.js");
+const SyllabusCategory = require("../Module/SyllabusCategoryModule.js");
 
 const router = express.Router();
 
@@ -59,6 +60,7 @@ router.get("/sitemap.xml", async (req, res) => {
         Judgment.find().select("staticUrl updatedAt createdAt").lean(),
         TeamMember.find().select("staticUrl updatedAt createdAt").lean(),
         WhatsNew.find().select("staticUrl updatedAt createdAt").lean(),
+        SyllabusCategory.find().select("staticUrl updatedAt createdAt").lean(),
       ]);
 
     const toUrls = (items, prefix, opts = {}) => {
@@ -88,6 +90,7 @@ router.get("/sitemap.xml", async (req, res) => {
       ...toUrls(judgments, "/judgements"),
       ...toUrls(team, "/team-member-details"),
       ...toUrls(whatsNew, "/whats-new-detail"),
+      ...toUrls(SyllabusCategory, "/syllabus"),
     ];
 
     // 3) Merge static + dynamic

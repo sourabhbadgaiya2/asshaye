@@ -157,7 +157,39 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+const getCourseBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    // console.log(slug, "slug");
+
+    if (!slug) {
+      return res.status(400).json({ message: "Slug is required" });
+    }
+
+    const course = await Category.findOne({ staticUrl: slug }).populate(
+      "syllabusData"
+    );
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: course,
+    });
+  } catch (error) {
+    console.error("Error fetching course by slug:", error);
+    res.status(500).json({
+      success: false,
+      message: error.message || "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
+  getCourseBySlug,
   getAllCategorys,
   getCategoryById,
   createCategory,

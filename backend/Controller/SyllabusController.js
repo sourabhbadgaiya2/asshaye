@@ -1,6 +1,7 @@
 const Course = require("../Module/SyllabusModule");
 const Category = require("../Module/CategoryModule"); // Make sure to import Category model
 const imagekit = require("../Utils/imageKit");
+const SyllabusCategoryModule = require("../Module/SyllabusCategoryModule");
 
 const fileUpload = async (file) => {
   const buffer = file.data;
@@ -35,6 +36,12 @@ const WhatsNewSave = async (req, res) => {
       staticUrl,
       PDFbrochure: pdfUrl,
     });
+
+    await SyllabusCategoryModule.findByIdAndUpdate(
+      category,
+      { $push: { syllabusData: course._id } },
+      { new: true, useFindAndModify: false }
+    );
 
     res.status(201).json({
       success: true,
@@ -194,14 +201,15 @@ const editDataSave = async (req, res) => {
 
 const getCourseBySlug = async (req, res) => {
   try {
-    const { slug } = req.params; // frontend se aa raha hai :slug
+    const { slug } = req.params;
+
+    // console.log(slug, "slug");
 
     if (!slug) {
       return res.status(400).json({ message: "Slug is required" });
     }
-    const course = await Course.findOne({ staticUrl: slug }).populate(
-      "category"
-    );
+
+    const course = await Course.findOne({ staticUrl: slug });
 
     if (!course) {
       return res.status(404).json({ message: "Course not found" });

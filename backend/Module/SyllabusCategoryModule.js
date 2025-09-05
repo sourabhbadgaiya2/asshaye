@@ -20,6 +20,14 @@ var categorySchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
+
+    syllabusData: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Syllabus",
+      },
+    ],
+
     metaKeywords: {
       type: [String], // Array of strings
       default: [],
